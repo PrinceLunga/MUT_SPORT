@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "MUT_MODELS/1.0.0": {
+        "runtime": {
+          "MUT_MODELS.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MUT_MODELS/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

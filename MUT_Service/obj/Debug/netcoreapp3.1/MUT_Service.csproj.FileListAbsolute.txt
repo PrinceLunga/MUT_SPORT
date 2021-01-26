@@ -1,0 +1,14 @@
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\bin\Debug\netcoreapp3.1\MUT_Service.deps.json
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\bin\Debug\netcoreapp3.1\MUT_Service.dll
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\bin\Debug\netcoreapp3.1\MUT_Service.pdb
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\bin\Debug\netcoreapp3.1\MUT_DataAccess.dll
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\bin\Debug\netcoreapp3.1\MUT_MODELS.dll
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\bin\Debug\netcoreapp3.1\MUT_DataAccess.pdb
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\bin\Debug\netcoreapp3.1\MUT_MODELS.pdb
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.csprojAssemblyReference.cache
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.AssemblyInfoInputs.cache
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.AssemblyInfo.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.csproj.CoreCompileInputs.cache
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.csproj.CopyComplete
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.dll
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.pdb
