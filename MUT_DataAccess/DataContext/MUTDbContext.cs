@@ -13,6 +13,8 @@ namespace MUT_DataAccess.DataContext
 
         }
         public DbSet<Sport> Sports { get; set; }
+        public DbSet<Student>  Students { get; set; }
+        public DbSet<Event> Events { get; set; }
 
 
     }
