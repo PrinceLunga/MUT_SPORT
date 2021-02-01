@@ -13,6 +13,8 @@ namespace MUT_Service.Interface
         public StudentModel UpdateProfile(StudentModel studentModel);
         public List<TrainingScheduleModel> GetTrainingSchedules();
         public List<EventModel> GetAllUpcomingEvents();
+        public bool StudentExists(int id);
+       
 
 
 

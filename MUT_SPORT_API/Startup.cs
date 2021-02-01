@@ -35,7 +35,11 @@ namespace MUT_SPORT_API
                 options.UseSqlServer(Configuration.GetConnectionString("DBConnection"),
                     x => x.MigrationsAssembly("MUT_DataAccess")));
 
-            services.AddScoped<ISportService,SportService>();
+            services.AddScoped<ISportService, SportService>();
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IGameResultService, GameResultsServices>();
+            services.AddScoped<IStudentSportService, StudentSportService>();
+            services.AddScoped<IEventService, EventService>();
 
         }
 

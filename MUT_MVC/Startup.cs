@@ -7,7 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MUT_DataAccess.DataContext;
 using MUT_MVC.Data;
+using MUT_Service.Implementation;
+using MUT_Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,13 +30,19 @@ namespace MUT_MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<MUTDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<MUTDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<ISportService, SportService>();
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IGameResultService, GameResultsServices>();
+            services.AddScoped<IStudentSportService, StudentSportService>();
+            services.AddScoped<IEventService, EventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

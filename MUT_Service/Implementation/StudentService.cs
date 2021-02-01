@@ -19,7 +19,7 @@ namespace MUT_Service.Implementation
         }
         public void AddStudent(StudentModel model)
         {
-            using(mUTDbcontext)
+            using (mUTDbcontext)
             {
                 var student = new Student
                 {
@@ -39,10 +39,10 @@ namespace MUT_Service.Implementation
 
         public List<StudentModel> GetAllStudents()
         {
-            using(mUTDbcontext)
+            using (mUTDbcontext)
             {
-                return mUTDbcontext.Students.Select( x => new StudentModel 
-                { 
+                return mUTDbcontext.Students.Select(x => new StudentModel
+                {
                     Fullnames = x.Fullnames,
                     Accomodation = x.Accomodation,
                     HasMedicalAid = x.HasMedicalAid,
@@ -58,12 +58,21 @@ namespace MUT_Service.Implementation
 
         public List<EventModel> GetAllUpcomingEvents()
         {
-            throw new NotImplementedException();
+            using (mUTDbcontext)
+            {
+                return mUTDbcontext.Events.Select(x => new EventModel
+                {
+                    Name = x.Name,
+                    Venue = x.Venue,
+                    StartingTime = x.StartingTime,
+                    EndingTime = x.EndingTime
+                }).ToList();
+            }
         }
 
         public StudentModel GetStudentById(string search)
         {
-            using(mUTDbcontext)
+            using (mUTDbcontext)
             {
                 return mUTDbcontext.Students
                     .Where(x => x.Fullnames == search || x.Id == Convert.ToInt32(search))
@@ -81,18 +90,66 @@ namespace MUT_Service.Implementation
                         DateCreated = b.DateCreated
 
                     }).FirstOrDefault();
-                    
+
             }
         }
 
         public List<TrainingScheduleModel> GetTrainingSchedules()
         {
-            throw new NotImplementedException();
+            using (mUTDbcontext)
+            {
+                return mUTDbcontext.TrainingSchedules.Select(x => new TrainingScheduleModel
+                {
+                    Venue = x.Venue,
+                    StartTime = x.StartTime,
+                    FinishTime = x.FinishTime,
+                    DateOfSession = x.DateOfSession
+                }).ToList();
+            }
+        }
+
+        public bool StudentExists(int id)
+        {
+            using (mUTDbcontext)
+            {
+                var student = mUTDbcontext.Students.Find(id);
+
+                if (student != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
         public StudentModel UpdateProfile(StudentModel studentModel)
         {
-            throw new NotImplementedException();
+            using (mUTDbcontext)
+            {
+                var student = mUTDbcontext.Students.Find(studentModel.Id);
+
+                if (student != null)
+                {
+                    student.MedicalAidCard = studentModel.MedicalAidCard;
+                    student.MedicalAidNumber = studentModel.MedicalAidNumber;
+                    student.NextOfKinFullnames = studentModel.NextOfKinFullnames;
+                    student.NextOfKinPhoneNumber = studentModel.NextOfKinPhoneNumber;
+                    student.PhoneNumber = studentModel.PhoneNumber;
+                    student.SportId = studentModel.SportId;
+                    student.Fullnames = studentModel.Fullnames;
+                    student.DateModified = DateTime.Now;
+                    student.Accomodation = studentModel.Accomodation;
+                    mUTDbcontext.SaveChanges();
+                    return studentModel;
+                }
+                else
+                {
+                    return new StudentModel();
+                }
+            }
         }
     }
 }

@@ -9,52 +9,111 @@ using System.Text;
 
 namespace MUT_Service.Implementation
 {
-    public class EventService : IEventService
+    public class CoachingService : ICoachService
     {
         private readonly MUTDbContext mUTDbContext;
-        public EventService(MUTDbContext _mUTDbContext)
+        public CoachingService(MUTDbContext _mUTDbContext)
         {
             this.mUTDbContext = _mUTDbContext;
         }
-        public List<EventModel> GetAllEvents()
+
+        public List<CoachModel> GetAllCoaches()
         {
             using (mUTDbContext)
             {
-                return mUTDbContext.Events.Select(x => new EventModel
+                return mUTDbContext.Coaches.Select(x => new CoachModel
                 {
-                    Name = x.Name,
-                    Venue = x.Venue,
-                    StartingTime = x.StartingTime,
-                    EndingTime = x.EndingTime
+                    Fullnames = x.Fullnames,
+                    EmailAddress = x.EmailAddress,
+                    PhoneNumber = x.PhoneNumber,
+                    SportName = x.SportName,
+                    TeamName = x.TeamName
                 }).ToList();
             }
         }
 
-        public EventModel GetEventByName(string eventName)
+        public CoachModel GetCoachById(int id)
         {
             using (mUTDbContext)
             {
-                return mUTDbContext.Events.Where(x => x.Name.Equals(eventName)).Select(x => new EventModel
+                return mUTDbContext.Coaches.Where(c => c.Id == id).Select(x => new CoachModel
                 {
-                    Name = x.Name,
-                    Venue = x.Venue,
-                    StartingTime = x.StartingTime,
-                    EndingTime = x.EndingTime
-                }).Single();
+                    Fullnames = x.Fullnames,
+                    EmailAddress = x.EmailAddress,
+                    PhoneNumber = x.PhoneNumber,
+                    SportName = x.SportName,
+                    TeamName = x.TeamName
+                }).SingleOrDefault();
             }
         }
 
-        public void InsertNewEvent(EventModel eventModel)
+        public CoachModel GetCoachByName(string searchString)
         {
-            throw new NotImplementedException();
+            using (mUTDbContext)
+            {
+                return mUTDbContext.Coaches.Where(c => c.Fullnames.Equals(searchString)
+                || c.EmailAddress.Equals(searchString)
+                || c.TeamName.Equals(searchString)
+                || c.SportName.Equals(searchString)
+                ).Select(x => new CoachModel
+                {
+                    Fullnames = x.Fullnames,
+                    EmailAddress = x.EmailAddress,
+                    PhoneNumber = x.PhoneNumber,
+                    SportName = x.SportName,
+                    TeamName = x.TeamName
+                }).SingleOrDefault();
+            }
         }
 
-        public void UpdateEvent(EventModel eventModel)
+        public void InsertNewCoach(CoachModel coachModel)
+        {
+            using (mUTDbContext)
+            {
+                var coach = new Coach
+                {
+                    EmailAddress = coachModel.EmailAddress,
+                    Fullnames = coachModel.Fullnames,
+                    PhoneNumber = coachModel.PhoneNumber,
+                    SportName = coachModel.SportName,
+                    TeamName = coachModel.TeamName
+                };
+                mUTDbContext.Coaches.Add(coach);
+                mUTDbContext.SaveChanges();
+            }
+        }
+
+        public bool CoachExists(int id)
         {
             using(mUTDbContext)
             {
-               
+                var coach = mUTDbContext.Coaches.Find(id);
+
+                if (coach != null)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public void UpdateCoach(CoachModel coachModel)
+        {
+            using(mUTDbContext)
+            {
+                var coach = mUTDbContext.Coaches.Find(coachModel.Id);
+
+                if(coach != null)
+                {
+                    coach.EmailAddress = coachModel.EmailAddress;
+                    coach.Fullnames = coachModel.Fullnames;
+                    coach.PhoneNumber = coachModel.PhoneNumber;
+                    coach.SportName = coachModel.SportName;
+                    coach.TeamName = coachModel.TeamName;
+                }
+                mUTDbContext.Coaches.Add(coach);
+                mUTDbContext.SaveChanges();
             }
         }
     }
+
 }

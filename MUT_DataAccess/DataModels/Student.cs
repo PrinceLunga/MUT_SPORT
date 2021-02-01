@@ -10,6 +10,7 @@ namespace MUT_DataAccess.DataModels
         [Key]
         public int Id { get; set; }
         public string Fullnames { get; set; }
+        public string StudentNumber { get; set; }
         public string Accomodation { get; set; }
         public string PhoneNumber { get; set; }
         public string NextOfKinFullnames { get; set; }

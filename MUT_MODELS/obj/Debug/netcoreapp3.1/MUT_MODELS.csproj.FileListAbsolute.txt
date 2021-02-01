@@ -6,3 +6,4 @@ C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.csproj.CoreCompileInputs.cache
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.dll
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.pdb
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.csprojAssemblyReference.cache
