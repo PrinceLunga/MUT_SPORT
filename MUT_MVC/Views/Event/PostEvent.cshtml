@@ -1,0 +1,47 @@
+﻿@model MUT_DataAccess.DataModels.Event
+
+@{
+    ViewData["Title"] = "PostEvent";
+    Layout = "~/Views/Shared/_CoachLayout.cshtml";
+}
+
+<h1>PostEvent</h1>
+
+<h4>Event</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostEvent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venue" class="control-label"></label>
+                <input asp-for="Venue" class="form-control" />
+                <span asp-validation-for="Venue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartingTime" class="control-label"></label>
+                <input asp-for="StartingTime" class="form-control" />
+                <span asp-validation-for="StartingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndingTime" class="control-label"></label>
+                <input asp-for="EndingTime" class="form-control" />
+                <span asp-validation-for="EndingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

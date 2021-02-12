@@ -1,20 +1,16 @@
+
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MUT_DataAccess.DataContext;
+using MUT_MVC.Models;
 using MUT_MVC.Data;
-using MUT_Service.Implementation;
 using MUT_Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MUT_Service.Implementation;
+using MUT_DataAccess.DataContext;
 
 namespace MUT_MVC
 {
@@ -42,7 +38,10 @@ namespace MUT_MVC
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IGameResultService, GameResultsServices>();
             services.AddScoped<IStudentSportService, StudentSportService>();
-            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<ITeamPlayerService, TeamPlayerService>();
+            services.AddScoped<ICoachService, CoachingService>();
+            //services.AddTransient<>();
+            // services.AddSingleton<>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

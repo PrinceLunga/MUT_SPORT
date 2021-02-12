@@ -6,22 +6,22 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MUT_MVC.Controllers
 {
     public class SportController : Controller
     {
-        private readonly ISportService sportService;
         private List<SportModel> sportList;
 
-        public SportController(ISportService _sportService)
+        public SportController()
         {
-            this.sportService = _sportService;
             sportList = new List<SportModel>();
+        }
+        public ViewResult GetDashBoard()
+        {
+            return View();
         }
         public async Task<IActionResult> GetSports()
         {
@@ -69,7 +69,7 @@ namespace MUT_MVC.Controllers
                 formDataContent.Add(new StringContent(sport.Code), "Code");
                 formDataContent.Add(new StringContent(sport.Name), "Name");
 
-                response = await httpClient.PostAsync("https://localhost:44330/Api/Sport/PostSport", formDataContent);
+                response = await httpClient.PostAsync("https://localhost:44330/api/Sport/PostSport", formDataContent);
 
                 var data = await response.Content.ReadAsStringAsync();
                 response.EnsureSuccessStatusCode();

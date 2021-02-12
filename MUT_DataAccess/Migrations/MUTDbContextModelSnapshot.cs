@@ -44,16 +44,19 @@ namespace MUT_DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DateCreated")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeNumber")
+                    b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Fullnames")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SportName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeamName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -71,16 +74,26 @@ namespace MUT_DataAccess.Migrations
                     b.Property<string>("EndingTime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("GameResultsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StartingTime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UpComingEventsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Venue")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GameResultsId");
+
+                    b.HasIndex("UpComingEventsId");
 
                     b.ToTable("Events");
                 });
@@ -164,7 +177,12 @@ namespace MUT_DataAccess.Migrations
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TeamPlayerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TeamPlayerId");
 
                     b.ToTable("PlayerAchievements");
                 });
@@ -203,17 +221,13 @@ namespace MUT_DataAccess.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StudentId")
+                    b.Property<int>("StudentSportId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentSportId")
+                    b.Property<int>("TeamId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.HasIndex("StudentSportId");
 
                     b.ToTable("Sports");
                 });
@@ -237,6 +251,9 @@ namespace MUT_DataAccess.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("EmailAddress")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Fullnames")
                         .HasColumnType("nvarchar(max)");
 
@@ -258,13 +275,16 @@ namespace MUT_DataAccess.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SportId")
-                        .HasColumnType("int");
-
                     b.Property<string>("StudentNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StudentSportId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StudentSportId")
+                        .IsUnique();
 
                     b.ToTable("Students");
                 });
@@ -285,15 +305,12 @@ namespace MUT_DataAccess.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SportId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
+                    b.Property<int?>("SportId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("SportId");
 
                     b.ToTable("StudentSports");
                 });
@@ -311,12 +328,46 @@ namespace MUT_DataAccess.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("SportId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TeamName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TeamNotificationId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("SportId");
+
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("MUT_DataAccess.DataModels.TeamNotifications", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte[]>("Attachment")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("From")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("TeamNotifications");
                 });
 
             modelBuilder.Entity("MUT_DataAccess.DataModels.TeamPlayer", b =>
@@ -416,24 +467,52 @@ namespace MUT_DataAccess.Migrations
                     b.ToTable("UpComingEvents");
                 });
 
-            modelBuilder.Entity("MUT_DataAccess.DataModels.Sport", b =>
+            modelBuilder.Entity("MUT_DataAccess.DataModels.Event", b =>
                 {
-                    b.HasOne("MUT_DataAccess.DataModels.Student", null)
-                        .WithMany("sports")
-                        .HasForeignKey("StudentId");
+                    b.HasOne("MUT_DataAccess.DataModels.GameResult", "GameResults")
+                        .WithMany()
+                        .HasForeignKey("GameResultsId");
 
-                    b.HasOne("MUT_DataAccess.DataModels.StudentSport", null)
-                        .WithMany("Sports")
-                        .HasForeignKey("StudentSportId");
+                    b.HasOne("MUT_DataAccess.DataModels.UpComingEvent", "UpComingEvents")
+                        .WithMany()
+                        .HasForeignKey("UpComingEventsId");
+                });
+
+            modelBuilder.Entity("MUT_DataAccess.DataModels.PlayerAchievement", b =>
+                {
+                    b.HasOne("MUT_DataAccess.DataModels.TeamPlayer", null)
+                        .WithMany("PlayerAchievements")
+                        .HasForeignKey("TeamPlayerId");
+                });
+
+            modelBuilder.Entity("MUT_DataAccess.DataModels.Student", b =>
+                {
+                    b.HasOne("MUT_DataAccess.DataModels.StudentSport", "StudentSports")
+                        .WithOne("Students")
+                        .HasForeignKey("MUT_DataAccess.DataModels.Student", "StudentSportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MUT_DataAccess.DataModels.StudentSport", b =>
                 {
-                    b.HasOne("MUT_DataAccess.DataModels.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("MUT_DataAccess.DataModels.Sport", null)
+                        .WithMany("Sports")
+                        .HasForeignKey("SportId");
+                });
+
+            modelBuilder.Entity("MUT_DataAccess.DataModels.Team", b =>
+                {
+                    b.HasOne("MUT_DataAccess.DataModels.Sport", null)
+                        .WithMany("Teams")
+                        .HasForeignKey("SportId");
+                });
+
+            modelBuilder.Entity("MUT_DataAccess.DataModels.TeamNotifications", b =>
+                {
+                    b.HasOne("MUT_DataAccess.DataModels.Team", null)
+                        .WithMany("Teams")
+                        .HasForeignKey("TeamId");
                 });
 
             modelBuilder.Entity("MUT_DataAccess.DataModels.TeamPlayer", b =>

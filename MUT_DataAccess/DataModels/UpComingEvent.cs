@@ -16,6 +16,7 @@ namespace MUT_DataAccess.DataModels
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public DateTime DateClosed { get; set; }
+        public virtual Event Event { get; set; }
 
     }
 }

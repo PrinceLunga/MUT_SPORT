@@ -22,8 +22,6 @@ namespace MUT_Service.Implementation
             {
                 return mUTDbContext.StudentSports.Select(x => new StudentSportModel
                 {
-                    SportId = x.SportId,
-                    StudentId = x.StudentId,
                     DateEnrolled = x.DateEnrolled,
                     DateDeleted = x.DateDelete,
                     DateModified = x.DateModified
@@ -35,10 +33,10 @@ namespace MUT_Service.Implementation
         {
             using (mUTDbContext)
             {
-                return mUTDbContext.StudentSports.Where( b => b.Student.StudentNumber.Equals(studentNumber)).Select(x => new StudentSportModel
+                return mUTDbContext.StudentSports.Where( b => b.Students.StudentNumber.Equals(studentNumber) 
+                || b.Students.Fullnames.Equals(Fullnames))
+                    .Select(x => new StudentSportModel
                 {
-                    SportId = x.SportId,
-                    StudentId = x.StudentId,
                     DateEnrolled = x.DateEnrolled,
                     DateDeleted = x.DateDelete,
                     DateModified = x.DateModified
@@ -52,12 +50,11 @@ namespace MUT_Service.Implementation
             {
                 var studentSport = new StudentSport
                 {
-                    SportId = studentSportModel.SportId,
                     DateEnrolled = studentSportModel.DateEnrolled,
                     DateModified = studentSportModel.DateModified,
-                    Student = new Student
+                    Students = new Student
                     {
-                        Id = studentSportModel.Students.Id,
+                       // Id = studentSportModel.Students.Id,
                         Accomodation = studentSportModel.Students.Accomodation,
                         DateCreated = studentSportModel.Students.DateCreated,
                         DateModified = new DateTime(),
@@ -69,12 +66,7 @@ namespace MUT_Service.Implementation
                         NextOfKinFullnames = studentSportModel.Students.NextOfKinFullnames,
                         NextOfKinPhoneNumber = studentSportModel.Students.NextOfKinPhoneNumber,
                         PhoneNumber = studentSportModel.Students.PhoneNumber,
-                        SportId = studentSportModel.SportId
                     },
-                    Sports = mUTDbContext.Sports.Where(x => x.Id == studentSportModel.Id).Take(1),
-                    StudentId = studentSportModel.StudentId
-                    
-
                 };
                 mUTDbContext.StudentSports.Add(studentSport);
                 mUTDbContext.SaveChanges();

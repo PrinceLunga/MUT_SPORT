@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MUT_MODELS.StudentModel>
+
+@{
+    ViewData["Title"] = "GetStudents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetStudents</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fullnames)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Accomodation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NextOfKinFullnames)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NextOfKinPhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasMedicalAid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalAidNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullnames)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accomodation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NextOfKinFullnames)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NextOfKinPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasMedicalAid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalAidNumber)
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

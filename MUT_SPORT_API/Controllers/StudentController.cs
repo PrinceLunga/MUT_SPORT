@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MUT_SPORT_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class StudentController : ControllerBase
     {

@@ -31,7 +31,6 @@ namespace MUT_Service.Implementation
                     MedicalAidNumber = model.MedicalAidNumber,
                     NextOfKinFullnames = model.NextOfKinFullnames,
                     NextOfKinPhoneNumber = model.NextOfKinPhoneNumber,
-                    SportId = model.SportId,
                     DateCreated = DateTime.Now
                 };
             }
@@ -50,8 +49,7 @@ namespace MUT_Service.Implementation
                     MedicalAidNumber = x.NextOfKinFullnames,
                     NextOfKinPhoneNumber = x.NextOfKinPhoneNumber,
                     PhoneNumber = x.PhoneNumber,
-                    NextOfKinFullnames = x.NextOfKinFullnames,
-                    SportId = x.SportId
+                    NextOfKinFullnames = x.NextOfKinFullnames
                 }).ToList();
             }
         }
@@ -86,7 +84,6 @@ namespace MUT_Service.Implementation
                         PhoneNumber = b.PhoneNumber,
                         NextOfKinFullnames = b.NextOfKinFullnames,
                         NextOfKinPhoneNumber = b.NextOfKinPhoneNumber,
-                        SportId = b.SportId,
                         DateCreated = b.DateCreated
 
                     }).FirstOrDefault();
@@ -138,7 +135,6 @@ namespace MUT_Service.Implementation
                     student.NextOfKinFullnames = studentModel.NextOfKinFullnames;
                     student.NextOfKinPhoneNumber = studentModel.NextOfKinPhoneNumber;
                     student.PhoneNumber = studentModel.PhoneNumber;
-                    student.SportId = studentModel.SportId;
                     student.Fullnames = studentModel.Fullnames;
                     student.DateModified = DateTime.Now;
                     student.Accomodation = studentModel.Accomodation;

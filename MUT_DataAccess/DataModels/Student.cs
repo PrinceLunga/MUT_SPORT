@@ -13,6 +13,7 @@ namespace MUT_DataAccess.DataModels
         public string StudentNumber { get; set; }
         public string Accomodation { get; set; }
         public string PhoneNumber { get; set; }
+        public string EmailAddress { get; set; }
         public string NextOfKinFullnames { get; set; }
         public string NextOfKinPhoneNumber { get; set; }
         public Boolean HasMedicalAid { get; set; }
@@ -21,7 +22,7 @@ namespace MUT_DataAccess.DataModels
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public DateTime DateDeleted { get; set; }
-        public int SportId { get; set; }
-        public IEnumerable<Sport> sports { get; set; }
+        public int StudentSportId { get; set; }
+        public virtual StudentSport StudentSports { get; set; }
     }
 }
