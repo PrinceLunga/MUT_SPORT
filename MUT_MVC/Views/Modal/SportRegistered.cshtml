@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "SportRegistered";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+
+            </div>
+            <div class="modal-body">Successfully registered</div>
+            <div class="modal-footer">
+                <a href="@Url.Action("StudentIndex","Student")" class="btn btn-primary" type="button">Okay</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#confirm").modal("show");
+    });
+</script>
+

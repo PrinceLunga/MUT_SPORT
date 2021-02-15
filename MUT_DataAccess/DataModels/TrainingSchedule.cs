@@ -9,6 +9,7 @@ namespace MUT_DataAccess.DataModels
     {
         [Key]
         public int Id { get; set; }
+        public int sportId { get; set; }
         public string Venue { get; set; }
         public string StartTime { get; set; }
         public string FinishTime { get; set; }

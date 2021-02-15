@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MUT_DataAccess.DataContext;
+using MUT_MODELS;
 using MUT_MVC.Data;
 using MUT_Service.Implementation;
 using MUT_Service.Interface;
@@ -41,8 +42,10 @@ namespace MUT_MVC
             services.AddScoped<ISportService, SportService>();
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IGameResultService, GameResultsServices>();
-            services.AddScoped<IStudentSportService, StudentSportService>();
+            //services.AddScoped<IStudentSportService, StudentSportService>();
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IStudentSportService, StudentSportService>();
+            services.AddTransient<StudentSportModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +74,7 @@ namespace MUT_MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Student}/{action=StudentIndex}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

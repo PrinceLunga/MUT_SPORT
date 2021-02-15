@@ -11,6 +11,8 @@ namespace MUT_MODELS
         public int Id { get; set; }
         public string EventName { get; set; }
         public string HomeTeam { get; set; }
+        public DateTime EventDate { get; set; }
+        public int SportId { get; set; }
         public string AwayTeam { get; set; }
         public string PointsForAwayTeam { get; set; }
         public string PointForHomeTeam { get; set; }

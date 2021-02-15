@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MUT_MVC.Models.GameResultMvcModel>
+
+@{
+    ViewData["Title"] = "PreviousResults";
+}
+
+<div class="container-fluid">
+
+    <h4>PreviousResults</h4><br />
+
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-3">
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 25rem;height:8rem;">
+                <div class="container" style="text-align:center">
+                    <h3><b>@item.EventName</b></h3>
+                    <label>
+                        <b>
+                            @item.HomeTeam @item.PointForHomeTeam
+                            : @item.PointsForAwayTeam @item.AwayTeam
+                        </b>
+                    </label><br />
+                    <label><b>@item.EventDate.ToShortDateString()</b></label>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+

@@ -23,17 +23,29 @@ namespace MUT_Service.Implementation
             {
                 var student = new Student
                 {
-                    Fullnames = model.Fullnames,
+                    StudentNumber = model.StudentNumber,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Gender = model.Gender,
+                    Email = model.Email,
+                    StudyLevel = model.StudyLevel,
+                    Qualification = model.Qualification,
                     Accomodation = model.Accomodation,
                     PhoneNumber = model.PhoneNumber,
-                    HasMedicalAid = model.HasMedicalAid,
-                    MedicalAidCard = model.MedicalAidCard,
-                    MedicalAidNumber = model.MedicalAidNumber,
-                    NextOfKinFullnames = model.NextOfKinFullnames,
-                    NextOfKinPhoneNumber = model.NextOfKinPhoneNumber,
-                    SportId = model.SportId,
-                    DateCreated = DateTime.Now
+                    DateCreated = model.DateCreated
                 };
+            }
+        }
+
+        public List<StudentSport> GetRegisteredStudents(int sportId, string studentId)
+        {
+            using (mUTDbcontext)
+            {
+                return mUTDbcontext.StudentSports.Select(x => new StudentSport
+                {
+                    SportId = x.SportId,
+                    StudentId = x.StudentId
+                }).ToList();
             }
         }
 
@@ -43,50 +55,84 @@ namespace MUT_Service.Implementation
             {
                 return mUTDbcontext.Students.Select(x => new StudentModel
                 {
-                    Fullnames = x.Fullnames,
+                    StudentNumber = x.StudentNumber,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Gender = x.Gender,
+                    Email = x.Email,
+                    StudyLevel = x.StudyLevel,
+                    Qualification = x.Qualification,
                     Accomodation = x.Accomodation,
-                    HasMedicalAid = x.HasMedicalAid,
-                    MedicalAidCard = x.MedicalAidCard,
-                    MedicalAidNumber = x.NextOfKinFullnames,
-                    NextOfKinPhoneNumber = x.NextOfKinPhoneNumber,
                     PhoneNumber = x.PhoneNumber,
-                    NextOfKinFullnames = x.NextOfKinFullnames,
-                    SportId = x.SportId
+                    DateCreated = x.DateCreated
                 }).ToList();
             }
         }
 
-        public List<EventModel> GetAllUpcomingEvents()
+        public StudentSport RegisterSport(StudentSportModel model)
         {
             using (mUTDbcontext)
             {
-                return mUTDbcontext.Events.Select(x => new EventModel
+                var ss = new StudentSport
                 {
-                    Name = x.Name,
+                    SportId = model.SportId,
+                    StudentId = model.StudentId,
+                    DateEnrolled = DateTime.Now
+                };
+
+                mUTDbcontext.StudentSports.Add(ss);
+                if (mUTDbcontext.SaveChanges() == 1)
+                {
+                    return ss;
+                }
+                else
+                    return new StudentSport();
+            }
+            
+        }
+        public string DeregisterSport(StudentSportModel studentSport)
+        {
+            return null;
+        }
+        public List<UpComingEventsModel> GetAllUpcomingEvents()
+        {
+            using (mUTDbcontext)
+            {
+                return mUTDbcontext.UpComingEvents.Select(x => new UpComingEventsModel
+                {
+                    Id = x.Id,
                     Venue = x.Venue,
-                    StartingTime = x.StartingTime,
-                    EndingTime = x.EndingTime
+                    DateClosed = x.DateClosed,
+                    DateCreated = x.DateCreated,
+                    DateModified = x.DateModified,
+                    Descriptions = x.Descriptions, 
+                    EndingDate = x.EndingDate,
+                    EventPicture = x.EventPicture,
+                    StartingDate = x.StartingDate
                 }).ToList();
             }
         }
 
-        public StudentModel GetStudentById(string search)
+        public StudentModel GetStudentById(string username)
         {
             using (mUTDbcontext)
             {
                 return mUTDbcontext.Students
-                    .Where(x => x.Fullnames == search || x.Id == Convert.ToInt32(search))
+                    .Where(x => x.Email == username)
                     .Select(b => new StudentModel
                     {
-                        MedicalAidCard = b.MedicalAidCard,
-                        MedicalAidNumber = b.MedicalAidNumber,
-                        Fullnames = b.Fullnames,
+                        Id = b.Id,
+                        StudentNumber = b.StudentNumber,
+                        FirstName = b.FirstName,
+                        LastName = b.LastName,
+                        Gender = b.Gender,
+                        Email = b.Email,
+                        StudyLevel = b.StudyLevel,
+                        Qualification = b.Qualification,
+                        DisplayPicture = b.DisplayPicture,
+                        MedicalAidCardPic = b.MedicalAidCardPic,
                         Accomodation = b.Accomodation,
-                        HasMedicalAid = b.HasMedicalAid,
                         PhoneNumber = b.PhoneNumber,
-                        NextOfKinFullnames = b.NextOfKinFullnames,
-                        NextOfKinPhoneNumber = b.NextOfKinPhoneNumber,
-                        SportId = b.SportId,
                         DateCreated = b.DateCreated
 
                     }).FirstOrDefault();
@@ -108,11 +154,11 @@ namespace MUT_Service.Implementation
             }
         }
 
-        public bool StudentExists(int id)
+        public bool StudentExists(string username)
         {
             using (mUTDbcontext)
             {
-                var student = mUTDbcontext.Students.Find(id);
+                var student = mUTDbcontext.Students.Find(username);
 
                 if (student != null)
                 {
@@ -127,23 +173,28 @@ namespace MUT_Service.Implementation
 
         public StudentModel UpdateProfile(StudentModel studentModel)
         {
+            
             using (mUTDbcontext)
             {
                 var student = mUTDbcontext.Students.Find(studentModel.Id);
 
                 if (student != null)
                 {
-                    student.MedicalAidCard = studentModel.MedicalAidCard;
-                    student.MedicalAidNumber = studentModel.MedicalAidNumber;
+                    student.Accomodation = studentModel.Accomodation;
+                    student.PhoneNumber = studentModel.PhoneNumber;
                     student.NextOfKinFullnames = studentModel.NextOfKinFullnames;
                     student.NextOfKinPhoneNumber = studentModel.NextOfKinPhoneNumber;
-                    student.PhoneNumber = studentModel.PhoneNumber;
-                    student.SportId = studentModel.SportId;
-                    student.Fullnames = studentModel.Fullnames;
-                    student.DateModified = DateTime.Now;
-                    student.Accomodation = studentModel.Accomodation;
-                    mUTDbcontext.SaveChanges();
-                    return studentModel;
+                    student.HasMedicalAid = studentModel.HasMedicalAid;
+                    student.MedicalAidNumber = studentModel.MedicalAidNumber;
+                    student.DisplayPicture = studentModel.DisplayPicture;
+                    student.MedicalAidCardPic = studentModel.MedicalAidCardPic;
+
+                    mUTDbcontext.Students.Update(student);
+                    if (mUTDbcontext.SaveChanges() == 1)
+                    {
+                        return studentModel;
+                    }
+                    return null;
                 }
                 else
                 {
@@ -151,5 +202,6 @@ namespace MUT_Service.Implementation
                 }
             }
         }
+
     }
 }

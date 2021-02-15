@@ -1,0 +1,135 @@
+﻿@model IEnumerable<MUT_MVC.Models.StudentRegisterSportTeamsModel>
+
+@{
+    ViewData["Title"] = "StudentIndex";
+}
+
+@if (ViewBag.Data == "IsEnrolled")
+{
+
+
+    <div class="container-fluid">
+
+        <div id="status" class="row">
+
+            @foreach (var item in Model)
+            {
+                if (item.IsRegistered)
+                {
+
+                    <div class="col-xl-3 col-md-6 mb-4" style="cursor:pointer;">
+
+                        <a style="text-decoration:none;" class="card border-left-primary bg-gradient-success shadow h-100 py-2" href="@Url.Action("SportIndex", "Sport", new { id = item.Id, status ="Registered" })">
+
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        </div>
+
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800 mycardText">
+                                            @item.Name
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))" height="50px" alt="#" />
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-xl-3 col-md-6 mb-4" style="cursor: pointer;">
+
+                        <a style="text-decoration:none;" class="card border-left-primary shadow h-100 py-2" href="@Url.Action("SportIndex", "Sport", new { id = item.Id })">
+
+                            <div id="card" class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+
+                                        </div>
+
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800 mycardText">
+                                            @item.Name
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))" height="50px" alt="#" />
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
+            }
+
+        </div>
+
+    </div>
+
+
+    <!-- End of Content Wrapper -->
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+}
+else
+{
+    <div class="container-fluid">
+
+        <div id="status" class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-3 col-md-6 mb-4' style='cursor: pointer;">
+
+                    <a style="text-decoration:none;" class="card border-left-primary shadow h-100 py-2 mycard" href="@Url.Action("SportIndex", "Sport", new { id = item.Id })">
+
+                        <div id="card" class="card-body">
+                            <div style="display:none;"></div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div id="sportStatus" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+
+                                        <!--echo "$stat";-->
+
+
+
+                                    </div>
+
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mycardText">
+                                        @item.Name
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <img src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))" height="50px" alt="#" />
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+
+
+
+        </div>
+
+    </div>
+
+
+    <!-- End of Content Wrapper -->
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+}
+}

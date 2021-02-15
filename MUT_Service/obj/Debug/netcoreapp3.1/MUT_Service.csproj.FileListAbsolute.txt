@@ -12,3 +12,17 @@ C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreap
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.csproj.CopyComplete
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.dll
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.pdb
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\bin\Debug\netcoreapp3.1\MUT_Service.deps.json
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\bin\Debug\netcoreapp3.1\MUT_Service.dll
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\bin\Debug\netcoreapp3.1\MUT_Service.pdb
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\bin\Debug\netcoreapp3.1\MUT_DataAccess.dll
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\bin\Debug\netcoreapp3.1\MUT_MODELS.dll
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\bin\Debug\netcoreapp3.1\MUT_DataAccess.pdb
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\bin\Debug\netcoreapp3.1\MUT_MODELS.pdb
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.csprojAssemblyReference.cache
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.AssemblyInfoInputs.cache
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.AssemblyInfo.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.csproj.CoreCompileInputs.cache
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.csproj.CopyComplete
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.dll
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_Service\obj\Debug\netcoreapp3.1\MUT_Service.pdb

@@ -12,7 +12,8 @@ namespace MUT_Service.Implementation
     public class StudentSportService : IStudentSportService
     {
         private readonly MUTDbContext mUTDbContext;
-        public StudentSportService(MUTDbContext _mUTDbContext)
+        private readonly ISportService sportService;
+        public StudentSportService(MUTDbContext _mUTDbContext, ISportService sportService)
         {
             this.mUTDbContext = _mUTDbContext;
         }
@@ -25,26 +26,26 @@ namespace MUT_Service.Implementation
                     SportId = x.SportId,
                     StudentId = x.StudentId,
                     DateEnrolled = x.DateEnrolled,
-                    DateDeleted = x.DateDelete,
+                    DateModified = x.DateModified,
+                }).ToList();
+            }
+        }
+
+        public List<StudentSportModel> GetStudentSportsByEmail(string email)
+        {
+            using (mUTDbContext)
+            {
+                var student = mUTDbContext.Students.Where(x => x.Email == email).SingleOrDefault();
+                return mUTDbContext.StudentSports.Where( b => b.StudentId.Equals(student.Email)).Select(x => new StudentSportModel
+                {
+                    SportId = x.SportId,
+                    StudentId = x.StudentId,
+                    DateEnrolled = x.DateEnrolled,
                     DateModified = x.DateModified
                 }).ToList();
             }
         }
 
-        public List<StudentSportModel> GetStudentSports(string studentNumber, string Fullnames)
-        {
-            using (mUTDbContext)
-            {
-                return mUTDbContext.StudentSports.Where( b => b.Student.StudentNumber.Equals(studentNumber)).Select(x => new StudentSportModel
-                {
-                    SportId = x.SportId,
-                    StudentId = x.StudentId,
-                    DateEnrolled = x.DateEnrolled,
-                    DateDeleted = x.DateDelete,
-                    DateModified = x.DateModified
-                }).ToList();
-            }
-        }
 
         public void RegisterStudentToSport(StudentSportModel studentSportModel)
         {
@@ -55,29 +56,40 @@ namespace MUT_Service.Implementation
                     SportId = studentSportModel.SportId,
                     DateEnrolled = studentSportModel.DateEnrolled,
                     DateModified = studentSportModel.DateModified,
-                    Student = new Student
-                    {
-                        Id = studentSportModel.Students.Id,
-                        Accomodation = studentSportModel.Students.Accomodation,
-                        DateCreated = studentSportModel.Students.DateCreated,
-                        DateModified = new DateTime(),
-                        DateDeleted = new DateTime(),
-                        Fullnames = studentSportModel.Students.Fullnames,
-                        HasMedicalAid = studentSportModel.Students.HasMedicalAid,
-                        MedicalAidCard = studentSportModel.Students.MedicalAidCard,
-                        MedicalAidNumber = studentSportModel.Students.MedicalAidNumber,
-                        NextOfKinFullnames = studentSportModel.Students.NextOfKinFullnames,
-                        NextOfKinPhoneNumber = studentSportModel.Students.NextOfKinPhoneNumber,
-                        PhoneNumber = studentSportModel.Students.PhoneNumber,
-                        SportId = studentSportModel.SportId
-                    },
-                    Sports = mUTDbContext.Sports.Where(x => x.Id == studentSportModel.Id).Take(1),
+                    //Student = new Student
+                    //{
+                    //    StudentNumber = studentSportModel.Students.StudentNumber,
+                    //    FirstName = studentSportModel.Students.FirstName,
+                    //    LastName = studentSportModel.Students.LastName,
+                    //    Gender = studentSportModel.Students.Gender,
+                    //    Email = studentSportModel.Students.Email,
+                    //    StudyLevel = studentSportModel.Students.StudyLevel,
+                    //    Qualification = studentSportModel.Students.Qualification,
+                    //    Accomodation = studentSportModel.Students.Accomodation,
+                    //    PhoneNumber = studentSportModel.Students.PhoneNumber,
+                    //    DateCreated = studentSportModel.Students.DateCreated
+                    //},
+                    //Sports = mUTDbContext.Sports.Where(x => x.Id == studentSportModel.Id).Take(1),
                     StudentId = studentSportModel.StudentId
                     
 
                 };
                 mUTDbContext.StudentSports.Add(studentSport);
                 mUTDbContext.SaveChanges();
+            }
+        }
+
+        public void DeregisterSport(int sportId)
+        {
+            using (mUTDbContext)
+            {
+                var sport = mUTDbContext.StudentSports.Where(x => x.SportId == sportId).SingleOrDefault();
+
+                if (sportId != 0)
+                {
+                    mUTDbContext.StudentSports.Remove(sport);
+                    mUTDbContext.SaveChanges();
+                }
             }
         }
     }

@@ -7,9 +7,9 @@ namespace MUT_Service.Interface
 {
     public interface IEventService
     {
-        public List<EventModel> GetAllEvents();
-        public void InsertNewEvent(EventModel eventModel);
-        public void UpdateEvent(EventModel eventModel);
-        public EventModel GetEventByName(string eventName);
+        public List<UpComingEventsModel> GetEventsBySportId(int id);
+        public void InsertNewEvent(UpComingEventsModel eventModel);
+        public void UpdateEvent(UpComingEventsModel eventModel);
+       // public UpComingEventsModel GetEventByName(string eventName);
     }
 }

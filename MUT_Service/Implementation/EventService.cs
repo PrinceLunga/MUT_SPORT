@@ -9,111 +9,93 @@ using System.Text;
 
 namespace MUT_Service.Implementation
 {
-    public class CoachingService : ICoachService
+    public class EventService : IEventService
     {
         private readonly MUTDbContext mUTDbContext;
-        public CoachingService(MUTDbContext _mUTDbContext)
+        public EventService(MUTDbContext _mUTDbContext)
         {
             this.mUTDbContext = _mUTDbContext;
         }
 
-        public List<CoachModel> GetAllCoaches()
+        public List<UpComingEventsModel> GetEventsBySportId(int id)
         {
             using (mUTDbContext)
             {
-                return mUTDbContext.Coaches.Select(x => new CoachModel
+                return mUTDbContext.UpComingEvents.Where(x => x.SportId == id).Select(x => new UpComingEventsModel
                 {
-                    Fullnames = x.Fullnames,
-                    EmailAddress = x.EmailAddress,
-                    PhoneNumber = x.PhoneNumber,
-                    SportName = x.SportName,
-                    TeamName = x.TeamName
+                    Id = x.Id,
+                    Venue = x.Venue,
+                    DateClosed = x.DateClosed,
+                    DateCreated = x.DateCreated,
+                    DateModified = x.DateModified,
+                    Descriptions = x.Descriptions,
+                    EndingDate = x.EndingDate.Date,
+                    EventPicture = x.EventPicture,
+                    StartingDate = x.StartingDate.Date
                 }).ToList();
             }
         }
 
-        public CoachModel GetCoachById(int id)
+        /*public UpComingEventsModel GetEventByName(string eventName)
         {
             using (mUTDbContext)
             {
-                return mUTDbContext.Coaches.Where(c => c.Id == id).Select(x => new CoachModel
+                return mUTDbContext.UpComingEvents.Where(x => x.Name.Equals(eventName)).Select(x => new UpComingEventsModel
                 {
-                    Fullnames = x.Fullnames,
-                    EmailAddress = x.EmailAddress,
-                    PhoneNumber = x.PhoneNumber,
-                    SportName = x.SportName,
-                    TeamName = x.TeamName
-                }).SingleOrDefault();
+                    Id = x.Id,
+                    Venue = x.Venue,
+                    DateClosed = x.DateClosed,
+                    DateCreated = x.DateCreated,
+                    DateModified = x.DateModified,
+                    Descriptions = x.Descriptions,
+                    EndTime = x.EndTime,
+                    EventDate = x.EventDate,
+                    StartingTime = x.StartingTime
+                }).Single();
             }
-        }
+        }*/
 
-        public CoachModel GetCoachByName(string searchString)
+        public void InsertNewEvent(UpComingEventsModel eventModel)
         {
             using (mUTDbContext)
             {
-                return mUTDbContext.Coaches.Where(c => c.Fullnames.Equals(searchString)
-                || c.EmailAddress.Equals(searchString)
-                || c.TeamName.Equals(searchString)
-                || c.SportName.Equals(searchString)
-                ).Select(x => new CoachModel
+                var _event = new UpComingEvent
                 {
-                    Fullnames = x.Fullnames,
-                    EmailAddress = x.EmailAddress,
-                    PhoneNumber = x.PhoneNumber,
-                    SportName = x.SportName,
-                    TeamName = x.TeamName
-                }).SingleOrDefault();
-            }
-        }
-
-        public void InsertNewCoach(CoachModel coachModel)
-        {
-            using (mUTDbContext)
-            {
-                var coach = new Coach
-                {
-                    EmailAddress = coachModel.EmailAddress,
-                    Fullnames = coachModel.Fullnames,
-                    PhoneNumber = coachModel.PhoneNumber,
-                    SportName = coachModel.SportName,
-                    TeamName = coachModel.TeamName
+                    Id = eventModel.Id,
+                    Venue = eventModel.Venue,
+                    Descriptions = eventModel.Descriptions,
+                    StartingDate = eventModel.StartingDate,
+                    EventPicture = eventModel.EventPicture,
+                    EndingDate = eventModel.EndingDate,
+                    DateModified = eventModel.DateModified,
+                    DateCreated = eventModel.DateCreated,
+                    DateClosed = eventModel.DateClosed
                 };
-                mUTDbContext.Coaches.Add(coach);
+                mUTDbContext.Add(_event);
                 mUTDbContext.SaveChanges();
             }
+
+
         }
 
-        public bool CoachExists(int id)
+        public void UpdateEvent(UpComingEventsModel eventModel)
         {
-            using(mUTDbContext)
+            using (mUTDbContext)
             {
-                var coach = mUTDbContext.Coaches.Find(id);
+                var _event = mUTDbContext.UpComingEvents.Find(eventModel.Id);
 
-                if (coach != null)
-                    return true;
-                else
-                    return false;
-            }
-        }
-
-        public void UpdateCoach(CoachModel coachModel)
-        {
-            using(mUTDbContext)
-            {
-                var coach = mUTDbContext.Coaches.Find(coachModel.Id);
-
-                if(coach != null)
-                {
-                    coach.EmailAddress = coachModel.EmailAddress;
-                    coach.Fullnames = coachModel.Fullnames;
-                    coach.PhoneNumber = coachModel.PhoneNumber;
-                    coach.SportName = coachModel.SportName;
-                    coach.TeamName = coachModel.TeamName;
-                }
-                mUTDbContext.Coaches.Add(coach);
+                _event.Id = eventModel.Id;
+                _event.Venue = eventModel.Venue;
+                _event.DateClosed = eventModel.DateClosed;
+                _event.DateCreated = eventModel.DateCreated;
+                _event.DateModified = eventModel.DateModified;
+                _event.Descriptions = eventModel.Descriptions;
+                _event.EndingDate = eventModel.EndingDate;
+                _event.EventPicture = eventModel.EventPicture;
+                _event.StartingDate = eventModel.StartingDate;
                 mUTDbContext.SaveChanges();
+
             }
         }
     }
-
 }

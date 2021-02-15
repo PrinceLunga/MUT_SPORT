@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MUT_MVC.Models.UpComingEventsMvcModel>
+
+@{
+    ViewData["Title"] = "UpcomingEvents";
+}
+
+
+
+<div class="container-fluid">
+    <h4>UpcomingEvents</h4><br/>
+    <div id="status" class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="container">
+                <div class="col-sm-3">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 15rem; height:15rem;">
+                        <div class="container" style="text-align:center">
+                            <h5 style="text-align:center;"><strong>@item.Descriptions</strong></h5><br />
+                            <img src="" width="60%" height="120px" alt="Event image">
+
+                            <div class="card-body">
+                                <b style="text-align:center">
+                                    @item.Venue
+                                </b>
+
+                                <b style="text-align:center">
+                                    @item.StartingDate.ToShortDateString()
+                                </b>
+
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>

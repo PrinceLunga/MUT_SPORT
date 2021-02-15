@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MUT_DataAccess.DataModels;
 using MUT_MODELS;
 using MUT_Service.Interface;
 using System;
@@ -10,16 +11,21 @@ using System.Threading.Tasks;
 
 namespace MUT_SPORT_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class StudentController : ControllerBase
     {
 
         private readonly IStudentService studentService;
+        private readonly ISportService sportService;
+        private readonly IStudentSportService ssService;
 
-        public StudentController(IStudentService _studentService)
+
+        public StudentController(IStudentService studentService, ISportService sportService, IStudentSportService ssService)
         {
-            this.studentService = _studentService;
+            this.studentService = studentService;
+            this.sportService = sportService;
+            this.ssService = ssService;
         }
 
         [HttpGet]
@@ -28,17 +34,32 @@ namespace MUT_SPORT_API.Controllers
             return studentService.GetAllStudents();
         }
 
+        [HttpGet]
+        public ActionResult<IEnumerable<SportModel>> GetSport()
+        {
+            return sportService.GetAllSports();
+        }
+
         [HttpPost]
         public async Task<ActionResult<StudentModel>> PostStudent(StudentModel model)
         {
             studentService.AddStudent(model);
-            return CreatedAtAction("GetStudents", new { id = model.Id }, model);
+            return CreatedAtAction("GetStudents", new { id = model.StudentNumber }, model);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<StudentModel> GetStudentById(string id)
+        [HttpPost]
+        public async Task<ActionResult<StudentSport>> EnrollSport(StudentSportModel model)
         {
-            var student = studentService.GetStudentById(id);
+            if (ModelState.IsValid)
+                return studentService.RegisterSport(model);
+            else
+                return new StudentSport();
+        }
+
+        [HttpGet("{username}")]
+        public ActionResult<StudentModel> GetStudentById(string username)
+        {
+            var student = studentService.GetStudentById(username);
 
             if (student == null)
             {
@@ -48,13 +69,13 @@ namespace MUT_SPORT_API.Controllers
             return student;
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{username}")]
         [AcceptVerbs("POST", "PUT")]
-        public ActionResult<StudentModel> PutStudent(int id, StudentModel model)
+        public ActionResult<StudentModel> PutStudent(StudentModel model)
         {
             try
             {
-                if ((model == null) || (model.Id == 0))
+                if (!ModelState.IsValid)
                 {
                     return NotFound();
                 }
@@ -63,7 +84,7 @@ namespace MUT_SPORT_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GroupExists(id))
+                if (!GroupExists(model.Email))
                 {
                     return NotFound();
                 }
@@ -75,9 +96,9 @@ namespace MUT_SPORT_API.Controllers
             return model;
         }
 
-        private bool GroupExists(int id)
+        private bool GroupExists(string username)
         {
-            return studentService.StudentExists(id);
+            return studentService.StudentExists(username);
         }
 
         [HttpGet]
@@ -87,9 +108,18 @@ namespace MUT_SPORT_API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<EventModel>> GetUpcomingEvents()
+        public ActionResult<IEnumerable<UpComingEventsModel>> GetUpcomingEvents()
         {
             return studentService.GetAllUpcomingEvents();
+        }
+
+        [HttpDelete("{sportId}")]
+        public void DeregisterToSport(int sportId)
+        {
+            if (sportId != 0)
+            {
+                ssService.DeregisterSport(sportId);
+            }
         }
 
     }

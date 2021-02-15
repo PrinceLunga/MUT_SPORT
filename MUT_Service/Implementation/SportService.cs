@@ -21,14 +21,14 @@ namespace MUT_Service.Implementation
         {
             using (_dbContext)
             {
-                return _dbContext.Sports.Select(x => new SportModel
+               return _dbContext.Sports.Select(x => new SportModel
                 {
                     Id = x.Id,
                     Name = x.Name,
                     Code = x.Code,
                     Image = x.Image
 
-                }).ToList();
+                }).ToList();   
             }
         }
 

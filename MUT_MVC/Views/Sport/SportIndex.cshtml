@@ -1,0 +1,158 @@
+﻿@model MUT_MODELS.SportModel
+
+@{
+    ViewData["Title"] = "SportIndex";
+}
+
+
+
+
+    <!-- Page Heading -->
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1 col-md-1 col-lg-1">
+            <h4 style="margin:inherit;"><b>@Model.Name</b></h4><br />
+        </div>
+
+        <div class="col-sm-1 col-md-10 col-lg-10">
+            @if (ViewBag.Status == "Registered")
+            {
+                <a style="float:right" href="@Url.Action("Deregister","Student",new {sportId = Model.Id})" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-trash fa-sm text-white-50"></i>
+                    Deregister Sport
+                </a>
+            }
+            else
+            {
+                <a style="float:right" href="@Url.Action("Register","Student",new {sportId = Model.Id})" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-pen fa-sm text-white-50"></i>
+                    Register Sport
+                </a>
+            }
+
+        </div>
+    </div>
+
+        <div class="row">
+
+            <a href="@Url.Action("TrainingSchedules","Training", new { id = Model.Id })" style="text-decoration: none;color: inherit;">
+                <div class="col-sm-3">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 15rem; height:15rem;">
+                        <div class="container" style="text-align:center">
+                            <img src="~/img/fitness.png" width="60%" height="120px" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h5 style="text-align:center;"><strong>Training Schedules</strong></h5>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="@Url.Action("UpcomingEvents","Events", new { id = Model.Id })" style="text-decoration: none;color: inherit;">
+                <div class="col-sm-3">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 15rem;height:15rem;">
+                        <div class="container" style="text-align:center">
+                            <img src="~/img/event.png" width="50%" height="80px" style="margin-top: 25%;" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h5 style="text-align:center;"><strong>Upcoming <br /> Events</strong></h5>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="@Url.Action("PreviousResults","GameResults", new { id = Model.Id })" style="text-decoration: none;color: inherit;">
+                <div class="col-sm-3">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 15rem;height:15rem;">
+                        <div class="container" style="text-align:center">
+                            <img width="50%" height="90px;" style="margin-top: 18%;" src="~/img/american-football-scores-numbers.png" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h5 style="text-align:center;"><strong>Previous </br>Results</strong></h5>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+
+            <a href="@Url.Action("TeamAchievements","Achievements", new { id = Model.Id })" style="text-decoration: none;color: inherit;">
+                <div class="col-sm-3">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 15rem;height:15rem;">
+                        <div class="container" style="text-align:center">
+                            <img width="50%" height="120px" style="margin-top: 10%;" src="~/img/award.png" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h5 style="text-align:center;"><strong>Team Achievements</strong></h5>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="@Url.Action("PlayerAchievements","Achievements", new { playerID = "n@gmail.com" })" style="text-decoration: none;color: inherit;">
+                <div class="col-sm-3">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 15rem;height:15rem;">
+                        <div class="container" style="text-align:center">
+                            <img width="70%" height="120px" style="margin-top: 10%;" src="~/img/individual_award.png" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h5 style="text-align:center;"><strong>Player Achievements</strong></h5>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button id="cancelBtn" class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="../login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deRegModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You are now derestistered from <b><?php echo $sportName;?> </b>, This means you can no longer receive nortifications of any kind from this sport. !
+                <br /><br />Are you sure you want to deregister??
+            </div>
+            <div class="modal-footer">
+                <button id="cancelBtn" class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                
+                <a href="" class="btn btn-primary">Yes, Deregister</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

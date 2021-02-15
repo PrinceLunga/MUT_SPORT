@@ -8,9 +8,8 @@ namespace MUT_Service.Interface
     public interface IStudentSportService
     {
         public void RegisterStudentToSport(StudentSportModel studentSportModel);
-
+        public void DeregisterSport(int sportId);
         public List<StudentSportModel> GetStudentSports();
-
-        public List<StudentSportModel> GetStudentSports(string studentNumber, string Fullnames);
+        public List<StudentSportModel> GetStudentSportsByEmail(string email);
     }
 }

@@ -1,0 +1,278 @@
+﻿@model MUT_MVC.Models.ProfileRetreaval
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div id="status" class="row">
+    <div class="container">
+        <h4>Profile</h4>
+        <div class="main-body">
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="main-breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("StudentIndex")">Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+
+            <form asp-action="Profile" method="post" enctype="multipart/form-data">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="row gutters-sm">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column align-items-center text-center">
+
+                                        <div class="container">
+                                            <input asp-for="Id" value="@Model.Id" type="hidden"/>
+                                            <div id="dpContainer" style="width:220px; height:220px;">
+                                                <img class="dpPreview" style="border-radius:100%" width="100%" height="100%" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.DisplayPicture))" />
+                                                
+                                            </div>
+                                            <div style="padding:5%;cursor:pointer;">
+                                                <i id="pen" onclick="attachDP()" class="fa fa-pen"> </i>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-3">
+
+                                            <h4>
+
+                                                @Model.FirstName @Model.LastName
+
+                                            </h4>
+
+                                            <label asp-for="StudyLevel" class="text-secondary mb-1">
+                                                @Model.StudyLevel
+                                            </label>
+                                            <label asp-for="Qualification" class="text-muted font-size-sm">
+                                                @Model.Qualification
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mt-3">
+                                <div class="container">
+                                    <ul class="list-group list-group-flush">
+                                        <li style="text-align:center;" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                            <span style="margin: 0 auto;" class="text-secondary">
+                                                <b>Medical Aid Card</b>
+                                            </span>
+                                        </li>
+
+                                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+
+                                            <div style="margin: 0 auto;border-radius:100%;background-color:maroon;height:35px;width:35px;cursor:pointer;">
+                                                <i id="cardPic" onclick="attachMediCard()" style="display: flex;justify-content: center;align-items: center;height: 100%;font-style: 25px; color: #fff;" class="fa fa-camera"></i>
+                                            </div>
+
+                                            <div class="container">
+                                                <div id="imagePreview" class="image-preview" style="text-align:center">
+                                                    <img style="width:210px;height:120px" class="image-preview__image" src="@ViewBag.Image"/>
+                                                    <span class="image-preview__text">Upload Medical Aid Card</span>
+                                                <div>
+                                            </div>
+
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Email Address</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input asp-for="Email"  value="@Model.Email" type="text" class="textbox" style="width:100%;border-left:none;border-right:none;border-top:none;background:inherit;border-bottom-color:gray;" />
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Accomodation Address</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input asp-for="Accomodation" value="@Model.Accomodation" type="text" class="textbox" style="width:100%;border-left:none;border-right:none;border-top:none;background:inherit;border-bottom-color:gray;" />
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Contact Number</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input asp-for="PhoneNumber" value="@Model.PhoneNumber" type="text" class="textbox" style="width:100%;border-left:none;border-right:none;border-top:none;background:inherit;" />
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Contact Person</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input asp-for="NextOfKinFullnames" value="@Model.NextOfKinFullnames" type="text" class="textbox" style="width:100%;border-left:none;border-right:none;border-top:none;background:inherit;border-bottom-color:gray;" />
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Contact Number</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input asp-for="NextOfKinPhoneNumber" value="@Model.NextOfKinPhoneNumber" type="text" class="textbox" style="width:100%;border-left:none;border-right:none;border-top:none;background:inherit;border-bottom-color:gray;" />
+                                        </div>
+                                    </div>
+                                    <hr />
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Has Medical Aid?</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input onclick="showOrHide()" style="cursor:pointer;" id="medicalAidCheck" name="medicalAidCheck" type="checkbox" /> <input style="visibility:hidden;" id="medicalAidNumber" value="@Model.MedicalAidNumber" name="medicalAidName" placeholder="Medical Aid Number" type="text" class="textbox" />
+                                        </div>
+                                    </div>
+
+                                    <div style="visibility:hidden;">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Has Medical Aid?</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div style="visibility:hidden;">
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Upload Medical Aid Card</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <hr />
+                                            <hr />
+                                            <hr />
+
+
+                                            <br />
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            </br>
+                            <center><input style="width:50%;" class="btn btn-primary" name="submit" type="submit" value="Update" /></center>
+                        </div>
+
+                        </br>
+
+                    </div>
+                </div>
+                <input style="visibility:hidden;" id="profileUpdate" name="profileUpdate" type="file" />
+                <input style="visibility:hidden;" id="mediCard" name="mediCard" type="file" />
+            </form>
+
+        </div>
+    </div>
+</div>
+<script>
+
+    function attachDP()
+    {
+        document.getElementById("profileUpdate").click();
+        const dpSelect = document.getElementById("profileUpdate");
+        const dpPreviewContainer = document.getElementById("dpContainer");
+        const dpPreviewImage = dpPreviewContainer.querySelector(".dpPreview");
+
+
+        dpSelect.addEventListener("change", function () {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                dpPreviewImage.style.display = "block";
+                dpPreviewImage.style.width = "100%";
+                dpPreviewImage.style.maxHeight = "220px";
+                dpPreviewImage.style.maxWidth = "220px";
+                dpPreviewImage.style.height = "100%";
+                dpPreviewImage.className = "rounded-circle";
+                reader.addEventListener("load", function () {
+                    dpPreviewImage.setAttribute("src", this.result);
+                });
+
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    function attachMediCard() {
+        document.getElementById("mediCard").click();
+        const cardSelect = document.getElementById("mediCard");
+        const previewContainer = document.getElementById("imagePreview");
+        const previewImage = previewContainer.querySelector(".image-preview__image");
+        const previewText = previewContainer.querySelector(".image-preview__text");
+
+
+        cardSelect.addEventListener("change", function () {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                previewText.style.display = "none";
+                previewImage.style.display = "block";
+
+                reader.addEventListener("load", function () {
+                    previewImage.setAttribute("src", this.result);
+                });
+
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+
+    function showOrHide()
+    {
+        if (document.getElementById("medicalAidCheck").checked == true)
+        {
+
+
+            document.getElementById("medicalAidNumber").style.visibility = "visible";
+            document.getElementById("medicalAidNumber").style.width = "100%";
+            document.getElementById("medicalAidNumber").style.borderLeft = "none";
+            document.getElementById("medicalAidNumber").style.borderRight = "none";
+            document.getElementById("medicalAidNumber").style.borderTop = "none";
+            document.getElementById("medicalAidNumber").style.background = "inherit";
+        }
+        else
+        {
+            document.getElementById("medicalAidNumber").style.visibility = "hidden";
+        }
+    }
+
+</script>

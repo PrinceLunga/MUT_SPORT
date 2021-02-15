@@ -36,20 +36,21 @@ namespace MUT_Service.Implementation
             }
         }
 
-        public GameResultModel GetGameResult(int Id)
+        public List<GameResultModel> GetGameResultPerSport(int Id)
         {
             using(mUTDbContext)
             {
-                return mUTDbContext.GameResults.Where( x => x.Id == Id)
+                return mUTDbContext.GameResults.Where( x => x.SportId == Id)
                     .Select( x => new GameResultModel 
                     {
+                        SportId = x.SportId,
                         IsHomeWin = x.IsHomeWin,
                         PointForHomeTeam = x.PointForHomeTeam,
                         PointsForAwayTeam = x.PointsForAwayTeam,
                         HomeTeam = x.HomeTeam,
                         EventName = x.EventName,
                         AwayTeam = x.AwayTeam
-                    }).SingleOrDefault();
+                    }).ToList();
             }
         }
 

@@ -20,6 +20,7 @@ namespace MUT_DataAccess.DataContext
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<PlayerAchievement> PlayerAchievements { get; set; }
+        public DbSet<TeamAchievement> TeamAchievements { get; set; }
         public DbSet<Coach> Coaches { get; set; }
         public DbSet<TeamPlayer> TeamPlayers { get; set; }
         public DbSet<Notification> Notifications { get; set; }

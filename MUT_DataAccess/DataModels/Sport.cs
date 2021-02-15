@@ -12,5 +12,7 @@ namespace MUT_DataAccess.DataModels
         public string Code { get; set; }
         public string Name { get; set; }
         public byte[] Image { get; set; }
+        public int StudentSportId { get; set; }
+        public IEnumerable<StudentSport> studentSports { get; set; }
     }
 }

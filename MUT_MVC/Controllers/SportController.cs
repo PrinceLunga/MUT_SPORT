@@ -24,7 +24,7 @@ namespace MUT_MVC.Controllers
             sportList = new List<SportModel>();
         }
         public async Task<IActionResult> GetSports()
-        {
+         {
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Sport/GetSports"))
@@ -34,6 +34,22 @@ namespace MUT_MVC.Controllers
                 }
             }
             return View(sportList);
+        }
+
+        public async Task<IActionResult> SportIndex(int id, string status)
+        {
+            var sport = new SportModel();
+            ViewBag.Status = status;
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Sport/GetSportById/"+ id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    sport = JsonConvert.DeserializeObject<SportModel>(apiResponse);
+                }
+            }
+            return View(sport);
         }
 
         public ViewResult AddSport() => View();
@@ -74,7 +90,7 @@ namespace MUT_MVC.Controllers
                 var data = await response.Content.ReadAsStringAsync();
                 response.EnsureSuccessStatusCode();
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("AddSport");
         }
 
     }

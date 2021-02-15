@@ -9,6 +9,6 @@ namespace MUT_Service.Interface
     {
         public void AddGameResult(GameResultModel model);
         public List<GameResultModel> GetGameResults();
-        public GameResultModel GetGameResult(int Id); 
+        public List<GameResultModel> GetGameResultPerSport(int Id); 
     }
 }
