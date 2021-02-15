@@ -11,57 +11,57 @@ using System.Threading.Tasks;
 
 namespace MUT_MVC.Controllers
 {
-    public class EventController : Controller
+    public class TeamController : Controller
     {
-        private List<EventModel> EventsList;
-        private EventModel EventModel;
+        private List<TeamModel> TeamsList;
+        private TeamModel TeamModel;
 
-        public EventController()
+        public TeamController()
         {
-            this.EventsList = new List<EventModel>();
-            this.EventModel = new EventModel();
+            TeamsList = new List<TeamModel>();
+            TeamModel = new TeamModel();
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllEvents()
+        public async Task<IActionResult> GetTeams()
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Event/GetAllEvents"))
+                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Teams/GetTeams"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    EventsList = JsonConvert.DeserializeObject<List<EventModel>>(apiResponse);
+                    TeamsList = JsonConvert.DeserializeObject<List<TeamModel>>(apiResponse);
                 }
             }
-            return View(EventsList);
+            return View(TeamsList);
         }
 
-        public ViewResult PostEvent() => View(); 
+        public ViewResult PostTeam() => View(); 
 
         [HttpPost]
-        public async Task<IActionResult> PostEvent(EventModel student)
+        public async Task<IActionResult> PostTeam([FromForm] TeamModel _TeamModel)
         {
                 using (var httpClient = new HttpClient())
                 {
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(student), Encoding.UTF8, "application/json");
-                    using (var response = await httpClient.PostAsync("https://localhost:44330/api/Event/PostNewEvent", content))
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(_TeamModel), Encoding.UTF8, "application/json");
+                    using (var response = await httpClient.PostAsync("https://localhost:44330/api/Teams/PostNewTeam", content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                     }
                 }
-            return RedirectToAction(nameof(GetAllEvents));
+            return RedirectToAction(nameof(GetTeams));
         }
 
-        public async Task<IActionResult> UpdateEvent(string name)
+        public async Task<IActionResult> UpdateTeam(string name)
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44330/api/Event/GetEventByName" + name))
+                using (var response = await httpClient.GetAsync("https://localhost:44330/api/Teams/GetTeamByName" + name))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    EventModel = JsonConvert.DeserializeObject<EventModel>(apiResponse);
+                    TeamModel = JsonConvert.DeserializeObject<TeamModel>(apiResponse);
                 }
             }
-            return View(EventModel);
+            return View(TeamModel);
         }
 
         [HttpPost]
@@ -78,7 +78,7 @@ namespace MUT_MVC.Controllers
 
                 inputMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage message = httpClient.PutAsync("https://localhost:44330/api/Event/PutEvent", inputMessage.Content).Result;
+                HttpResponseMessage message = httpClient.PutAsync("https://localhost:44330/api/Teams/PutTeam", inputMessage.Content).Result;
 
                 if (!message.IsSuccessStatusCode)
                     throw new ArgumentException(message.ToString());

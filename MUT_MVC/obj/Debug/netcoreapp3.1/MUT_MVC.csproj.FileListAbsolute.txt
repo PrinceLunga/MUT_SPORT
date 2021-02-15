@@ -186,3 +186,5 @@ C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\TeamPlayer\GetTeamPlayers.cshtml.g.cs
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Event\GetAllEvents.cshtml.g.cs
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Event\PostEvent.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Team\PostTeam.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Team\GetTeams.cshtml.g.cs

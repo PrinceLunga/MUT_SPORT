@@ -54,7 +54,8 @@ namespace MUT_MVC.Controllers
                     Image = Convert.ToBase64String(a);
 
                 }
-
+                ViewBag.Hello = "Hello";
+                model.Name = ViewBag;
                 var response = new HttpResponseMessage();
 
                 var sport = new AddSportInnerModel

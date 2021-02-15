@@ -15,10 +15,8 @@ namespace MUT_DataAccess.DataModels
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public DateTime LastDate { get; set; }
-        public int TeamId { get; set; }
         public virtual Team Team { get; set; }
-        public int StudentId { get; set; }
-        public virtual Student Student { get; set; }
+        public Student Student { get; set; }
         public IEnumerable<PlayerAchievement> PlayerAchievements { get; set; }
     }
 }

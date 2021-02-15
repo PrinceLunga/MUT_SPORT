@@ -12,6 +12,7 @@ namespace MUT_DataAccess.DataModels
         public DateTime DateEnrolled { get; set; }
         public DateTime DateDelete { get; set; }
         public DateTime DateModified { get; set; }
-        public virtual Student Students { get; set; }
+        public Student Students { get; set; }
+        public Sport Sports { get; set; }
     }
 }

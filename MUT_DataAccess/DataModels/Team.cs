@@ -11,8 +11,10 @@ namespace MUT_DataAccess.DataModels
         public int Id { get; set; }
         public string TeamName { get; set; }
         public DateTime DateCreated { get; set; }
-        public string CreatedBy { get; set; }
-        public int TeamNotificationId { get; set; }
-        public IEnumerable<TeamNotifications> Teams { get; set; }
+        public DateTime DateDeleted { get; set; }
+        public string ModifiedBy { get; set; }
+        public virtual TeamNotifications TeamNotifications { get; set; }
+        public virtual PlayerAchievement PlayerAchievement { get; set; }
+        public IEnumerable<TeamPlayer> TeamPlayer { get; set; }
     }
 }

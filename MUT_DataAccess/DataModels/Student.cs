@@ -22,7 +22,8 @@ namespace MUT_DataAccess.DataModels
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public DateTime DateDeleted { get; set; }
-        public int StudentSportId { get; set; }
-        public virtual StudentSport StudentSports { get; set; }
+        public IEnumerable<StudentSport> StudentSports { get; set; }
+        public int TeamPlayerId { get; set; }
+        public IEnumerable<TeamPlayer> TeamPlayer  { get; set; }
     }
 }

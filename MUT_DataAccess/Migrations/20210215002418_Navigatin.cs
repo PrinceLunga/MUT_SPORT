@@ -3,24 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MUT_DataAccess.Migrations
 {
-    public partial class ForiegnKeys : Migration
+    public partial class Navigatin : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Achievements",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AchievementDescription = table.Column<string>(nullable: true),
-                    DateAchieved = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Achievements", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Coaches",
                 columns: table => new
@@ -36,6 +22,22 @@ namespace MUT_DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Coaches", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Venue = table.Column<string>(nullable: true),
+                    StartingTime = table.Column<string>(nullable: true),
+                    EndingTime = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,15 +94,53 @@ namespace MUT_DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Code = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Image = table.Column<byte[]>(nullable: true),
-                    StudentSportId = table.Column<int>(nullable: false),
-                    TeamId = table.Column<int>(nullable: false)
+                    Image = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sports", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Fullnames = table.Column<string>(nullable: true),
+                    StudentNumber = table.Column<string>(nullable: true),
+                    Accomodation = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(nullable: true),
+                    NextOfKinFullnames = table.Column<string>(nullable: true),
+                    NextOfKinPhoneNumber = table.Column<string>(nullable: true),
+                    HasMedicalAid = table.Column<bool>(nullable: false),
+                    MedicalAidNumber = table.Column<string>(nullable: true),
+                    MedicalAidCard = table.Column<byte[]>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    DateDeleted = table.Column<DateTime>(nullable: false),
+                    TeamPlayerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TeamNotifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    From = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: true),
+                    Attachment = table.Column<byte[]>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeamNotifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,11 +171,18 @@ namespace MUT_DataAccess.Migrations
                     EndTime = table.Column<DateTime>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
-                    DateClosed = table.Column<DateTime>(nullable: false)
+                    DateClosed = table.Column<DateTime>(nullable: false),
+                    EventId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UpComingEvents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UpComingEvents_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -147,17 +194,40 @@ namespace MUT_DataAccess.Migrations
                     DateEnrolled = table.Column<DateTime>(nullable: false),
                     DateDelete = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
-                    SportId = table.Column<int>(nullable: true)
+                    StudentsId = table.Column<int>(nullable: true),
+                    SportsId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StudentSports", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StudentSports_Sports_SportId",
-                        column: x => x.SportId,
+                        name: "FK_StudentSports_Sports_SportsId",
+                        column: x => x.SportsId,
                         principalTable: "Sports",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentSports_Students_StudentsId",
+                        column: x => x.StudentsId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Achievements",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AchievementDescription = table.Column<string>(nullable: true),
+                    DateAchieved = table.Column<string>(nullable: true),
+                    AchievementId = table.Column<int>(nullable: false),
+                    PlayerAchievementId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Achievements", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -168,101 +238,18 @@ namespace MUT_DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TeamName = table.Column<string>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    TeamNotificationId = table.Column<int>(nullable: false),
-                    SportId = table.Column<int>(nullable: true)
+                    DateDeleted = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(nullable: true),
+                    TeamNotificationsId = table.Column<int>(nullable: true),
+                    PlayerAchievementId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teams", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teams_Sports_SportId",
-                        column: x => x.SportId,
-                        principalTable: "Sports",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Events",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Venue = table.Column<string>(nullable: true),
-                    StartingTime = table.Column<string>(nullable: true),
-                    EndingTime = table.Column<string>(nullable: true),
-                    GameResultsId = table.Column<int>(nullable: true),
-                    UpComingEventsId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Events", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Events_GameResults_GameResultsId",
-                        column: x => x.GameResultsId,
-                        principalTable: "GameResults",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Events_UpComingEvents_UpComingEventsId",
-                        column: x => x.UpComingEventsId,
-                        principalTable: "UpComingEvents",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Students",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Fullnames = table.Column<string>(nullable: true),
-                    StudentNumber = table.Column<string>(nullable: true),
-                    Accomodation = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    EmailAddress = table.Column<string>(nullable: true),
-                    NextOfKinFullnames = table.Column<string>(nullable: true),
-                    NextOfKinPhoneNumber = table.Column<string>(nullable: true),
-                    HasMedicalAid = table.Column<bool>(nullable: false),
-                    MedicalAidNumber = table.Column<string>(nullable: true),
-                    MedicalAidCard = table.Column<byte[]>(nullable: true),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: false),
-                    DateDeleted = table.Column<DateTime>(nullable: false),
-                    StudentSportId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Students", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Students_StudentSports_StudentSportId",
-                        column: x => x.StudentSportId,
-                        principalTable: "StudentSports",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TeamNotifications",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    From = table.Column<string>(nullable: true),
-                    Body = table.Column<string>(nullable: true),
-                    Attachment = table.Column<byte[]>(nullable: true),
-                    TeamId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TeamNotifications", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TeamNotifications_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
+                        name: "FK_Teams_TeamNotifications_TeamNotificationsId",
+                        column: x => x.TeamNotificationsId,
+                        principalTable: "TeamNotifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -279,8 +266,8 @@ namespace MUT_DataAccess.Migrations
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
                     LastDate = table.Column<DateTime>(nullable: false),
-                    TeamId = table.Column<int>(nullable: false),
-                    StudentId = table.Column<int>(nullable: false)
+                    TeamId = table.Column<int>(nullable: true),
+                    StudentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -290,13 +277,13 @@ namespace MUT_DataAccess.Migrations
                         column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TeamPlayers_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -305,7 +292,6 @@ namespace MUT_DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlayerId = table.Column<int>(nullable: false),
                     AchievementDescription = table.Column<string>(nullable: true),
                     IsFirstTimeAchievement = table.Column<bool>(nullable: false),
                     DateAwarded = table.Column<DateTime>(nullable: false),
@@ -325,14 +311,9 @@ namespace MUT_DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Events_GameResultsId",
-                table: "Events",
-                column: "GameResultsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Events_UpComingEventsId",
-                table: "Events",
-                column: "UpComingEventsId");
+                name: "IX_Achievements_PlayerAchievementId",
+                table: "Achievements",
+                column: "PlayerAchievementId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlayerAchievements_TeamPlayerId",
@@ -340,20 +321,14 @@ namespace MUT_DataAccess.Migrations
                 column: "TeamPlayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_StudentSportId",
-                table: "Students",
-                column: "StudentSportId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudentSports_SportId",
+                name: "IX_StudentSports_SportsId",
                 table: "StudentSports",
-                column: "SportId");
+                column: "SportsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TeamNotifications_TeamId",
-                table: "TeamNotifications",
-                column: "TeamId");
+                name: "IX_StudentSports_StudentsId",
+                table: "StudentSports",
+                column: "StudentsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamPlayers_StudentId",
@@ -366,13 +341,43 @@ namespace MUT_DataAccess.Migrations
                 column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teams_SportId",
+                name: "IX_Teams_PlayerAchievementId",
                 table: "Teams",
-                column: "SportId");
+                column: "PlayerAchievementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Teams_TeamNotificationsId",
+                table: "Teams",
+                column: "TeamNotificationsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UpComingEvents_EventId",
+                table: "UpComingEvents",
+                column: "EventId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Achievements_PlayerAchievements_PlayerAchievementId",
+                table: "Achievements",
+                column: "PlayerAchievementId",
+                principalTable: "PlayerAchievements",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Teams_PlayerAchievements_PlayerAchievementId",
+                table: "Teams",
+                column: "PlayerAchievementId",
+                principalTable: "PlayerAchievements",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Teams_PlayerAchievements_PlayerAchievementId",
+                table: "Teams");
+
             migrationBuilder.DropTable(
                 name: "Achievements");
 
@@ -380,28 +385,31 @@ namespace MUT_DataAccess.Migrations
                 name: "Coaches");
 
             migrationBuilder.DropTable(
-                name: "Events");
+                name: "GameResults");
 
             migrationBuilder.DropTable(
                 name: "Notifications");
 
             migrationBuilder.DropTable(
-                name: "PlayerAchievements");
-
-            migrationBuilder.DropTable(
                 name: "Residences");
 
             migrationBuilder.DropTable(
-                name: "TeamNotifications");
+                name: "StudentSports");
 
             migrationBuilder.DropTable(
                 name: "TrainingSchedules");
 
             migrationBuilder.DropTable(
-                name: "GameResults");
+                name: "UpComingEvents");
 
             migrationBuilder.DropTable(
-                name: "UpComingEvents");
+                name: "Sports");
+
+            migrationBuilder.DropTable(
+                name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "PlayerAchievements");
 
             migrationBuilder.DropTable(
                 name: "TeamPlayers");
@@ -413,10 +421,7 @@ namespace MUT_DataAccess.Migrations
                 name: "Teams");
 
             migrationBuilder.DropTable(
-                name: "StudentSports");
-
-            migrationBuilder.DropTable(
-                name: "Sports");
+                name: "TeamNotifications");
         }
     }
 }

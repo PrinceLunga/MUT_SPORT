@@ -42,6 +42,7 @@ namespace MUT_SPORT_API
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ITeamPlayerService, TeamPlayerService>();
             services.AddScoped<ICoachService, CoachingService>();
+            services.AddScoped<ITeamService, TeamService>();
 
         }
 

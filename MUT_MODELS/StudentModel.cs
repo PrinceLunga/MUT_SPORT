@@ -25,6 +25,6 @@ namespace MUT_MODELS
         public DateTime DateModified { get; set; }
         public DateTime DateDeleted { get; set; }
         public int SportId { get; set; }
-        public IEnumerable<SportModel> sports { get; set; }
+        public IEnumerable<StudentSportModel> sports { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace MUT_MVC
             services.AddScoped<IStudentSportService, StudentSportService>();
             services.AddScoped<ITeamPlayerService, TeamPlayerService>();
             services.AddScoped<ICoachService, CoachingService>();
-            //services.AddTransient<>();
+            services.AddScoped<ITeamService, TeamService>();
             // services.AddSingleton<>();
         }
 

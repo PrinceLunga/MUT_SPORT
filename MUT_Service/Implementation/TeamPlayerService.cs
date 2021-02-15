@@ -1,110 +1,71 @@
 ﻿using MUT_DataAccess.DataContext;
 using MUT_DataAccess.DataModels;
 using MUT_MODELS;
-using MUT_Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MUT_Service.Implementation
+namespace MUT_Service.Interface
 {
     public class TeamPlayerService : ITeamPlayerService
     {
-        private readonly MUTDbContext dbContext;
+        private readonly MUTDbContext mUTDBContext;
 
-        public TeamPlayerService(MUTDbContext _dbContext)
+        public TeamPlayerService(MUTDbContext mUTDBContext)
         {
-            this.dbContext = _dbContext;
+            this.mUTDBContext = mUTDBContext;
         }
         public void AddNewTeamPlayer(TeamPlayerModel teamPlayerModel)
         {
-            using (dbContext)
+            using (mUTDBContext)
             {
-                var teamPlayer = new TeamPlayer
+                var _TeamPLayer = new TeamPlayer
                 {
                     IsCaptain = teamPlayerModel.IsCaptain,
+                    IsViceCaptain = teamPlayerModel.IsViceCaptain,
                     CreatedBy = teamPlayerModel.CreatedBy,
-                    DateCreated = DateTime.Now,
-                    StudentId = teamPlayerModel.StudentId,
-                    TeamId = teamPlayerModel.TeamId,
-                    IsViceCaptain = teamPlayerModel.IsViceCaptain
                 };
 
-                dbContext.TeamPlayers.Add(teamPlayer);
-                dbContext.SaveChanges();
+                mUTDBContext.SaveChanges();
             }
         }
-
         public TeamPlayerModel GetTeamPlayerById(int Id)
         {
-            using (dbContext)
+            using (mUTDBContext)
             {
-                return dbContext.TeamPlayers.Where(x => x.Id == Id).Select(
-                    b => new TeamPlayerModel
-                    {
-                        IsCaptain = b.IsCaptain,
-                        IsViceCaptain = b.IsViceCaptain,
-                        CreatedBy = b.CreatedBy,
-                        DateModified = b.DateModified
-                    }).SingleOrDefault();
-            }
-        }
-
-        public List<TeamPlayerModel> GetTeamById(int Id)
-        {
-            using (dbContext)
-            {
-                return dbContext.TeamPlayers.Where(x => x.TeamId == Id).Select(
-                    b => new TeamPlayerModel
-                    {
-                        IsCaptain = b.IsCaptain,
-                        IsViceCaptain = b.IsViceCaptain,
-                        CreatedBy = b.CreatedBy,
-                        DateModified = b.DateModified
-                    }).ToList();
-            }
-        }
-
-        public void UpdateTeamPlayer(TeamPlayerModel teamPlayerModel)
-        {
-            using(dbContext)
-            {
-                var _TeamPlayer = dbContext.TeamPlayers.Find(teamPlayerModel.Id);
-
-                if(_TeamPlayer != null)
+                return mUTDBContext.TeamPlayers.Select(b => new TeamPlayerModel
                 {
-                    _TeamPlayer.IsCaptain = teamPlayerModel.IsCaptain;
-                    _TeamPlayer.IsViceCaptain = teamPlayerModel.IsViceCaptain;
-                    _TeamPlayer.DateModified = DateTime.Now;
-
-                    dbContext.TeamPlayers.Add(_TeamPlayer);
-                    dbContext.SaveChanges();
-                }
+                    IsCaptain = b.IsCaptain,
+                    CreatedBy = b.CreatedBy,
+                    IsViceCaptain = b.IsViceCaptain
+                }).Where(x => x.Id == Id).SingleOrDefault();
             }
         }
 
         public List<TeamPlayerModel> GetTeamPlayers()
         {
-            using(dbContext)
+            using (mUTDBContext)
             {
-                return dbContext.TeamPlayers.Select(x => new TeamPlayerModel
+                return mUTDBContext.TeamPlayers.Select(x => new TeamPlayerModel
                 {
+                    IsCaptain = x.IsCaptain,
+                    IsViceCaptain = x.IsViceCaptain,
                     CreatedBy = x.CreatedBy,
                     DateCreated = x.DateCreated,
-                    DateModified = x.DateModified,
-                    IsCaptain = x.IsCaptain,
-                    IsViceCaptain = x.IsViceCaptain                   
+                    DateModified = x.DateModified
                 }).ToList();
             }
         }
+
         public bool TeamPlayerExists(int id)
         {
-            using (dbContext)
-            {
-                var student = dbContext.TeamPlayers.Find(id);
+            using (mUTDBContext)
 
-                if (student != null)
+            {
+                var _TeamPlayer = mUTDBContext.TeamPlayers.Find(id);
+
+                if (_TeamPlayer != null)
                 {
                     return true;
                 }
@@ -114,5 +75,22 @@ namespace MUT_Service.Implementation
                 }
             }
         }
+
+        public void UpdateTeamPlayer(TeamPlayerModel teamPlayerModel)
+        {
+            using (mUTDBContext)
+            {
+                var _TeamPlayer = mUTDBContext.TeamPlayers.Find(teamPlayerModel.Id);
+
+                if (_TeamPlayer != null)
+                {
+                    _TeamPlayer.IsCaptain = teamPlayerModel.IsCaptain;
+                    _TeamPlayer.IsViceCaptain = teamPlayerModel.IsViceCaptain;
+                    _TeamPlayer.CreatedBy = teamPlayerModel.CreatedBy;
+                    _TeamPlayer.DateModified = teamPlayerModel.DateModified;
+                    mUTDBContext.SaveChanges();
+                }
+            }
+        }
     }
-}
+}                                                  

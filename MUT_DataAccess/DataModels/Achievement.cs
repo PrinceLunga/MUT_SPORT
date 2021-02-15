@@ -11,5 +11,8 @@ namespace MUT_DataAccess.DataModels
         public int Id { get; set; }
         public string AchievementDescription { get; set; }
         public string DateAchieved { get; set; }
+        public int AchievementId { get; set; }
+        public IEnumerable<PlayerAchievement> PlayerAchievement { get; set; }
+        public IEnumerable<TeamAchievement> TeamAchievements { get; set; }
     }
 }

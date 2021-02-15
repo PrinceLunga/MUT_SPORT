@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MUT_DataAccess.DataModels
 {
-    public class PlayerAchievement
+    public class PlayerAchievementModel
     {
         [Key]
         public int Id { get; set; }
