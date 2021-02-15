@@ -1,0 +1,80 @@
+.tab {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+  }
+
+  .image-preview{
+
+	
+	border: 2px solid #dddddd;
+	border-radius: 3%;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	font-weight: bold;
+	color: #cccccc;
+  }
+
+.bg-gradient-primary {
+	  background-color: #990000;
+}
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+	background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+	background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+  }
+  .tabcontent {
+	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+  }
+
+  .textbox{
+	border-left:none;
+	border-top:none;
+	border-right:none;
+	border-color: gray;
+  }
+
+  .textbox:active{
+	border-left:none;
+	border-top:none;
+	border-right:none;
+	border-color: gray;
+  }
+  .primary-button{
+	  background: #511a1d;
+  }
+
+  .primary-button:hover{
+	opacity: 0.8;
+}
+
+  /* Go from zero to full opacity */
+  @keyframes fadeEffect {
+	from {opacity: 0;}
+	to {opacity: 1;}
+  }
+ 
