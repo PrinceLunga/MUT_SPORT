@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace MUT_DataAccess.DataModels
+namespace MUT_MVC.Models
 {
-    public class Residence
+    public class ResidenceMvcController
     {
         [Key]
         public int ResId { get; set; }

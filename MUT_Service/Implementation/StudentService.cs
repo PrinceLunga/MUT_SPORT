@@ -32,6 +32,7 @@ namespace MUT_Service.Implementation
                     Qualification = model.Qualification,
                     Accomodation = model.Accomodation,
                     PhoneNumber = model.PhoneNumber,
+                    NextOfKinPhoneNumber = model.NextOfKinPhoneNumber,
                     DateCreated = model.DateCreated
                 };
             }

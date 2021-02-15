@@ -13,23 +13,56 @@ namespace MUT_MVC.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string StudentNumber { get; set; }
+        
+        [Required]
         public string FirstName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
+
+        [Required]
         public string Gender { get; set; }
+
+        [Required]
         public string PhoneNumber { get; set; }
+
+        [Required]
         public string Email { get; set; }
+
+        [Required]
         public string Qualification { get; set; }
+
+        [Required]
         public string StudyLevel { get; set; }
+
+        [Required]
         public string Accomodation { get; set; }
+        
         public string NextOfKinFullnames { get; set; }
+
+        [Required]
         public string NextOfKinPhoneNumber { get; set; }
+        
         public Boolean HasMedicalAid { get; set; }
+        
         public string MedicalAidNumber { get; set; }
-        public IFormFile DisplayPicture { get; set; }
-        public IFormFile MedicalAidCardPic { get; set; }
+        
+        public byte[] DisplayPicture { get; set; }
+        
+        public byte[] MedicalAidCardPic { get; set; }
+        
         public DateTime DateCreated { get; set; }
+        
         public DateTime DateModified { get; set; }
+        
         public DateTime DateDeleted { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+        
+        [Required]
+        public string confirmPassword { get; set; }
     }
 }

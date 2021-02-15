@@ -4,14 +4,16 @@ using MUT_DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MUT_DataAccess.Migrations
 {
     [DbContext(typeof(MUTDbContext))]
-    partial class MUTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210215203025_hjg")]
+    partial class hjg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

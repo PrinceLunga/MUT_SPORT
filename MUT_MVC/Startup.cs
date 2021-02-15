@@ -31,21 +31,38 @@ namespace MUT_MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MUTDbContext>(options =>
+            /*services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")
+                    ,
+                   x => x.MigrationsAssembly("MUT_MVC")));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+            //services.AddScoped<ISportService, SportService>();
+            //services.AddTransient<IStudentService, StudentService>();
+            /*services.AddScoped<IGameResultService, GameResultsServices>();
+            services.AddScoped<IStudentSportService, StudentSportService>();
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IStudentSportService, StudentSportService>();*/
+            // services.AddSingleton<StudentSportModel>();
+            /*services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddMemoryCache();
+            services.AddHttpClient();*/
+
+
+            services.AddMvc();
+            services.AddControllersWithViews();
+            services.AddResponseCompression();
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<MUTDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-
-            services.AddScoped<ISportService, SportService>();
-            services.AddScoped<IStudentService, StudentService>();
-            services.AddScoped<IGameResultService, GameResultsServices>();
-            //services.AddScoped<IStudentSportService, StudentSportService>();
-            services.AddScoped<IEventService, EventService>();
-            services.AddScoped<IStudentSportService, StudentSportService>();
-            services.AddTransient<StudentSportModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

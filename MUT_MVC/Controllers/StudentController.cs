@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MUT_MODELS;
 using MUT_MVC.Models;
 using MUT_Service.Interface;
-using MySql.Data.MySqlClient.Memcached;
-using MySqlX.XDevAPI;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,30 +13,31 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Twilio.TwiML.Voice;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MUT_MVC.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly ISportService sportService;
-        private readonly IStudentService studentService;
         private List<StudentModel> studentList;
         private List<SportModel> sportList;
+        List<ResidenceMvcController> residences;
         private List<StudentSportModel> studentSportModel;
         private readonly Defaults _Default;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public StudentController(ISportService _sportService,
-            IStudentService studentService)
+        public StudentController( SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager)
         {
-            this.sportService = _sportService;
-            this.studentService = studentService;
             studentList = new List<StudentModel>();
             this.studentSportModel = new List<StudentSportModel>();
             this.sportList = new List<SportModel>();
+            this.residences = new List<ResidenceMvcController>();
             _Default = new Defaults();
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
+
         public async Task<IActionResult> StudentIndex()
         {
             var registerSport = new List<StudentRegisterSportTeamsModel>();
@@ -218,6 +218,54 @@ namespace MUT_MVC.Controllers
                     }
                 }
                 return null;
+
+            }
+        }
+
+
+       [HttpGet]
+        public async Task<IActionResult> CreateAccount()
+        {
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44330/api/Residence/GetAllResidences"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    residences = JsonConvert.DeserializeObject<List<ResidenceMvcController>>(apiResponse);
+                    ViewBag.Residences = residences;
+                }
+            }
+            return View(residences);
+        }
+        [HttpPost]
+        public async void CreateAccount(StudentMvcModel model, string returnUrl = null)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                //returnUrl = returnUrl ?? Url.Content("~/");
+                if (ModelState.IsValid)
+                {
+                    var user = new IdentityUser 
+                    { 
+                        UserName = model.Email, 
+                        Email = model.Email 
+                    };
+
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                        using (var response = await httpClient.PostAsync("https://localhost:44330/api/Student/PostStudent", content))
+                        {
+                            string apiResponse = await response.Content.ReadAsStringAsync();
+                            if (response.IsSuccessStatusCode)
+                            {
+                                Url.Content("~/StudentIndex");
+                            }
+                        }
+                    }
+                }
 
             }
         }

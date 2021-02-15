@@ -18,9 +18,6 @@ namespace MUT_Service.Interface
         public List<TrainingScheduleModel> GetTrainingSchedules();
         public List<UpComingEventsModel> GetAllUpcomingEvents();
         public bool StudentExists(string username);
-       
-
-
 
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MUT_DataAccess.DataModels
+namespace MUT_MODELS
 {
-    public class Residence
+    public class ResModel
     {
         [Key]
         public int ResId { get; set; }
