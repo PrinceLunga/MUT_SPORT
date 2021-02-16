@@ -1,0 +1,46 @@
+﻿@model MUT_MODELS.TeamPlayerModel
+
+@{
+    ViewData["Title"] = "PostTeamPlayer";
+    Layout = "~/Views/Shared/_CoachLayout.cshtml";
+}
+
+<h1>PostTeamPlayer</h1>
+
+<h4>TeamPlayerModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostTeamPlayer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCaptain" /> @Html.DisplayNameFor(model => model.IsCaptain)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsViceCaptain" /> @Html.DisplayNameFor(model => model.IsViceCaptain)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeamId" class="control-label"></label>
+                <input asp-for="TeamId" class="form-control" />
+                <span asp-validation-for="TeamId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <input asp-for="StudentId" class="form-control" />
+                <span asp-validation-for="StudentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

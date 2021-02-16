@@ -25,6 +25,7 @@ namespace MUT_DataAccess.DataContext
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UpComingEvent> UpComingEvents { get; set; }
         public DbSet<Residence> Residences { get; set; }
+        public DbSet<TeamAchievement> TeamAchievements { get; set; }
 
     }
 }

@@ -3,10 +3,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MUT_DataAccess.Migrations
 {
-    public partial class Navigatin : Migration
+    public partial class IniialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Achievements",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AchievementDescription = table.Column<string>(nullable: true),
+                    DateAchieved = table.Column<string>(nullable: true),
+                    PlayerAchievementId = table.Column<int>(nullable: false),
+                    AchievementId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Achievements", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Coaches",
                 columns: table => new
@@ -215,19 +231,28 @@ namespace MUT_DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Achievements",
+                name: "PlayerAchievements",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AchievementDescription = table.Column<string>(nullable: true),
-                    DateAchieved = table.Column<string>(nullable: true),
-                    AchievementId = table.Column<int>(nullable: false),
-                    PlayerAchievementId = table.Column<int>(nullable: true)
+                    IsFirstTimeAchievement = table.Column<bool>(nullable: false),
+                    DateAwarded = table.Column<DateTime>(nullable: false),
+                    Comment = table.Column<string>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    AchievementId = table.Column<int>(nullable: true),
+                    TeamPlayerId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Achievements", x => x.Id);
+                    table.PrimaryKey("PK_PlayerAchievements", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlayerAchievements_Achievements_AchievementId",
+                        column: x => x.AchievementId,
+                        principalTable: "Achievements",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -247,9 +272,43 @@ namespace MUT_DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_Teams", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Teams_PlayerAchievements_PlayerAchievementId",
+                        column: x => x.PlayerAchievementId,
+                        principalTable: "PlayerAchievements",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Teams_TeamNotifications_TeamNotificationsId",
                         column: x => x.TeamNotificationsId,
                         principalTable: "TeamNotifications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TeamAchievement",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    AchievementId = table.Column<int>(nullable: true),
+                    TeamId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeamAchievement", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TeamAchievement_Achievements_AchievementId",
+                        column: x => x.AchievementId,
+                        principalTable: "Achievements",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TeamAchievement_Teams_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Teams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -286,34 +345,10 @@ namespace MUT_DataAccess.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "PlayerAchievements",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AchievementDescription = table.Column<string>(nullable: true),
-                    IsFirstTimeAchievement = table.Column<bool>(nullable: false),
-                    DateAwarded = table.Column<DateTime>(nullable: false),
-                    Comment = table.Column<string>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    TeamPlayerId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlayerAchievements", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlayerAchievements_TeamPlayers_TeamPlayerId",
-                        column: x => x.TeamPlayerId,
-                        principalTable: "TeamPlayers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
-                name: "IX_Achievements_PlayerAchievementId",
-                table: "Achievements",
-                column: "PlayerAchievementId");
+                name: "IX_PlayerAchievements_AchievementId",
+                table: "PlayerAchievements",
+                column: "AchievementId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlayerAchievements_TeamPlayerId",
@@ -329,6 +364,16 @@ namespace MUT_DataAccess.Migrations
                 name: "IX_StudentSports_StudentsId",
                 table: "StudentSports",
                 column: "StudentsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeamAchievement_AchievementId",
+                table: "TeamAchievement",
+                column: "AchievementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeamAchievement_TeamId",
+                table: "TeamAchievement",
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamPlayers_StudentId",
@@ -356,18 +401,10 @@ namespace MUT_DataAccess.Migrations
                 column: "EventId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Achievements_PlayerAchievements_PlayerAchievementId",
-                table: "Achievements",
-                column: "PlayerAchievementId",
-                principalTable: "PlayerAchievements",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Teams_PlayerAchievements_PlayerAchievementId",
-                table: "Teams",
-                column: "PlayerAchievementId",
-                principalTable: "PlayerAchievements",
+                name: "FK_PlayerAchievements_TeamPlayers_TeamPlayerId",
+                table: "PlayerAchievements",
+                column: "TeamPlayerId",
+                principalTable: "TeamPlayers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -375,11 +412,12 @@ namespace MUT_DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Teams_PlayerAchievements_PlayerAchievementId",
-                table: "Teams");
+                name: "FK_PlayerAchievements_Achievements_AchievementId",
+                table: "PlayerAchievements");
 
-            migrationBuilder.DropTable(
-                name: "Achievements");
+            migrationBuilder.DropForeignKey(
+                name: "FK_PlayerAchievements_TeamPlayers_TeamPlayerId",
+                table: "PlayerAchievements");
 
             migrationBuilder.DropTable(
                 name: "Coaches");
@@ -397,6 +435,9 @@ namespace MUT_DataAccess.Migrations
                 name: "StudentSports");
 
             migrationBuilder.DropTable(
+                name: "TeamAchievement");
+
+            migrationBuilder.DropTable(
                 name: "TrainingSchedules");
 
             migrationBuilder.DropTable(
@@ -409,7 +450,7 @@ namespace MUT_DataAccess.Migrations
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "PlayerAchievements");
+                name: "Achievements");
 
             migrationBuilder.DropTable(
                 name: "TeamPlayers");
@@ -419,6 +460,9 @@ namespace MUT_DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Teams");
+
+            migrationBuilder.DropTable(
+                name: "PlayerAchievements");
 
             migrationBuilder.DropTable(
                 name: "TeamNotifications");

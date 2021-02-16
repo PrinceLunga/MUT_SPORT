@@ -1,17 +1,18 @@
-﻿using System;
+﻿using MUT_DataAccess.DataModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MUT_DataAccess.DataModels
+namespace MUT_MODELS
 {
-    public class TeamAchievement
+    public class TeamAchievementModel
     {
         [Key]
         public int Id { get; set; }
         public string CreatedBy { get; set; }
         public DateTime DateCreated { get; set; }
-        public Achievement Achievement { get; set; }
-        public Team Team { get; set; }
+        public AchievementModel Achievement { get; set; }
+        public TeamModel Team { get; set; }
     }
 }

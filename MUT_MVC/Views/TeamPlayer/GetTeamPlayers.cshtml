@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_CoachLayout.cshtml";
 }
 
-<h1>GetTeamPlayers</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -31,12 +29,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.LastDate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TeamId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentId)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -60,17 +52,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TeamId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

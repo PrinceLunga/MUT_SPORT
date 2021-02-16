@@ -15,6 +15,8 @@ namespace MUT_DataAccess.DataModels
         public string ModifiedBy { get; set; }
         public virtual TeamNotifications TeamNotifications { get; set; }
         public virtual PlayerAchievement PlayerAchievement { get; set; }
-        public IEnumerable<TeamPlayer> TeamPlayer { get; set; }
+        public IEnumerable<TeamPlayer> TeamPlayers { get; set; }
+        public IEnumerable<TeamAchievement> TeamAchievements { get; set; }
+        
     }
 }

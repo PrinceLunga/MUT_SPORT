@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MUT_DataAccess.Migrations
 {
     [DbContext(typeof(MUTDbContext))]
-    [Migration("20210215002418_Navigatin")]
-    partial class Navigatin
+    [Migration("20210215020405_IniialDb")]
+    partial class IniialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,12 +37,10 @@ namespace MUT_DataAccess.Migrations
                     b.Property<string>("DateAchieved")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlayerAchievementId")
+                    b.Property<int>("PlayerAchievementId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PlayerAchievementId");
 
                     b.ToTable("Achievements");
                 });
@@ -162,6 +160,9 @@ namespace MUT_DataAccess.Migrations
                     b.Property<string>("AchievementDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("AchievementId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
@@ -178,6 +179,8 @@ namespace MUT_DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AchievementId");
 
                     b.HasIndex("TeamPlayerId");
 
@@ -339,6 +342,34 @@ namespace MUT_DataAccess.Migrations
                     b.ToTable("Teams");
                 });
 
+            modelBuilder.Entity("MUT_DataAccess.DataModels.TeamAchievement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AchievementId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AchievementId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("TeamAchievement");
+                });
+
             modelBuilder.Entity("MUT_DataAccess.DataModels.TeamNotifications", b =>
                 {
                     b.Property<int>("Id")
@@ -462,15 +493,12 @@ namespace MUT_DataAccess.Migrations
                     b.ToTable("UpComingEvents");
                 });
 
-            modelBuilder.Entity("MUT_DataAccess.DataModels.Achievement", b =>
-                {
-                    b.HasOne("MUT_DataAccess.DataModels.PlayerAchievement", "PlayerAchievement")
-                        .WithMany()
-                        .HasForeignKey("PlayerAchievementId");
-                });
-
             modelBuilder.Entity("MUT_DataAccess.DataModels.PlayerAchievement", b =>
                 {
+                    b.HasOne("MUT_DataAccess.DataModels.Achievement", null)
+                        .WithMany("PlayerAchievement")
+                        .HasForeignKey("AchievementId");
+
                     b.HasOne("MUT_DataAccess.DataModels.TeamPlayer", null)
                         .WithMany("PlayerAchievements")
                         .HasForeignKey("TeamPlayerId");
@@ -498,6 +526,17 @@ namespace MUT_DataAccess.Migrations
                         .HasForeignKey("TeamNotificationsId");
                 });
 
+            modelBuilder.Entity("MUT_DataAccess.DataModels.TeamAchievement", b =>
+                {
+                    b.HasOne("MUT_DataAccess.DataModels.Achievement", "Achievement")
+                        .WithMany("TeamAchievements")
+                        .HasForeignKey("AchievementId");
+
+                    b.HasOne("MUT_DataAccess.DataModels.Team", "Team")
+                        .WithMany("TeamAchievements")
+                        .HasForeignKey("TeamId");
+                });
+
             modelBuilder.Entity("MUT_DataAccess.DataModels.TeamPlayer", b =>
                 {
                     b.HasOne("MUT_DataAccess.DataModels.Student", "Student")
@@ -505,7 +544,7 @@ namespace MUT_DataAccess.Migrations
                         .HasForeignKey("StudentId");
 
                     b.HasOne("MUT_DataAccess.DataModels.Team", "Team")
-                        .WithMany("TeamPlayer")
+                        .WithMany("TeamPlayers")
                         .HasForeignKey("TeamId");
                 });
 

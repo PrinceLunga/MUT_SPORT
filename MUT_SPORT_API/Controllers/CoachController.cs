@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MUT_SPORT_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CoachController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace MUT_SPORT_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CoachModel>> PostSport([FromForm] CoachModel model)
+        public async Task<ActionResult<CoachModel>> InsertNewCoach(CoachModel model)
         {
             coachService.InsertNewCoach(model);
             return CreatedAtAction("GetCoaches", new { id = model.Id }, model);

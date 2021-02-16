@@ -26,21 +26,17 @@ namespace MUT_MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MUTDbContext>(options =>
+            services.AddMvc();
+            services.AddControllersWithViews();
+            services.AddResponseCompression();
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<MUTDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddScoped<ISportService, SportService>();
-            services.AddScoped<IStudentService, StudentService>();
-            services.AddScoped<IGameResultService, GameResultsServices>();
-            services.AddScoped<IStudentSportService, StudentSportService>();
-            services.AddScoped<ITeamPlayerService, TeamPlayerService>();
-            services.AddScoped<ICoachService, CoachingService>();
-            services.AddScoped<ITeamService, TeamService>();
             // services.AddSingleton<>();
         }
 
