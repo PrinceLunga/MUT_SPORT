@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MUT_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210215204749_jij")]
-    partial class jij
+    [Migration("20210216121400_mm")]
+    partial class mm
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

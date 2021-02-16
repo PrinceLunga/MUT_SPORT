@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MUT_MVC.Migrations
 {
-    public partial class jij : Migration
+    public partial class mm : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

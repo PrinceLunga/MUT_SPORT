@@ -18,10 +18,6 @@ namespace MUT_MVC.Controllers
 {
     public class StudentController : Controller
     {
-        private List<StudentModel> studentList;
-        private List<SportModel> sportList;
-        List<ResidenceMvcController> residences;
-        private List<StudentSportModel> studentSportModel;
         private readonly Defaults _Default;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
@@ -29,10 +25,7 @@ namespace MUT_MVC.Controllers
         public StudentController( SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager)
         {
-            studentList = new List<StudentModel>();
-            this.studentSportModel = new List<StudentSportModel>();
-            this.sportList = new List<SportModel>();
-            this.residences = new List<ResidenceMvcController>();
+            
             _Default = new Defaults();
             _signInManager = signInManager;
             _userManager = userManager;
@@ -41,6 +34,9 @@ namespace MUT_MVC.Controllers
         public async Task<IActionResult> StudentIndex()
         {
             var registerSport = new List<StudentRegisterSportTeamsModel>();
+            var studentSportModel = new List<StudentSportModel>();
+            var sportList = new List<SportModel>();
+
             using (var httpClient = new HttpClient())
             {
                 string username = "n@gmail.com";
@@ -226,7 +222,8 @@ namespace MUT_MVC.Controllers
        [HttpGet]
         public async Task<IActionResult> CreateAccount()
         {
-
+          
+            var residences = new List<ResidenceMvcController>();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44330/api/Residence/GetAllResidences"))
@@ -241,9 +238,8 @@ namespace MUT_MVC.Controllers
         [HttpPost]
         public async void CreateAccount(StudentMvcModel model, string returnUrl = null)
         {
-            using (var httpClient = new HttpClient())
-            {
-                //returnUrl = returnUrl ?? Url.Content("~/");
+           
+                returnUrl = returnUrl ?? Url.Content("~/");
                 if (ModelState.IsValid)
                 {
                     var user = new IdentityUser 
@@ -252,19 +248,22 @@ namespace MUT_MVC.Controllers
                         Email = model.Email 
                     };
 
-                    var result = await _userManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                    {
-                        StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-                        using (var response = await httpClient.PostAsync("https://localhost:44330/api/Student/PostStudent", content))
+                  var result = await _userManager.CreateAsync(user, model.Password); 
+
+                if (result.Succeeded)
+                {
+                        using (var httpClient = new HttpClient())
                         {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            if (response.IsSuccessStatusCode)
+                            StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                            using (var response = await httpClient.PostAsync("https://localhost:44330/api/Student/PostStudent", content))
                             {
-                                Url.Content("~/StudentIndex");
+                                string apiResponse = await response.Content.ReadAsStringAsync();
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    Url.Content("~/StudentIndex");
+                                }
                             }
                         }
-                    }
                 }
 
             }
