@@ -31,8 +31,8 @@
                                         <div class="container">
                                             <input asp-for="Id" value="@Model.Id" type="hidden"/>
                                             <div id="dpContainer" style="width:220px; height:220px;">
-                                                <img class="dpPreview" style="border-radius:100%" width="100%" height="100%" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.DisplayPicture))" />
-                                                
+                                                <img class="dpPreview" style="border-radius:100%" width="100%" height="100%" src="~/img/users/user.png" />@*data:image/jpeg;base64,@(Convert.ToBase64String(Model.DisplayPicture))*@
+
                                             </div>
                                             <div style="padding:5%;cursor:pointer;">
                                                 <i id="pen" onclick="attachDP()" class="fa fa-pen"> </i>
@@ -75,13 +75,13 @@
 
                                             <div class="container">
                                                 <div id="imagePreview" class="image-preview" style="text-align:center">
-                                                    <img style="width:210px;height:120px" class="image-preview__image" src="@ViewBag.Image"/>
+                                                    <img style="width:210px;height:120px" class="image-preview__image" src="~/img/cards/20170519_140619.jpg" />@*@ViewBag.Image*@
                                                     <span class="image-preview__text">Upload Medical Aid Card</span>
-                                                <div>
-                                            </div>
+                                                    <div>
+                                                    </div>
 
 
-                                        </li>
+</li>
                                     </ul>
                                 </div>
                             </div>
