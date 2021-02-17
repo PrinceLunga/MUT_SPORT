@@ -11,5 +11,6 @@ namespace MUT_DataAccess.DataModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public IEnumerable<Student> Students { get; set; }
     }
 }

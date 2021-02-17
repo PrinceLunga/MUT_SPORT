@@ -25,7 +25,6 @@ namespace MUT_Service.Implementation
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Code = x.Code,
                     Image = x.Image
 
                 }).ToList();   
@@ -39,7 +38,6 @@ namespace MUT_Service.Implementation
                 return _dbContext.Sports.Where(x => x.Id == Id).Select(b => new SportModel
                 {
                     Id = b.Id,
-                    Code = b.Code,
                     Name = b.Name,
                     Image = b.Image
                 }).SingleOrDefault();
@@ -53,7 +51,6 @@ namespace MUT_Service.Implementation
                 var sport = new Sport
                 {
                     Name = model.Name,
-                    Code = model.Code,
                     Image = model.Image
                 };
                 _dbContext.Sports.Add(sport);
@@ -86,8 +83,7 @@ namespace MUT_Service.Implementation
 
                 if(sport != null)
                 {
-                    sport.Name = model.Name;
-                    sport.Code = model.Code;
+                    sport.Name = model.Name;    
                     sport.Image = model.Image;
 
                     _dbContext.SaveChanges();

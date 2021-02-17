@@ -9,8 +9,10 @@ namespace MUT_DataAccess.DataModels
     {
         [Key]
         public int Id { get; set; }
-        public string PlayerId { get; set; }
-        public int AchievementId { get; set; }
         public DateTime DateAwarded { get; set; }
+        public int AchievementId { get; set; }
+        public virtual Achievement Achievement { get; set; }
+        public int PlayerId { get; set; }
+        public virtual TeamPlayer Player { get; set; }
     }
 }

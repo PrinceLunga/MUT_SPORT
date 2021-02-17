@@ -14,5 +14,10 @@ namespace MUT_DataAccess.DataModels
         public string SportName { get; set; }
         public string PhoneNumber { get; set; }
         public string TeamName { get; set; }
+        public int TeamId { get; set; }
+        public Team Team { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateModified { get; set; }
+        public DateTime DateDeleted { get; set; }
     }
 }

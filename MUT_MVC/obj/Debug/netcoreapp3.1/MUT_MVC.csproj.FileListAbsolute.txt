@@ -171,7 +171,6 @@ C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\bin\Debug\netcoreapp3.1
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\MUT_MVC.csproj.CoreCompileInputs.cache
-C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\MUT_MVC.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\MUT_MVC.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Sport\GetSports.cshtml.g.cs
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Sport\AddSport.cshtml.g.cs

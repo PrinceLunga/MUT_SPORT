@@ -22,7 +22,7 @@ namespace MUT_Service.Implementation
             throw new NotImplementedException();
         }
 
-        public List<Achievement> GetPlayerAchievements(string playerID)
+        public List<Achievement> GetPlayerAchievements(int playerID)
         {
             using (dbContext)
             {

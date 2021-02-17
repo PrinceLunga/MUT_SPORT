@@ -19,5 +19,6 @@ namespace MUT_DataAccess.DataModels
         public virtual Team Team { get; set; }
         public int StudentId { get; set; }
         public virtual Student Student { get; set; }
+        public IEnumerable<PlayerAchievement> PlayerAchievements { get; set; }
     }
 }

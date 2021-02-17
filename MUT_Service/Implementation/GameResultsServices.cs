@@ -40,10 +40,10 @@ namespace MUT_Service.Implementation
         {
             using(mUTDbContext)
             {
-                return mUTDbContext.GameResults.Where( x => x.SportId == Id)
+                return mUTDbContext.GameResults.Where( x => x.Id == Id)
                     .Select( x => new GameResultModel 
                     {
-                        SportId = x.SportId,
+        
                         IsHomeWin = x.IsHomeWin,
                         PointForHomeTeam = x.PointForHomeTeam,
                         PointsForAwayTeam = x.PointsForAwayTeam,

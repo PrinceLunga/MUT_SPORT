@@ -14,6 +14,7 @@ namespace MUT_DataAccess.DataModels
         public DateTime StartingDate  { get; set; }
         public DateTime EndingDate { get; set; }
         public int SportId { get; set; }
+        public Sport Sport { get; set; }
         public byte[] EventPicture { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }

@@ -28,7 +28,7 @@ namespace MUT_SPORT_API.Controllers
         }
 
         [HttpGet("{playerID}")]
-        public ActionResult<IEnumerable<Achievement>> GetPlayerAchievements(string playerID)
+        public ActionResult<IEnumerable<Achievement>> GetPlayerAchievements(int playerID)
         {
             return playerAchievement.GetPlayerAchievements(playerID);
         }

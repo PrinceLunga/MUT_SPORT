@@ -101,13 +101,13 @@ namespace MUT_MVC.Controllers
         }
 
 
-        public async Task<IActionResult> Register(int sportId)
+        public async Task<IActionResult> Register(int sportId, int studentId, string Username)
         {
             using (var httpClient = new HttpClient())
             {
                 var student = new StudentSportModel
                 {
-                    StudentId = "n@gmail.com",
+                    StudentId = studentId,
                     SportId = sportId,
                     DateEnrolled = DateTime.Now
 
