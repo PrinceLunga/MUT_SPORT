@@ -22,10 +22,10 @@ namespace MUT_MVC.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public StudentController( SignInManager<IdentityUser> signInManager,
+        public StudentController(SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager)
         {
-            
+
             _Default = new Defaults();
             _signInManager = signInManager;
             _userManager = userManager;
@@ -125,6 +125,8 @@ namespace MUT_MVC.Controllers
             }
         }
 
+
+
         public async Task<IActionResult> Deregister(int sportId)
         {
             using (var httpClient = new HttpClient())
@@ -167,7 +169,7 @@ namespace MUT_MVC.Controllers
 
                 MemoryStream ms = new MemoryStream();
                 file.CopyTo(ms);
-                if(count == 1)
+                if (count == 1)
                 {
                     studData.MedicalAidCardPic = ms.ToArray();
                 }
@@ -180,10 +182,10 @@ namespace MUT_MVC.Controllers
                 ms.Dispose();
 
             }
-            if(studData.MedicalAidCardPic == null)
+            if (studData.MedicalAidCardPic == null)
             {
                 string imageDataURL = string.Format("data:image/jpeg;base64,{0}", _Default.DEFAULT_IMAGE);
-                defaultImage  = imageDataURL;
+                defaultImage = imageDataURL;
             }
             return defaultImage;
         }
@@ -219,54 +221,37 @@ namespace MUT_MVC.Controllers
         }
 
 
-       [HttpGet]
-        public async Task<IActionResult> CreateAccount()
-        {
-          
-            var residences = new List<ResidenceMvcController>();
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync("https://localhost:44330/api/Residence/GetAllResidences"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    residences = JsonConvert.DeserializeObject<List<ResidenceMvcController>>(apiResponse);
-                    ViewBag.Residences = residences;
-                }
-            }
-            return View(residences);
-        }
+        public ViewResult CreateAccount() => View();
+
         [HttpPost]
-        public async void CreateAccount(StudentMvcModel model, string returnUrl = null)
+        public async Task<IActionResult> CreateAccount(StudentMvcModel model)
         {
-           
-                returnUrl = returnUrl ?? Url.Content("~/");
-                if (ModelState.IsValid)
-                {
-                    var user = new IdentityUser 
-                    { 
-                        UserName = model.Email, 
-                        Email = model.Email 
-                    };
+            //if (ModelState.IsValid)
+            //{
+            var user = new IdentityUser
+            {
+                UserName = "n@gmail.com",
+                Email = "n@gmail.com"
+            };
 
-                  var result = await _userManager.CreateAsync(user, model.Password); 
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                _userManager.AddToRoleAsync(user, "Student").Wait();
 
-                if (result.Succeeded)
+                StudentMvcModel receivedStudent = new StudentMvcModel();
+                using (var httpClient = new HttpClient())
                 {
-                        using (var httpClient = new HttpClient())
-                        {
-                            StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-                            using (var response = await httpClient.PostAsync("https://localhost:44330/api/Student/PostStudent", content))
-                            {
-                                string apiResponse = await response.Content.ReadAsStringAsync();
-                                if (response.IsSuccessStatusCode)
-                                {
-                                    Url.Content("~/StudentIndex");
-                                }
-                            }
-                        }
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                    using (var response = await httpClient.PostAsync("https://localhost:44330/Api/Coach/InsertNewCoach", content))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        receivedStudent = JsonConvert.DeserializeObject<StudentMvcModel>(apiResponse);
+                    }
                 }
-
             }
+            return RedirectToAction(nameof(StudentIndex));
         }
     }
+
 }

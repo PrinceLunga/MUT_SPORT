@@ -9,7 +9,6 @@ C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_DataAccess\obj\Debug\netcor
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_DataAccess\obj\Debug\netcoreapp3.1\MUT_DataAccess.dll
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_DataAccess\obj\Debug\netcoreapp3.1\MUT_DataAccess.pdb
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_DataAccess\obj\Debug\netcoreapp3.1\MUT_DataAccess.genruntimeconfig.cache
-C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_DataAccess\obj\Debug\netcoreapp3.1\MUT_DataAccess.csprojAssemblyReference.cache
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_DataAccess\bin\Debug\netcoreapp3.1\MUT_DataAccess.deps.json
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_DataAccess\bin\Debug\netcoreapp3.1\MUT_DataAccess.runtimeconfig.json
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_DataAccess\bin\Debug\netcoreapp3.1\MUT_DataAccess.runtimeconfig.dev.json
@@ -22,3 +21,4 @@ C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_DataAccess\obj\Debug\netcoreapp
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_DataAccess\obj\Debug\netcoreapp3.1\MUT_DataAccess.pdb
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_DataAccess\obj\Debug\netcoreapp3.1\MUT_DataAccess.genruntimeconfig.cache
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_DataAccess\obj\Debug\netcoreapp3.1\MUT_DataAccess.csprojAssemblyReference.cache
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_DataAccess\obj\Debug\netcoreapp3.1\MUT_DataAccess.csprojAssemblyReference.cache

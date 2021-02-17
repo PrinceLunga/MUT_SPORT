@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MUT_DataAccess.Migrations
 {
     [DbContext(typeof(MUTDbContext))]
-    [Migration("20210210183315_Iniial")]
-    partial class Iniial
+    [Migration("20210216234827_Inita")]
+    partial class Inita
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -184,7 +184,7 @@ namespace MUT_DataAccess.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ResName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

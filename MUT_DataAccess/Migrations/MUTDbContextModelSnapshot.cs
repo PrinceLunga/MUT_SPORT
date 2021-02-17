@@ -174,21 +174,18 @@ namespace MUT_DataAccess.Migrations
 
             modelBuilder.Entity("MUT_DataAccess.DataModels.Residence", b =>
                 {
-                    b.Property<int>("ResId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Location")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("isInMainCamp")
-                        .HasColumnType("bit");
-
-                    b.HasKey("ResId");
+                    b.HasKey("Id");
 
                     b.ToTable("Residences");
                 });

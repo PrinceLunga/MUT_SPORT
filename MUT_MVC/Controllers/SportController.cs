@@ -15,12 +15,12 @@ namespace MUT_MVC.Controllers
 {
     public class SportController : Controller
     {
-        private readonly ISportService sportService;
+        //private readonly ISportService sportService;
         private List<SportModel> sportList;
 
-        public SportController(ISportService _sportService)
+        public SportController()
         {
-            this.sportService = _sportService;
+            ///this.sportService = _sportService;
             sportList = new List<SportModel>();
         }
         public async Task<IActionResult> GetSports()

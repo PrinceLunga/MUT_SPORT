@@ -14,9 +14,9 @@ namespace MUT_SPORT_API.Controllers
     [ApiController]
     public class ResidenceController : ControllerBase
     {
-        public readonly IResidence residenceService;
+        public readonly IResidenceService residenceService;
 
-        public ResidenceController(IResidence residenceService)
+        public ResidenceController(IResidenceService residenceService)
         {
             this.residenceService = residenceService;
         }

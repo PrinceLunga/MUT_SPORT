@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MUT_Service.Interface
 {
-    public interface IResidence
+    public interface IResidenceService
     {
         public List<ResModel> GetResidences();
     }

@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_Service\\MUT_Service.csproj": {}
+    "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_Service\\MUT_Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_DataAccess\\MUT_DataAccess.csproj": {
+    "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_DataAccess\\MUT_DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_DataAccess\\MUT_DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_DataAccess\\MUT_DataAccess.csproj",
         "projectName": "MUT_DataAccess",
-        "projectPath": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_DataAccess\\MUT_DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Nhlanhla Vilakazi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_DataAccess\\MUT_DataAccess.csproj",
+        "packagesPath": "C:\\Users\\prince.lunga\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Nhlanhla Vilakazi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\prince.lunga\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -80,21 +83,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_MODELS\\MUT_MODELS.csproj": {
+    "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_MODELS\\MUT_MODELS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_MODELS\\MUT_MODELS.csproj",
+        "projectUniqueName": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_MODELS\\MUT_MODELS.csproj",
         "projectName": "MUT_MODELS",
-        "projectPath": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_MODELS\\MUT_MODELS.csproj",
-        "packagesPath": "C:\\Users\\Nhlanhla Vilakazi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_MODELS\\obj\\",
+        "projectPath": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_MODELS\\MUT_MODELS.csproj",
+        "packagesPath": "C:\\Users\\prince.lunga\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_MODELS\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Nhlanhla Vilakazi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\prince.lunga\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -140,21 +146,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_Service\\MUT_Service.csproj": {
+    "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_Service\\MUT_Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_Service\\MUT_Service.csproj",
+        "projectUniqueName": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_Service\\MUT_Service.csproj",
         "projectName": "MUT_Service",
-        "projectPath": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_Service\\MUT_Service.csproj",
-        "packagesPath": "C:\\Users\\Nhlanhla Vilakazi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_Service\\obj\\",
+        "projectPath": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_Service\\MUT_Service.csproj",
+        "packagesPath": "C:\\Users\\prince.lunga\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Nhlanhla Vilakazi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\prince.lunga\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -168,11 +177,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_DataAccess\\MUT_DataAccess.csproj": {
-                "projectPath": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_DataAccess\\MUT_DataAccess.csproj"
+              "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_DataAccess\\MUT_DataAccess.csproj": {
+                "projectPath": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_DataAccess\\MUT_DataAccess.csproj"
               },
-              "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_MODELS\\MUT_MODELS.csproj": {
-                "projectPath": "C:\\Users\\Nhlanhla Vilakazi\\Desktop\\MUT_SPORT\\MUT_MODELS\\MUT_MODELS.csproj"
+              "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_MODELS\\MUT_MODELS.csproj": {
+                "projectPath": "C:\\Users\\prince.lunga\\Source\\Repos\\MUT_SPORT_API\\MUT_MODELS\\MUT_MODELS.csproj"
               }
             }
           }
@@ -201,7 +210,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

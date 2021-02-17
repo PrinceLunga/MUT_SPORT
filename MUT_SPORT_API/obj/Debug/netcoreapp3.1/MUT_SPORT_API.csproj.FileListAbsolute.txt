@@ -134,3 +134,5 @@ C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_SPORT_API\obj\Debug\netcoreapp3
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_SPORT_API\obj\Debug\netcoreapp3.1\MUT_SPORT_API.dll
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_SPORT_API\obj\Debug\netcoreapp3.1\MUT_SPORT_API.pdb
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_SPORT_API\obj\Debug\netcoreapp3.1\MUT_SPORT_API.genruntimeconfig.cache
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_SPORT_API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_SPORT_API\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll

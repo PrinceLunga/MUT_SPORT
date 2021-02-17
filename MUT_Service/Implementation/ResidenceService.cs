@@ -9,7 +9,7 @@ using System.Text;
 
 namespace MUT_Service.Implementation
 {
-    public class ResidenceService : IResidence
+    public class ResidenceService : IResidenceService
     {
         private readonly MUTDbContext mUTDbContext;
         public ResidenceService(MUTDbContext mUTDbContext)
@@ -23,10 +23,8 @@ namespace MUT_Service.Implementation
             {
                 return mUTDbContext.Residences.Select(x => new ResModel
                 {
-                    ResId = x.ResId,
                     Name = x.Name,
-                    isInMainCamp = x.isInMainCamp,
-                    Location = x.Location
+                    Address = x.Address
 
                 }).ToList();
             }

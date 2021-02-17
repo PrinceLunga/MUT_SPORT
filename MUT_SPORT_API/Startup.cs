@@ -32,12 +32,13 @@ namespace MUT_SPORT_API
             services.AddControllers();
             services.AddResponseCompression();
             services.AddDbContext<MUTDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DBConnection"),
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("MUT_DataAccess")));
 
             services.AddScoped<ISportService, SportService>();
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IGameResultService, GameResultsServices>();
+            services.AddScoped<IResidenceService, ResidenceService>();
             //services.AddScoped<IStudentSportService, StudentSportService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ITrainingSchedule,TrainingService>();

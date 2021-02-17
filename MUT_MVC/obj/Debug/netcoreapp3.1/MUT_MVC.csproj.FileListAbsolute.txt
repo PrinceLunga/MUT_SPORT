@@ -371,3 +371,25 @@ C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\bin\Debug\netcoreapp3.1\run
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\ConfirmEmail.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\CreateAccount.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Achievements\PlayerAchievements.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Achievements\TeamAchievements.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Events\UpcomingEvents.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\GameResults\PreviousResults.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Modal\SportRegistered.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Student_Layout.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Sport\SportIndex.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Student\Deregister.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Student\Profile.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Student\Register.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Student\StudentIndex.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Training\TrainingSchedules.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Student\CreateAccount.cshtml.g.cs
