@@ -10,7 +10,7 @@ namespace MUT_DataAccess.DataModels
         [Key]
         public int Id { get; set; }
         public DateTime DateEnrolled { get; set; }
-        public DateTime DateDelete { get; set; }
+        public DateTime DateDeleted { get; set; }
         public DateTime DateModified { get; set; }
         public int StudentId { get; set; }
         public Student Student { get; set; }

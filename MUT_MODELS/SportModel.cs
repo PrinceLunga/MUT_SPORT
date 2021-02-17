@@ -7,10 +7,12 @@ namespace MUT_MODELS
 {
     public class SportModel
     {
-        [Key]
+       [Key]
         public int Id { get; set; }
-        public string Code { get; set; }
         public string Name { get; set; }
         public byte[] Image { get; set; }
+        public IEnumerable<StudentModel> Students { get; set; }
+        public IEnumerable<StudentSportModel> studentSports { get; set; }
+        public IEnumerable<TeamModel> Teams { get; set; }
     }
 }

@@ -9,8 +9,10 @@ namespace MUT_MODELS
     {
         [Key]
         public int Id { get; set; }
-        public string PlayerId { get; set; }
-        public int AchievementId { get; set; }
         public DateTime DateAwarded { get; set; }
+        public int AchievementId { get; set; }
+        public virtual AchievementModel Achievement { get; set; }
+        public int PlayerId { get; set; }
+        public virtual TeamPlayerModel Player { get; set; }
     }
 }

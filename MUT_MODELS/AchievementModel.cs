@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MUT_MODELS
 {
-    public class Achievement
+    public class AchievementModel
     {
         [Key]
         public int Id { get; set; }

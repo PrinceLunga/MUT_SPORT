@@ -14,5 +14,6 @@ namespace MUT_MODELS
         public string EventDate { get; set; }
         public string StartingTime { get; set; }
         public string EndingTime { get; set; }
+
     }
 }

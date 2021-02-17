@@ -61,7 +61,6 @@ namespace MUT_MVC.Controllers
                         var b = new StudentRegisterSportTeamsModel
                         {
                             Id = item.Id,
-                            Code = item.Code,
                             Image = item.Image,
                             Name = item.Name,
                             IsRegistered = true
@@ -73,7 +72,6 @@ namespace MUT_MVC.Controllers
                         var b = new StudentRegisterSportTeamsModel
                         {
                             Id = item.Id,
-                            Code = item.Code,
                             Image = item.Image,
                             Name = item.Name,
                             IsRegistered = false

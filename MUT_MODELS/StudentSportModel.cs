@@ -10,11 +10,12 @@ namespace MUT_MODELS
         [Key]
         public int Id { get; set; }
         public DateTime DateEnrolled { get; set; }
-        public DateTime DateDelete { get; set; }
+        public DateTime DateDeleted { get; set; }
         public DateTime DateModified { get; set; }
         public int StudentId { get; set; }
         public virtual StudentModel StudentModel { get; set; }
         public int SportId { get; set; }
         public virtual SportModel SportModel { get; set; }
+
     }
 }
