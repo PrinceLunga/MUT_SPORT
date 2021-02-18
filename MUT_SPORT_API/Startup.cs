@@ -45,6 +45,8 @@ namespace MUT_SPORT_API
             services.AddScoped<ITeamAchievement, TeamAchievementService>();
             services.AddScoped<IPlayerAchievement,PlayerAchievementService>();
             services.AddScoped<IStudentSportService, StudentSportService>();
+            services.AddScoped<IAchievementService, AchievementService>();
+            services.AddScoped<ICoachService, CoachService>();
 
         }
 

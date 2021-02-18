@@ -28,10 +28,10 @@ namespace MUT_SPORT_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CoachModel>> PostSport([FromForm] CoachModel model)
+        public async Task<ActionResult<CoachModel>> InsertNewCoach(CoachModel model)
         {
             coachService.InsertNewCoach(model);
-            return CreatedAtAction("GetCoaches", new { id = model.Id }, model);
+            return model;
         }
 
         [HttpGet("{id}")]
@@ -49,7 +49,7 @@ namespace MUT_SPORT_API.Controllers
 
         [HttpPut("{id}")]
         [AcceptVerbs("POST", "PUT")]
-        public ActionResult<CoachModel> PutSports(int id, CoachModel model)
+        public ActionResult<CoachModel> Putoach(int id, CoachModel model)
         {
             try
             {

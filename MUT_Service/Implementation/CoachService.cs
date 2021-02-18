@@ -9,10 +9,10 @@ using System.Text;
 
 namespace MUT_Service.Implementation
 {
-    public class CoachingService : ICoachService
+    public class CoachService : ICoachService
     {
         private readonly MUTDbContext mUTDbContext;
-        public CoachingService(MUTDbContext _mUTDbContext)
+        public CoachService(MUTDbContext _mUTDbContext)
         {
             this.mUTDbContext = _mUTDbContext;
         }
@@ -70,13 +70,17 @@ namespace MUT_Service.Implementation
         {
             using (mUTDbContext)
             {
+                int _TeamId = mUTDbContext.Teams.Where(x => x.TeamName == coachModel.TeamName).FirstOrDefault().Id;
                 var coach = new Coach
                 {
                     EmailAddress = coachModel.EmailAddress,
                     Fullnames = coachModel.Fullnames,
                     PhoneNumber = coachModel.PhoneNumber,
                     SportName = coachModel.SportName,
-                    TeamName = coachModel.TeamName
+                    TeamName = coachModel.TeamName,
+                    TeamId = _TeamId,
+                    DateCreated = DateTime.Now
+
                 };
                 mUTDbContext.Coaches.Add(coach);
                 mUTDbContext.SaveChanges();
@@ -85,7 +89,7 @@ namespace MUT_Service.Implementation
 
         public bool CoachExists(int id)
         {
-            using(mUTDbContext)
+            using (mUTDbContext)
             {
                 var coach = mUTDbContext.Coaches.Find(id);
 
@@ -98,11 +102,11 @@ namespace MUT_Service.Implementation
 
         public void UpdateCoach(CoachModel coachModel)
         {
-            using(mUTDbContext)
+            using (mUTDbContext)
             {
                 var coach = mUTDbContext.Coaches.Find(coachModel.Id);
 
-                if(coach != null)
+                if (coach != null)
                 {
                     coach.EmailAddress = coachModel.EmailAddress;
                     coach.Fullnames = coachModel.Fullnames;

@@ -9,7 +9,5 @@ namespace MUT_Service.Interface
     {
         public List<UpComingEventsModel> GetEventsBySportId(int id);
         public void InsertNewEvent(UpComingEventsModel eventModel);
-        public void UpdateEvent(UpComingEventsModel eventModel);
-       // public UpComingEventsModel GetEventByName(string eventName);
     }
 }

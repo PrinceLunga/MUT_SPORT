@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MUT_DataAccess.DataModels;
+using MUT_MODELS;
 using MUT_Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,24 +14,30 @@ namespace MUT_SPORT_API.Controllers
     [ApiController]
     public class AchievementsController : ControllerBase
     {
-        private readonly ITeamAchievement teamAchievement;
-        private readonly IPlayerAchievement playerAchievement;
-        public AchievementsController(ITeamAchievement teamAchievement, IPlayerAchievement playerAchievement)
+        private readonly IAchievementService achievementService;
+        public AchievementsController(IAchievementService achievementService)
         {
-            this.teamAchievement = teamAchievement;
-            this.playerAchievement = playerAchievement;
+            this.achievementService = achievementService;
         }
 
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<Achievement>> GetTeamAchievements(int id)
+        public ActionResult<IEnumerable<AchievementModel>> GetAchievementByID(int id)
         {
-            return teamAchievement.GetTeamAchievements(id);
+            return achievementService.GetAchievementByID(id);
         }
 
-        [HttpGet("{playerID}")]
-        public ActionResult<IEnumerable<Achievement>> GetPlayerAchievements(int playerID)
+        [HttpGet]
+        public ActionResult<IEnumerable<AchievementModel>> GetPlayerAchievements()
         {
-            return playerAchievement.GetPlayerAchievements(playerID);
+            return achievementService.GetAchievements();
         }
+
+        [HttpPost]
+        public async Task<ActionResult<AchievementModel>> AddAchievement(AchievementModel model)
+        {
+            achievementService.AddAchievement(model);
+            return CreatedAtAction("GetPlayerAchievements", new { AchievementDescription = model.AchievementDescription }, model);
+        }
+
     }
 }

@@ -1,0 +1,60 @@
+﻿@model MUT_MODELS.CoachModel
+
+@{
+    ViewData["Title"] = "CreateCoach";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+<h1>CreateCoach</h1>
+
+<h4>CoachModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCoach">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+            <div class="form-group">
+                <label asp-for="Fullnames" class="control-label"></label>
+                <input asp-for="Fullnames" class="form-control" />
+                <span asp-validation-for="Fullnames" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeamName" class="control-label"></label>
+                <input asp-for="TeamName" class="form-control" />
+                <span asp-validation-for="TeamName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SportName" class="control-label"></label>
+
+                <select asp-for="SportName" class="form-control"> 
+                    @foreach (var Sport in @ViewBag.Sports)
+                    {
+
+                        <option>@Sport.Name</option>
+
+                    }
+                </select>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

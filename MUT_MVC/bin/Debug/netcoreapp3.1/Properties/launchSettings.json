@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "Student/StudentIndex",
+      "launchUrl": "Achievements/GetAchievements",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
