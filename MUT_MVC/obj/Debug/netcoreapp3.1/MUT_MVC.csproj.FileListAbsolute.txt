@@ -397,3 +397,9 @@ C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Achievements\CreateAchievement.cshtml.g.cs
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Coach\GetCoaches.cshtml.g.cs
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Coach\CreateCoach.cshtml.g.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Achievements\CreateAchievement.cshtml.g.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Achievements\GetAchievements.cshtml.g.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Coach\CreateCoach.cshtml.g.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Coach\GetCoaches.cshtml.g.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Student\CreateAccount.cshtml.g.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Team\Teams.cshtml.g.cs

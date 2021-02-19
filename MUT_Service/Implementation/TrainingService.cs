@@ -41,7 +41,7 @@ namespace MUT_Service.Implementation
 
         public List<TrainingSchedule> GetTrainingScheduleBySportID(int sportId)
         {
-            return dbContext.TrainingSchedules.Where(x => x.Id == sportId).Select(x => new TrainingSchedule 
+            return dbContext.TrainingSchedules.Where(x => x.TeamId == sportId).Select(x => new TrainingSchedule 
             {
                 Id = x.Id,
                 Venue = x.Venue,

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MUT_DataAccess.Migrations
 {
     [DbContext(typeof(MUTDbContext))]
-    [Migration("20210217151258_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20210218215218_migrations")]
+    partial class migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,6 +45,15 @@ namespace MUT_DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
@@ -168,10 +177,14 @@ namespace MUT_DataAccess.Migrations
                     b.Property<DateTime>("DateAwarded")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PlayerId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PlayerId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AchievementId");
+
+                    b.HasIndex("PlayerId");
 
                     b.ToTable("PlayerAchievements");
                 });
@@ -267,6 +280,9 @@ namespace MUT_DataAccess.Migrations
                     b.Property<string>("Qualification")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ResidenceId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("SportId")
                         .HasColumnType("int");
 
@@ -277,6 +293,8 @@ namespace MUT_DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ResidenceId");
 
                     b.HasIndex("SportId");
 
@@ -290,7 +308,7 @@ namespace MUT_DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateDelete")
+                    b.Property<DateTime>("DateDeleted")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateEnrolled")
@@ -485,8 +503,27 @@ namespace MUT_DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MUT_DataAccess.DataModels.PlayerAchievement", b =>
+                {
+                    b.HasOne("MUT_DataAccess.DataModels.Achievement", "Achievement")
+                        .WithMany()
+                        .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MUT_DataAccess.DataModels.TeamPlayer", "Player")
+                        .WithMany("PlayerAchievements")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MUT_DataAccess.DataModels.Student", b =>
                 {
+                    b.HasOne("MUT_DataAccess.DataModels.Residence", null)
+                        .WithMany("Students")
+                        .HasForeignKey("ResidenceId");
+
                     b.HasOne("MUT_DataAccess.DataModels.Sport", null)
                         .WithMany("Students")
                         .HasForeignKey("SportId");

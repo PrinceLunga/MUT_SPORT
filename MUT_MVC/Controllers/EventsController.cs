@@ -14,11 +14,10 @@ namespace MUT_MVC.Controllers
 {
     public class EventsController : Controller
     {
-        private readonly IEventService eventService;
+
         private List<UpComingEventsMvcModel> events;
-        public EventsController(IEventService eventService)
+        public EventsController()
         {
-            this.eventService = eventService;
             events = new List<UpComingEventsMvcModel>();
         }
 

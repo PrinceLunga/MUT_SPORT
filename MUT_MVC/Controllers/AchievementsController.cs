@@ -13,12 +13,13 @@ namespace MUT_MVC.Controllers
 {
     public class AchievementsController : Controller
     {
-        private List<AchievementModel> achievements;
+        private List<AchievementMvcModel> achievements;
 
         public AchievementsController()
         {
-            achievements = new List<AchievementModel>();
+            achievements = new List<AchievementMvcModel>();
         }
+
         public async Task<IActionResult> GetAchievementById(int id)
         {
             using (var httpClient = new HttpClient())
@@ -26,7 +27,7 @@ namespace MUT_MVC.Controllers
                 using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Achievements/GetAchievementByID/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    achievements = JsonConvert.DeserializeObject<List<AchievementModel>>(apiResponse);
+                    achievements = JsonConvert.DeserializeObject<List<AchievementMvcModel>>(apiResponse);
                 }
             }
             return View(achievements);
@@ -39,25 +40,39 @@ namespace MUT_MVC.Controllers
                 using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Achievements/GetPlayerAchievements"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    achievements = JsonConvert.DeserializeObject<List<AchievementModel>>(apiResponse);
+                    achievements = JsonConvert.DeserializeObject<List<AchievementMvcModel>>(apiResponse);
                 }
             }
             return View(achievements);
         }
 
+        public async Task<IActionResult> TeamAchievements(int id)
+        {
+            var teamAchievements = new List<AchievementMvcModel>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Team/GetAchievements/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    teamAchievements = JsonConvert.DeserializeObject<List<AchievementMvcModel>>(apiResponse);
+                }
+            }
+            return View(teamAchievements);
+        }
+
         public ViewResult CreateAchievement() => View();
 
         [HttpPost]
-        public async Task<IActionResult> CreateAchievement(AchievementModel model)
+        public async Task<IActionResult> CreateAchievement(AchievementMvcModel model)
         {
-            AchievementModel _Achievement = new AchievementModel();
+            AchievementMvcModel _Achievement = new AchievementMvcModel();
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
                 using (var response = await httpClient.PostAsync("https://localhost:44330/Api/Achievements/AddAchievement", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _Achievement = JsonConvert.DeserializeObject<AchievementModel>(apiResponse);
+                    _Achievement = JsonConvert.DeserializeObject<AchievementMvcModel>(apiResponse);
                 }
             }
             return RedirectToAction(nameof(GetAchievements));

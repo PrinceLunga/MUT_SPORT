@@ -75,14 +75,12 @@ namespace MUT_MVC.Controllers
 
                 var sport = new AddSportInnerModel
                 {
-                    Code = model.Code,
                     Name = model.Name,
                     Image = Image
                 };
 
                 var formDataContent = new MultipartFormDataContent();
                 formDataContent.Add(new StringContent(sport.Image), "Image");
-                formDataContent.Add(new StringContent(sport.Code), "Code");
                 formDataContent.Add(new StringContent(sport.Name), "Name");
 
                 response = await httpClient.PostAsync("https://localhost:44330/Api/Sport/PostSport", formDataContent);

@@ -35,8 +35,8 @@ namespace MUT_Service.Implementation
         {
             using (mUTDbContext)
             {
-                var student = mUTDbContext.Students.Where(x => x.Email == email).SingleOrDefault();
-                return mUTDbContext.StudentSports.Where( b => b.StudentId.Equals(student.Email)).Select(x => new StudentSportModel
+                //var student = mUTDbContext.Students.Where(x => x.Email == email).SingleOrDefault();
+                return mUTDbContext.StudentSports.Where( b => b.StudentId.Equals(email)).Select(x => new StudentSportModel
                 {
                     SportId = x.SportId,
                     StudentId = x.StudentId,

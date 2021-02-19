@@ -12,11 +12,9 @@ namespace MUT_MVC.Controllers
 {
     public class GameResultsController : Controller
     {
-        private readonly IGameResultService gameResultService;
         private List<GameResultMvcModel> results;
-        public GameResultsController(IGameResultService gameResultService)
+        public GameResultsController()
         {
-            this.gameResultService = gameResultService;
             results = new List<GameResultMvcModel>();
         }
 
