@@ -12,7 +12,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateAccount">
+        <form asp-action="CreateAccount" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StudentNumber" class="control-label"></label>
@@ -79,30 +79,13 @@
                 <input asp-for="MedicalAidNumber" class="form-control" />
                 <span asp-validation-for="MedicalAidNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DisplayPicture" class="control-label"></label>
-                <input asp-for="DisplayPicture" class="form-control" />
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <input name="DisplayPicture" type="file" class="btn btn-microsoft" placeholder="Profile Pictue" name="DisplayPicture">
                 <span asp-validation-for="DisplayPicture" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MedicalAidCardPic" class="control-label"></label>
-                <input asp-for="MedicalAidCardPic" class="form-control" />
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <input name="MedicalAidCardPic" type="file" class="btn btn-microsoft" placeholder="Profile Pictue" name="MedicalAidCardPic">
                 <span asp-validation-for="MedicalAidCardPic" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateCreated" class="control-label"></label>
-                <input asp-for="DateCreated" class="form-control" />
-                <span asp-validation-for="DateCreated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateModified" class="control-label"></label>
-                <input asp-for="DateModified" class="form-control" />
-                <span asp-validation-for="DateModified" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateDeleted" class="control-label"></label>
-                <input asp-for="DateDeleted" class="form-control" />
-                <span asp-validation-for="DateDeleted" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>

@@ -14,7 +14,7 @@ namespace MUT_Service.Implementation
         private readonly MUTDbContext mUTDbContext;
         public CoachService(MUTDbContext _mUTDbContext)
         {
-            this.mUTDbContext = _mUTDbContext;
+           mUTDbContext = _mUTDbContext;
         }
 
         public List<CoachModel> GetAllCoaches()

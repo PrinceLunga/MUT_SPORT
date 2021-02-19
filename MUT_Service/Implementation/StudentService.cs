@@ -33,8 +33,16 @@ namespace MUT_Service.Implementation
                     Accomodation = model.Accomodation,
                     PhoneNumber = model.PhoneNumber,
                     NextOfKinPhoneNumber = model.NextOfKinPhoneNumber,
-                    DateCreated = model.DateCreated
+                    DateCreated = model.DateCreated,
+                    MedicalAidCardPic = model.MedicalAidCardPic,
+                    DisplayPicture = model.DisplayPicture,
+                    HasMedicalAid = model.HasMedicalAid,
+                    MedicalAidNumber = model.MedicalAidNumber,
+                    NextOfKinFullnames = model.NextOfKinFullnames
+                    
                 };
+                mUTDbcontext.Students.Add(student);
+                mUTDbcontext.SaveChanges();
             }
         }
 
@@ -65,7 +73,10 @@ namespace MUT_Service.Implementation
                     Qualification = x.Qualification,
                     Accomodation = x.Accomodation,
                     PhoneNumber = x.PhoneNumber,
-                    DateCreated = x.DateCreated
+                    DateCreated = x.DateCreated,
+                    DisplayPicture = x.DisplayPicture,
+                    MedicalAidCardPic = x.MedicalAidCardPic,
+                    NextOfKinPhoneNumber = x.NextOfKinPhoneNumber
                 }).ToList();
             }
         }

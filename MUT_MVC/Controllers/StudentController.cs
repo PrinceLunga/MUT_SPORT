@@ -33,27 +33,18 @@ namespace MUT_MVC.Controllers
 
         public async Task<IActionResult> StudentIndex()
         {
-            var registerSport = new List<StudentRegisterSportTeamsModel>();
-            var studentSportModel = new List<StudentSportModel>();
-            var sportList = new List<SportModel>();
-
+            var student = new List<StudentModel>();
             using (var httpClient = new HttpClient())
             {
-                string username = "n@gmail.com";
-
-                using (var response = await httpClient.GetAsync("https://localhost:44330/api/StudentSport/GetStudentSportsByEmail/" + username))
+                //string username = "n@gmail.com";
+                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Student/GetStudents"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    studentSportModel = JsonConvert.DeserializeObject<List<StudentSportModel>>(apiResponse);
+                    student = JsonConvert.DeserializeObject<List<StudentModel>>(apiResponse);
                 }
+                return View(student);
 
-                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Student/GetSport"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    sportList = JsonConvert.DeserializeObject<List<SportModel>>(apiResponse);
-                }
-
-                foreach (var item in sportList)
+               /* foreach (var item in sportList)
                 {
                     var a = studentSportModel.Where(x => x.SportId == item.Id).SingleOrDefault();
                     if (a != null)
@@ -78,24 +69,15 @@ namespace MUT_MVC.Controllers
                         };
                         registerSport.Add(b);
                     }
-                }
+                }*/
 
 
-                var studentSportrec = studentSportModel.Where(x => x.StudentId.Equals(username));
+              //  var studentSportrec = studentSportModel.Where(x => x.StudentId.Equals(username));
 
 
             }
 
-            foreach (var resultObject in registerSport)
-            {
-                if (resultObject.IsRegistered == true)
-                {
-                    ViewBag.Data = "IsEnrolled";
-                    break;
-                }
-
-            }
-            return View(registerSport);
+           
         }
 
 
@@ -218,35 +200,106 @@ namespace MUT_MVC.Controllers
             }
         }
 
-
         public ViewResult CreateAccount() => View();
 
         [HttpPost]
-        public async Task<IActionResult> CreateAccount(StudentMvcModel model)
+        public async Task<IActionResult> CreateAccount([FromForm] AddStudentModel model)
         {
             //if (ModelState.IsValid)
             //{
+            string _MedicalAidCardPic = "";
+            string _DisplayPicture = "";
+            var response = new HttpResponseMessage();
             var user = new IdentityUser
             {
-                UserName = "n@gmail.com",
-                Email = "n@gmail.com"
+                UserName = model.Email,
+                Email = model.Email
             };
+
+           
+            using (var memoryStream = new MemoryStream())
+            {
+                await model.DisplayPicture.CopyToAsync(memoryStream);
+                var a = memoryStream.ToArray();
+                _DisplayPicture = Convert.ToBase64String(a);
+
+            }
+
+            
+            using (var memoryStream = new MemoryStream())
+            {
+                await model.MedicalAidCardPic.CopyToAsync(memoryStream);
+                var a = memoryStream.ToArray();
+                _MedicalAidCardPic = Convert.ToBase64String(a);
+
+            }
+
+            var _StudentModel = new PostStudent
+            {
+                Accomodation = model.Accomodation,
+                ConfirmPassword = model.ConfirmPassword,
+                DateCreated = model.DateCreated,
+                DateDeleted = model.DateDeleted,
+                DateModified = model.DateModified,
+                DisplayPicture = _DisplayPicture,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                Gender = model.Gender,
+                HasMedicalAid = model.HasMedicalAid,
+                MedicalAidCardPic = _MedicalAidCardPic,
+                LastName = model.LastName,
+                MedicalAidNumber = model.MedicalAidNumber,
+                NextOfKinFullnames = model.NextOfKinFullnames,
+                NextOfKinPhoneNumber = model.NextOfKinPhoneNumber,
+                Password = model.Password,
+                PhoneNumber = model.PhoneNumber,
+                Qualification = model.Qualification,
+                StudentNumber = model.StudentNumber,
+                StudyLevel = model.StudyLevel
+            };
+
+            var formDataContent = new MultipartFormDataContent();
+            formDataContent.Add(new StringContent(_StudentModel.DateCreated.ToString()), "datecreated");
+            formDataContent.Add(new StringContent(_StudentModel.DateDeleted.ToString()), "datedeleted");
+            formDataContent.Add(new StringContent(_StudentModel.DateModified.ToString()), "datemodified");
+            formDataContent.Add(new StringContent(_StudentModel.ConfirmPassword), "confirmpassword");
+            formDataContent.Add(new StringContent(_StudentModel.Password), "password");
+            formDataContent.Add(new StringContent(_StudentModel.DisplayPicture), "DisplayPicture");
+            formDataContent.Add(new StringContent(_StudentModel.MedicalAidCardPic), "MedicalAidCardPic");
+            formDataContent.Add(new StringContent(_StudentModel.LastName), "lastname");
+            formDataContent.Add(new StringContent(_StudentModel.FirstName), "firstname");
+            formDataContent.Add(new StringContent(_StudentModel.Email), "email");
+            formDataContent.Add(new StringContent(_StudentModel.Gender), "gender");
+            formDataContent.Add(new StringContent(_StudentModel.HasMedicalAid.ToString()), "HasMedicalAid");
+            formDataContent.Add(new StringContent(_StudentModel.MedicalAidNumber), "medicalaidnumber");
+            formDataContent.Add(new StringContent(_StudentModel.StudyLevel), "studylevel");
+            formDataContent.Add(new StringContent(_StudentModel.StudentNumber), "studentnumber");
+            formDataContent.Add(new StringContent(_StudentModel.PhoneNumber), "phonenumber");
+            formDataContent.Add(new StringContent(_StudentModel.Qualification), "qualification");
+            formDataContent.Add(new StringContent(_StudentModel.NextOfKinPhoneNumber), "nextofkinphonenumber");
+            formDataContent.Add(new StringContent(_StudentModel.NextOfKinFullnames), "nextofKinfullnames");
+            formDataContent.Add(new StringContent(_StudentModel.Accomodation), "accomodation");
 
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                _userManager.AddToRoleAsync(user, "Student").Wait();
-
-                StudentMvcModel receivedStudent = new StudentMvcModel();
+                var _Student = new StudentModel();
                 using (var httpClient = new HttpClient())
                 {
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-                    using (var response = await httpClient.PostAsync("https://localhost:44330/Api/Coach/InsertNewCoach", content))
+                    string Url = "https://localhost:44330/Api/Student/PostStudent";
+                    response = await httpClient.PostAsync("https://localhost:44330/Api/Student/PostStudent", formDataContent);
+                    //response = await httpClient.PostAsync(Url, formDataContent);
+                    var data = await response.Content.ReadAsStringAsync();
+                    response.EnsureSuccessStatusCode();
+
+                    /*StringContent content = new StringContent(JsonConvert.SerializeObject(formDataContent), Encoding.UTF8, "application/json");
+                    using (var response = await httpClient.PostAsync("https://localhost:44330/Api/Student/PostStudent", content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
-                        receivedStudent = JsonConvert.DeserializeObject<StudentMvcModel>(apiResponse);
-                    }
+                        _Student = JsonConvert.DeserializeObject<StudentModel>(apiResponse);
+                    }*/
                 }
+                _userManager.AddToRoleAsync(user, "Student").Wait();
             }
             return RedirectToAction(nameof(StudentIndex));
         }

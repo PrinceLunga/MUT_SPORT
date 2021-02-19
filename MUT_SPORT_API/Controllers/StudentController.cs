@@ -41,7 +41,7 @@ namespace MUT_SPORT_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<StudentModel>> PostStudent(StudentModel model)
+        public async Task<ActionResult<StudentModel>> PostStudent([FromForm]StudentModel model)
         {
             studentService.AddStudent(model);
             return CreatedAtAction("GetStudents", new { id = model.StudentNumber }, model);

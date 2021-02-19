@@ -11,18 +11,11 @@ using System.Threading.Tasks;
 namespace MUT_MVC.Controllers
 {
     public class CoachController : Controller
-    {
-        private List<CoachModel> coaches;
-        private List<SportModel> Sports;
-        public CoachController()
-        {
-            coaches = new List<CoachModel>();
-            Sports = new List<SportModel>();
-        }
+    { 
         public async Task<IActionResult> GetCoachById(int id)
         {
+            var coaches = new List<CoachModel>();
             using (var httpClient = new HttpClient())
-
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Coache/GetCoachById/" + id))
                 {
@@ -33,9 +26,9 @@ namespace MUT_MVC.Controllers
             return View(coaches);
         }
 
-        public async Task<IActionResult> GetCoaches()
+        public async Task<IActionResult> GetAllCoaches()
         {
-            List<CoachModel> coaches = new List<CoachModel>();
+           var coaches = new List<CoachModel>();
 
             using (var httpClient = new HttpClient())
             {
@@ -50,16 +43,15 @@ namespace MUT_MVC.Controllers
 
         public async Task<ViewResult> CreateCoach()
         {
-            List<SportModel> Sports = new List<SportModel>();
+            var Sports = new List<SportModel>();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Sport/GetSports"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     Sports = JsonConvert.DeserializeObject<List<SportModel>>(apiResponse);
-                     ViewBag.Sports = Sports;
+                    ViewBag.Sports = Sports;
                 }
-               
             }
             return View();
         }
@@ -67,24 +59,17 @@ namespace MUT_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCoach(CoachModel model)
         {
+            var _Coach = new CoachModel();
             using (var httpClient = new HttpClient())
             {
-                List<SportModel> Sports = new List<SportModel>();
-                ViewBag.listofSport = Sports;
                 StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-
-                using (var response = await httpClient.PostAsync("https://localhost:44330/api/Coach/GetCoaches", content))
+                using (var response = await httpClient.PostAsync("https://localhost:44330/api/Coach/InsertNewCoach", content))
                 {
-                    ViewBag.listofSport = Sports;
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("GetCoaches");
-                    }
+                    _Coach = JsonConvert.DeserializeObject<CoachModel>(apiResponse);
                 }
-
             }
-            return View(model);
+            return RedirectToAction(nameof(GetAllCoaches));
         }
     }
 }

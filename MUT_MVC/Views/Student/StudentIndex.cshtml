@@ -1,135 +1,116 @@
-﻿@model IEnumerable<MUT_MVC.Models.StudentRegisterSportTeamsModel>
+﻿@model IEnumerable<MUT_MODELS.StudentModel>
 
 @{
     ViewData["Title"] = "StudentIndex";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
 }
 
-@if (ViewBag.Data == "IsEnrolled")
-{
+<h1>StudentIndex</h1>
 
-
-    <div class="container-fluid">
-
-        <div id="status" class="row">
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudentNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Qualification)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudyLevel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Accomodation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NextOfKinFullnames)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NextOfKinPhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HasMedicalAid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MedicalAidNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DisplayPicture)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MedicalAidCardPic)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach (var item in Model)
             {
-                if (item.IsRegistered)
-                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Qualification)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudyLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Accomodation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NextOfKinFullnames)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NextOfKinPhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HasMedicalAid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MedicalAidNumber)
+                    </td>
 
-                    <div class="col-xl-3 col-md-6 mb-4" style="cursor:pointer;">
-
-                        <a style="text-decoration:none;" class="card border-left-primary bg-gradient-success shadow h-100 py-2" href="@Url.Action("SportIndex", "Sport", new { id = item.Id, status ="Registered" })">
-
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        </div>
-
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800 mycardText">
-                                            @item.Name
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))" height="50px" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                }
-                else
-                {
-                    <div class="col-xl-3 col-md-6 mb-4" style="cursor: pointer;">
-
-                        <a style="text-decoration:none;" class="card border-left-primary shadow h-100 py-2" href="@Url.Action("SportIndex", "Sport", new { id = item.Id })">
-
-                            <div id="card" class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-
-                                        </div>
-
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800 mycardText">
-                                            @item.Name
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))" height="50px" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                }
-
+                    <td>
+                        <img src="data:image/jpeg;base64,@(Convert.ToBase64String(item.MedicalAidCardPic))" alt="#" />
+                    </td>
+                </tr>
             }
-
-        </div>
-
-    </div>
-
-
-    <!-- End of Content Wrapper -->
-
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-
-}
-else
-{
-    <div class="container-fluid">
-
-        <div id="status" class="row">
-
-            @foreach (var item in Model)
-            {
-                <div class="col-xl-3 col-md-6 mb-4' style='cursor: pointer;">
-
-                    <a style="text-decoration:none;" class="card border-left-primary shadow h-100 py-2 mycard" href="@Url.Action("SportIndex", "Sport", new { id = item.Id })">
-
-                        <div id="card" class="card-body">
-                            <div style="display:none;"></div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div id="sportStatus" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-
-                                        <!--echo "$stat";-->
-
-
-
-                                    </div>
-
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mycardText">
-                                        @item.Name
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <img src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))" height="50px" alt="#" />
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            }
-
-
-
-        </div>
-
-    </div>
-
-
-    <!-- End of Content Wrapper -->
-
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-}
-}
+        </tbody>
+    </table>
+</div>

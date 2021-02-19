@@ -56,20 +56,6 @@ namespace MUT_Service.Implementation
                     SportId = studentSportModel.SportId,
                     DateEnrolled = studentSportModel.DateEnrolled,
                     DateModified = studentSportModel.DateModified,
-                    //Student = new Student
-                    //{
-                    //    StudentNumber = studentSportModel.Students.StudentNumber,
-                    //    FirstName = studentSportModel.Students.FirstName,
-                    //    LastName = studentSportModel.Students.LastName,
-                    //    Gender = studentSportModel.Students.Gender,
-                    //    Email = studentSportModel.Students.Email,
-                    //    StudyLevel = studentSportModel.Students.StudyLevel,
-                    //    Qualification = studentSportModel.Students.Qualification,
-                    //    Accomodation = studentSportModel.Students.Accomodation,
-                    //    PhoneNumber = studentSportModel.Students.PhoneNumber,
-                    //    DateCreated = studentSportModel.Students.DateCreated
-                    //},
-                    //Sports = mUTDbContext.Sports.Where(x => x.Id == studentSportModel.Id).Take(1),
                     StudentId = studentSportModel.StudentId
                     
 
