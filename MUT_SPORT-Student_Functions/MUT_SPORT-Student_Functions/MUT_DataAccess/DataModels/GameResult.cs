@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+
+namespace MUT_DataAccess.DataModels
+{
+    public class GameResult
+    {
+        [Key]
+        public int Id { get; set; }
+        public string EventName { get; set; }
+        public string HomeTeam { get; set; }
+        public string AwayTeam { get; set; }
+        public string PointsForAwayTeam { get; set; }
+        public string PointForHomeTeam { get; set; }
+        public string IsHomeWin { get; set; }
+    }
+}
