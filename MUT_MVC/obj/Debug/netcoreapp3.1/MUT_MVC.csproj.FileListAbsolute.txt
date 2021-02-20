@@ -400,3 +400,5 @@ C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\staticwebassets\MUT_MVC.StaticWebAssets.Manifest.cache
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\staticwebassets\MUT_MVC.StaticWebAssets.xml
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\MUT_MVC.genruntimeconfig.cache
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Team\GetAllTeams.cshtml.g.cs
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Team\AddNewTeam.cshtml.g.cs

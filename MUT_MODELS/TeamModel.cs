@@ -12,6 +12,7 @@ namespace MUT_MODELS
         public string TeamName { get; set; }
         public DateTime DateCreated { get; set; }
         public string CreatedBy { get; set; }
+        public string SportName { get; set; }
         public IEnumerable<TrainingScheduleModel> TrainingSchedule { get; set; }
         public int SportId { get; set; }
         public SportModel Sport { get; set; }

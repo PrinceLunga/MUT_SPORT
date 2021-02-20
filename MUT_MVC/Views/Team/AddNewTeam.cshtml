@@ -1,0 +1,54 @@
+﻿@model MUT_MODELS.TeamModel
+
+@{
+    ViewData["Title"] = "AddNewTeam";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+<h1>AddNewTeam</h1>
+
+<h4>TeamModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddNewTeam">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TeamName" class="control-label"></label>
+                <input asp-for="TeamName" class="form-control" />
+                <span asp-validation-for="TeamName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreated" class="control-label"></label>
+                <input asp-for="DateCreated" class="form-control" />
+                <span asp-validation-for="DateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="control-label"></label>
+                <input asp-for="CreatedBy" class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SportName" class="control-label"></label>
+
+                <select asp-for="SportName" class="form-control">
+                    @foreach (var Sport in @ViewBag.Sports)
+                    {
+
+                        <option>@Sport.Name</option>
+
+                    }
+                </select>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add New Team" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MUT_MODELS.TeamModel>
+
+@{
+    ViewData["Title"] = "GetAllTeams";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+<h1>GetAllTeams</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SportName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SportId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SportName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SportId)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
