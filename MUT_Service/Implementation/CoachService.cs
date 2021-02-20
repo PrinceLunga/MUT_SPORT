@@ -27,7 +27,9 @@ namespace MUT_Service.Implementation
                     EmailAddress = x.EmailAddress,
                     PhoneNumber = x.PhoneNumber,
                     SportName = x.SportName,
-                    TeamName = x.TeamName
+                    TeamName = x.TeamName,
+                    TeamId = x.TeamId,
+                    DateCreated = x.DateCreated
                 }).ToList();
             }
         }

@@ -24,12 +24,17 @@ namespace MUT_SPORT_API.Controllers
         {
             return eventService.GetEventsBySportId(id);
         }
+        [HttpGet]
+        public ActionResult<IEnumerable<UpComingEventsModel>> GetAllEvents()
+        {
+            return eventService.GetAllEvents();
+        }
 
         [HttpPost]
         public async Task<ActionResult<UpComingEventsModel>> PostEvent([FromForm] UpComingEventsModel model)
         {
             eventService.InsertNewEvent(model);
-            return CreatedAtAction("GetEvents", new { id = model.Id }, model);
+            return CreatedAtAction("GetAllEvents", new { id = model.Id }, model);
         }
     }
 }

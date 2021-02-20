@@ -1,0 +1,63 @@
+﻿@model MUT_MODELS.AddUpComingEventModel
+
+@{
+    ViewData["Title"] = "AddEvent";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+<h1>AddEvent</h1>
+
+<h4>UpComingEventsModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddEvent" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Descriptions" class="control-label"></label>
+                <input asp-for="Descriptions" class="form-control" />
+                <span asp-validation-for="Descriptions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venue" class="control-label"></label>
+                <input asp-for="Venue" class="form-control" />
+                <span asp-validation-for="Venue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartingDate" class="control-label"></label>
+                <input asp-for="StartingDate" class="form-control" />
+                <span asp-validation-for="StartingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndingDate" class="control-label"></label>
+                <input asp-for="EndingDate" class="form-control" />
+                <span asp-validation-for="EndingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SportName" class="control-label"></label>
+
+                <select asp-for="SportName" class="form-control">
+                    @foreach (var Sport in @ViewBag.Sports)
+                    {
+
+                        <option>@Sport.Name</option>
+
+                    }
+                </select>
+
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <input name="EventPicture" type="file" class="btn btn-microsoft" placeholder="Event Poster"
+                <span asp-validation-for="EventPicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add UpComing Event" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

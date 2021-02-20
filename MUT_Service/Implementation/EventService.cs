@@ -17,6 +17,24 @@ namespace MUT_Service.Implementation
             this.mUTDbContext = _mUTDbContext;
         }
 
+        public List<UpComingEventsModel> GetAllEvents()
+        {
+            using (mUTDbContext)
+            {
+                return mUTDbContext.UpComingEvents.Select(x => new UpComingEventsModel
+                {
+                    EventPicture = x.EventPicture,
+                    DateCreated = x.DateCreated,
+                    DateModified = x.DateModified,
+                    Descriptions = x.Descriptions,
+                    EndingDate = x.EndingDate,
+                    StartingDate = x.StartingDate,
+                    Venue = x.Venue,
+                    SportId = x.SportId
+                }).ToList();
+             }
+        }
+
         public List<UpComingEventsModel> GetEventsBySportId(int id)
         {
             using (mUTDbContext)
@@ -35,30 +53,11 @@ namespace MUT_Service.Implementation
                 }).ToList();
             }
         }
-
-        /*public UpComingEventsModel GetEventByName(string eventName)
-        {
-            using (mUTDbContext)
-            {
-                return mUTDbContext.UpComingEvents.Where(x => x.Name.Equals(eventName)).Select(x => new UpComingEventsModel
-                {
-                    Id = x.Id,
-                    Venue = x.Venue,
-                    DateClosed = x.DateClosed,
-                    DateCreated = x.DateCreated,
-                    DateModified = x.DateModified,
-                    Descriptions = x.Descriptions,
-                    EndTime = x.EndTime,
-                    EventDate = x.EventDate,
-                    StartingTime = x.StartingTime
-                }).Single();
-            }
-        }*/
-
         public void InsertNewEvent(UpComingEventsModel eventModel)
         {
             using (mUTDbContext)
             {
+                var _Sport = mUTDbContext.Sports.Where(x => x.Name == eventModel.SportName).SingleOrDefault();
                 var _event = new UpComingEvent
                 {
                     Id = eventModel.Id,
@@ -69,7 +68,8 @@ namespace MUT_Service.Implementation
                     EndingDate = eventModel.EndingDate,
                     DateModified = eventModel.DateModified,
                     DateCreated = eventModel.DateCreated,
-                    DateClosed = eventModel.DateClosed
+                    DateClosed = eventModel.DateClosed,
+                    SportId = _Sport.Id
                 };
                 mUTDbContext.Add(_event);
                 mUTDbContext.SaveChanges();

@@ -14,7 +14,7 @@ namespace MUT_MODELS
         public DateTime StartingDate { get; set; }
         public DateTime EndingDate { get; set; }
         public int SportId { get; set; }
-        public SportModel Sport { get; set; }
+        public string SportName { get; set; }
         public byte[] EventPicture { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }

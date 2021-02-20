@@ -205,8 +205,6 @@ namespace MUT_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAccount([FromForm] AddStudentModel model)
         {
-            //if (ModelState.IsValid)
-            //{
             string _MedicalAidCardPic = "";
             string _DisplayPicture = "";
             var response = new HttpResponseMessage();
@@ -283,21 +281,11 @@ namespace MUT_MVC.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                var _Student = new StudentModel();
                 using (var httpClient = new HttpClient())
                 {
-                    string Url = "https://localhost:44330/Api/Student/PostStudent";
                     response = await httpClient.PostAsync("https://localhost:44330/Api/Student/PostStudent", formDataContent);
-                    //response = await httpClient.PostAsync(Url, formDataContent);
                     var data = await response.Content.ReadAsStringAsync();
                     response.EnsureSuccessStatusCode();
-
-                    /*StringContent content = new StringContent(JsonConvert.SerializeObject(formDataContent), Encoding.UTF8, "application/json");
-                    using (var response = await httpClient.PostAsync("https://localhost:44330/Api/Student/PostStudent", content))
-                    {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        _Student = JsonConvert.DeserializeObject<StudentModel>(apiResponse);
-                    }*/
                 }
                 _userManager.AddToRoleAsync(user, "Student").Wait();
             }

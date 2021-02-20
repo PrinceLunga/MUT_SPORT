@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MUT_MODELS.UpComingEventsModel>
+
+@{
+    ViewData["Title"] = "GetAllUpcomingEvents";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+<h1>GetAllUpcomingEvents</h1>
+
+<p>
+    <a asp-action="AddEvent">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descriptions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SportId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventPicture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateClosed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descriptions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SportId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventPicture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateClosed)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

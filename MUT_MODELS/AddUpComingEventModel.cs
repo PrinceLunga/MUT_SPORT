@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace MUT_MVC.Models
+namespace MUT_MODELS
 {
     [DataContract]
-    public class UpComingEventsMvcModel
+    public class AddUpComingEventModel
     {
         [Key]
         [DataMember]
@@ -23,16 +22,16 @@ namespace MUT_MVC.Models
         [DataMember]
         public string EndingDate { get; set; }
         [DataMember]
-        public int SportId { get; set; }
+        public string SportId { get; set; }
         [DataMember]
         public string SportName { get; set; }
         [DataMember]
-        public string EventPicture { get; set; }
+        public IFormFile EventPicture { get; set; }
         [DataMember]
-        public DateTime DateCreated { get; set; }
+        public string DateCreated { get; set; }
         [DataMember]
-        public DateTime DateModified { get; set; }
+        public string DateModified { get; set; }
         [DataMember]
-        public DateTime DateDeleted { get; set; }
+        public string DateClosed { get; set; }
     }
 }
