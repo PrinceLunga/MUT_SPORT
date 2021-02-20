@@ -37,6 +37,23 @@ namespace MUT_Service.Implementation
             }
         }
 
+        public UpComingEventsModel GetEventById(int id)
+        {
+            return mUTDbContext.UpComingEvents.Where(x => x.Id == id).Select(x => new UpComingEventsModel
+            {
+                Id = x.Id,
+                Venue = x.Venue,
+                DateClosed = x.DateClosed,
+                DateCreated = x.DateCreated,
+                DateModified = x.DateModified,
+                Descriptions = x.Descriptions,
+                EndingDate = x.EndingDate.Date,
+                //EventPicture = x.EventPicture,
+                StartingDate = x.StartingDate.Date
+            }).SingleOrDefault();
+        }
+    
+
         /*public UpComingEventsModel GetEventByName(string eventName)
         {
             using (mUTDbContext)
@@ -56,7 +73,7 @@ namespace MUT_Service.Implementation
             }
         }*/
 
-        public void InsertNewEvent(UpComingEventsModel eventModel)
+        public UpComingEvent InsertNewEvent(UpComingEventsModel eventModel)
         {
             using (mUTDbContext)
             {
@@ -68,19 +85,23 @@ namespace MUT_Service.Implementation
                     StartingDate = eventModel.StartingDate,
                     EventPicture = eventModel.EventPicture,
                     EndingDate = eventModel.EndingDate,
-                    SportId = eventModel.SportId,
+                    SportId = 2,
                     DateModified = eventModel.DateModified,
                     DateCreated = DateTime.Now,
                     DateClosed = eventModel.DateClosed
                 };
                 mUTDbContext.Add(_event);
-                mUTDbContext.SaveChanges();
+                if (mUTDbContext.SaveChanges() == 1)
+                {
+                    return _event;
+                }
+                return new UpComingEvent();
             }
 
 
         }
 
-        public void UpdateEvent(UpComingEventsModel eventModel)
+       /* public void UpdateEvent(UpComingEventsModel eventModel)
         {
             using (mUTDbContext)
             {
@@ -97,6 +118,39 @@ namespace MUT_Service.Implementation
                 _event.StartingDate = eventModel.StartingDate;
                 mUTDbContext.SaveChanges();
 
+            }
+        }*/
+
+        public UpComingEvent UpdateEvent(UpComingEventsModel eventModel)
+        {
+            using (mUTDbContext)
+            {
+                var _event = mUTDbContext.UpComingEvents.Find(eventModel.Id);
+           
+                _event.Venue = eventModel.Venue;
+                _event.Descriptions = eventModel.Descriptions;
+                _event.EventPicture = eventModel.EventPicture;
+                _event.StartingDate = eventModel.StartingDate;
+                _event.EndingDate = eventModel.EndingDate;
+                mUTDbContext.UpComingEvents.Update(_event);
+
+                if (mUTDbContext.SaveChanges() == 1)
+                    return _event;
+            }
+                return new UpComingEvent();
+        }
+
+        public void DeleteEvent(int id) 
+        {
+            using (mUTDbContext)
+            {
+                var eventModel = mUTDbContext.UpComingEvents.Find(id);
+
+                if (eventModel != null)
+                {
+                    mUTDbContext.UpComingEvents.Remove(eventModel);
+                    mUTDbContext.SaveChanges();
+                }        
             }
         }
     }

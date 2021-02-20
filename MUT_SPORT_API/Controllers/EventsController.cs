@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MUT_DataAccess.DataModels;
 using MUT_MODELS;
 using MUT_Service.Interface;
 using System;
@@ -25,11 +26,33 @@ namespace MUT_SPORT_API.Controllers
             return eventService.GetEventsBySportId(id);
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<UpComingEventsModel> GetEventById(int id)
+        {
+            return eventService.GetEventById(id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<UpComingEventsModel>> PostEvent([FromBody] UpComingEventsModel model)
         {
             eventService.InsertNewEvent(model);
             return CreatedAtAction("GetEvents", new { id = model.Id }, model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<UpComingEvent>> PutEvent([FromBody] UpComingEventsModel model)
+        {
+            if(ModelState.IsValid)
+                return eventService.UpdateEvent(model);
+
+            return new UpComingEvent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<UpComingEventsModel>> DropEvent(int id)
+        {
+            eventService.DeleteEvent(id);
+            return Ok();
         }
     }
 }

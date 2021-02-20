@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MUT_MVC.Models.UpComingEventsMvcModel>
+
+@{
+    ViewData["Title"] = "CoachEvents";
+    Layout = "~/Views/Shared/Coach_Layout.cshtml";
+}
+
+
+<div class="container">
+
+    <h4>Upcoming Events</h4>
+    <br/>
+    <p>
+
+        <a asp-action="AddEvent"><i class="fa fa-plus"></i>Add New</a>
+    </p>
+
+    <table cellpadding="1" cellspacing="1" style="margin: 0 auto;" class="table table-bordered table-responsive{-sm}">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descriptions)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Venue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartingDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndingDate)
+                </th>
+
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descriptions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Venue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartingDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndingDate)
+                    </td>
+
+                    <td>
+                        <div class="container">
+                            <i class="fa fa-pen"></i> @Html.ActionLink("Edit", "UpdateEvent", new { id = item.Id })
+                            <i class="fa fa-trash"></i> @Html.ActionLink("Delete", "RemoveEvent", new { id = item.Id })
+                        </div>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
