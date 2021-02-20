@@ -47,13 +47,31 @@ namespace MUT_Service.Implementation
 
         public List<AchievementModel> GetAchievements()
         {
-            using(mUTDbContext)
+            var playerAchivements = new List<AchievementModel>();
+
+            using (mUTDbContext)
             {
-                return mUTDbContext.Achievements.Select( x => new AchievementModel 
+                var results = mUTDbContext.PlayerAchievements.Select(x => new PlayerAchievement
                 {
-                    AchievementDescription = x.AchievementDescription,
-                    DateAchieved = x.DateAchieved
+                    PlayerId = x.PlayerId,
+                    AchievementId = x.AchievementId
+
                 }).ToList();
+
+                if (results != null)
+                {
+                    foreach (var item in results)
+                    {
+                        playerAchivements.Add(mUTDbContext.Achievements.Where(x => x.Id == item.AchievementId).Select(x => new AchievementModel
+                        {
+                            Id = x.Id,
+                            AchievementDescription = x.AchievementDescription,
+                            DateAchieved = item.DateAwarded.ToShortDateString()
+                        }).SingleOrDefault());
+                    }
+                    return playerAchivements;
+                }
+                return new List<AchievementModel>();
             }
         }
 

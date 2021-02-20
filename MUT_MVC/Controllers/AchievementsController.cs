@@ -60,6 +60,20 @@ namespace MUT_MVC.Controllers
             return View(teamAchievements);
         }
 
+        public async Task<IActionResult> PlayerAchievements()
+        {
+            var playerAchievements = new List<AchievementMvcModel>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Achievements/GetPlayerAchievements"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    playerAchievements = JsonConvert.DeserializeObject<List<AchievementMvcModel>>(apiResponse);
+                }
+            }
+            return View(playerAchievements);
+        }
+
         public ViewResult CreateAchievement() => View();
 
         [HttpPost]

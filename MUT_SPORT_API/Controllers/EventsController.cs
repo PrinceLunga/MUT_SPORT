@@ -26,7 +26,7 @@ namespace MUT_SPORT_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UpComingEventsModel>> PostEvent([FromForm] UpComingEventsModel model)
+        public async Task<ActionResult<UpComingEventsModel>> PostEvent([FromBody] UpComingEventsModel model)
         {
             eventService.InsertNewEvent(model);
             return CreatedAtAction("GetEvents", new { id = model.Id }, model);

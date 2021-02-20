@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MUT_DataAccess.Migrations
 {
     [DbContext(typeof(MUTDbContext))]
-    [Migration("20210218215218_migrations")]
+    [Migration("20210219200619_migrations")]
     partial class migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

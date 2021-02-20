@@ -403,3 +403,5 @@ C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Raz
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Coach\GetCoaches.cshtml.g.cs
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Student\CreateAccount.cshtml.g.cs
 C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Team\Teams.cshtml.g.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Coach_Layout.cshtml.g.cs
+C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Events\AddEvent.cshtml.g.cs

@@ -8,6 +8,6 @@ namespace MUT_Service.Interface
     public interface IPlayerAchievement
     {
         public PlayerAchievement AddPlayerAchievement(PlayerAchievement achievement);
-        public List<Achievement> GetPlayerAchievements(int playerID);
+        public List<Achievement> GetPlayerAchievements();
     }
 }

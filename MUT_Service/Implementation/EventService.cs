@@ -17,6 +17,7 @@ namespace MUT_Service.Implementation
             this.mUTDbContext = _mUTDbContext;
         }
 
+
         public List<UpComingEventsModel> GetEventsBySportId(int id)
         {
             using (mUTDbContext)
@@ -30,7 +31,7 @@ namespace MUT_Service.Implementation
                     DateModified = x.DateModified,
                     Descriptions = x.Descriptions,
                     EndingDate = x.EndingDate.Date,
-                    EventPicture = x.EventPicture,
+                    //EventPicture = x.EventPicture,
                     StartingDate = x.StartingDate.Date
                 }).ToList();
             }
@@ -67,8 +68,9 @@ namespace MUT_Service.Implementation
                     StartingDate = eventModel.StartingDate,
                     EventPicture = eventModel.EventPicture,
                     EndingDate = eventModel.EndingDate,
+                    SportId = eventModel.SportId,
                     DateModified = eventModel.DateModified,
-                    DateCreated = eventModel.DateCreated,
+                    DateCreated = DateTime.Now,
                     DateClosed = eventModel.DateClosed
                 };
                 mUTDbContext.Add(_event);

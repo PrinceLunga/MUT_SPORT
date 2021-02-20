@@ -4,12 +4,15 @@
     ViewData["Title"] = "AddSport";
 }
 
-<div class="container">
-    <h4>Register Sport</h4>
-</div>
+    
+
 <div class="row">
     <div style="margin: 0 auto; border-radius:5%; padding: 50px; box-shadow: 1px 2px 3px 4px #511a1d;">
         <form asp-action="AddSport" method="post" enctype="multipart/form-data">
+            
+            <h4>Register Sport</h4>
+            <hr />
+            
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -24,15 +27,15 @@
                 </div>
             </div>
 
-        <script src="~/js/jquery-3.2.1.min.js"></script>
-        <script>
-            $("#attachment").on("change", function() {
-              var fileName = $(this).val().split("\\").pop();
-              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            });
-        </script>
-    <br/>
-            
+            <script src="~/js/jquery-3.2.1.min.js"></script>
+            <script>
+                $("#attachment").on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                });
+            </script>
+            <br />
+
             <div class="form-group">
                 <input style="float:right;cursor:pointer;" type="submit" value="Add Sport" class="btn btn-primary" />
             </div>

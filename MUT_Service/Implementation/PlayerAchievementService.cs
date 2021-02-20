@@ -22,21 +22,27 @@ namespace MUT_Service.Implementation
             throw new NotImplementedException();
         }
 
-        public List<Achievement> GetPlayerAchievements(int playerID)
+        public List<Achievement> GetPlayerAchievements()
         {
             using (dbContext)
             {
-                var results = dbContext.PlayerAchievements.Where(x => x.PlayerId == playerID).Select(x => new PlayerAchievement
+                /*ar student = from S in dbContext.Students join TP in dbContext.TeamPlayers
+                              on S.Id equals TP.StudentId join PA in dbContext.PlayerAchievements
+                              on TP.Id equals PA.PlayerId join A in dbContext.Achievements
+                              on PA.PlayerId equals
+                              A.Id */
+
+                var results = dbContext.PlayerAchievements.Select(x => new PlayerAchievement
                 {
-                    AchievementId = x.AchievementId,
-                    DateAwarded = x.DateAwarded
+                    AchievementId = x.AchievementId
+
                 }).ToList();
 
                 if (results != null)
                 {
                     foreach (var item in results)
                     {
-                        achievements.Add(dbContext.Achievements.Where(x => x.Id == Convert.ToInt32(item.AchievementId)).Select(x => new Achievement
+                        achievements.Add(dbContext.Achievements.Where(x => x.Id == item.AchievementId).Select(x => new Achievement
                         {
                             Id = x.Id,
                             AchievementDescription = x.AchievementDescription,
