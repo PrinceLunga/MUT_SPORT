@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MUT_MODELS.GameResultModel>
+
+@{
+    ViewData["Title"] = "GetAllGameResult";
+}
+
+<h1>GetAllGameResult</h1>
+
+<p>
+    <a asp-action="AddGameResult">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.EventName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTeam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayTeam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PointsForAwayTeam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PointForHomeTeam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsHomeWin)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.EventName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AwayTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointsForAwayTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointForHomeTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsHomeWin)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

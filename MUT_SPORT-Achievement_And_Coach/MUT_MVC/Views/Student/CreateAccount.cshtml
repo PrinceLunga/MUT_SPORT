@@ -1,0 +1,127 @@
+﻿@model MUT_MVC.Models.StudentMvcModel
+
+@{
+    ViewData["Title"] = "CreateAccount";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+
+}
+
+<h1>CreateAccount</h1>
+
+<h4>StudentMvcModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateAccount">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentNumber" class="control-label"></label>
+                <input asp-for="StudentNumber" class="form-control" />
+                <span asp-validation-for="StudentNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Qualification" class="control-label"></label>
+                <input asp-for="Qualification" class="form-control" />
+                <span asp-validation-for="Qualification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudyLevel" class="control-label"></label>
+                <input asp-for="StudyLevel" class="form-control" />
+                <span asp-validation-for="StudyLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accomodation" class="control-label"></label>
+                <input asp-for="Accomodation" class="form-control" />
+                <span asp-validation-for="Accomodation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NextOfKinFullnames" class="control-label"></label>
+                <input asp-for="NextOfKinFullnames" class="form-control" />
+                <span asp-validation-for="NextOfKinFullnames" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NextOfKinPhoneNumber" class="control-label"></label>
+                <input asp-for="NextOfKinPhoneNumber" class="form-control" />
+                <span asp-validation-for="NextOfKinPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasMedicalAid" /> @Html.DisplayNameFor(model => model.HasMedicalAid)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicalAidNumber" class="control-label"></label>
+                <input asp-for="MedicalAidNumber" class="form-control" />
+                <span asp-validation-for="MedicalAidNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DisplayPicture" class="control-label"></label>
+                <input asp-for="DisplayPicture" class="form-control" />
+                <span asp-validation-for="DisplayPicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicalAidCardPic" class="control-label"></label>
+                <input asp-for="MedicalAidCardPic" class="form-control" />
+                <span asp-validation-for="MedicalAidCardPic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreated" class="control-label"></label>
+                <input asp-for="DateCreated" class="form-control" />
+                <span asp-validation-for="DateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateModified" class="control-label"></label>
+                <input asp-for="DateModified" class="form-control" />
+                <span asp-validation-for="DateModified" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateDeleted" class="control-label"></label>
+                <input asp-for="DateDeleted" class="form-control" />
+                <span asp-validation-for="DateDeleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="confirmPassword" class="control-label"></label>
+                <input asp-for="confirmPassword" class="form-control" />
+                <span asp-validation-for="confirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

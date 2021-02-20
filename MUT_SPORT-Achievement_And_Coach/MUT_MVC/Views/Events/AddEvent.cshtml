@@ -1,0 +1,52 @@
+﻿@model MUT_MODELS.EventModel
+
+@{
+    ViewData["Title"] = "AddEvent";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-6" style="margin: 0 auto; border-radius:15%; padding: 50px; box-shadow: 2px 3px 4px 5px #511a1d;">
+        <center><h4><strong>Available Event</strong></h4></center>
+        <hr />
+        <form asp-action="AddEvent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+         
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venue" class="control-label"></label>
+                <input asp-for="Venue" class="form-control" />
+                <span asp-validation-for="Venue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDate" class="control-label"></label>
+                <input asp-for="EventDate" class="form-control" />
+                <span asp-validation-for="EventDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartingTime" class="control-label"></label>
+                <input asp-for="StartingTime" class="form-control" />
+                <span asp-validation-for="StartingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndingTime" class="control-label"></label>
+                <input asp-for="EndingTime" class="form-control" />
+                <span asp-validation-for="EndingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Event" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

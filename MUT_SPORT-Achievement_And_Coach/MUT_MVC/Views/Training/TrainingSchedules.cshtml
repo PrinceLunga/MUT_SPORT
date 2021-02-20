@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MUT_MVC.Models.TrainingMvcModels>
+
+@{
+    ViewData["Title"] = "TrainingSchedules";
+}
+
+<div class="container">
+    <h4>Training Schedules</h4>
+
+    <table cellpadding="1" cellspacing="1" style="margin: 0 auto;" class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Venue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FinishTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateOfSession)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Venue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FinishTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfSession)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

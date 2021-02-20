@@ -1,0 +1,60 @@
+﻿@model MUT_MODELS.GameResultModel
+
+@{
+    ViewData["Title"] = "AddGameResult";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-6" style="margin: 0 auto; border-radius:15%; padding: 50px; box-shadow: 2px 3px 4px 5px #511a1d;">
+        <center><h4><strong>Team Results Form</strong></h4></center>
+        <hr />
+        <form asp-action="AddGameResult">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EventName" class="control-label"></label>
+                <input asp-for="EventName" class="form-control" />
+                <span asp-validation-for="EventName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDate" class="control-label"></label>
+                <input asp-for="EventDate" class="form-control" />
+                <span asp-validation-for="EventDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HomeTeam" class="control-label"></label>
+                <input asp-for="HomeTeam" class="form-control" />
+                <span asp-validation-for="HomeTeam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AwayTeam" class="control-label"></label>
+                <input asp-for="AwayTeam" class="form-control" />
+                <span asp-validation-for="AwayTeam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PointsForAwayTeam" class="control-label"></label>
+                <input asp-for="PointsForAwayTeam" class="form-control" />
+                <span asp-validation-for="PointsForAwayTeam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PointForHomeTeam" class="control-label"></label>
+                <input asp-for="PointForHomeTeam" class="form-control" />
+                <span asp-validation-for="PointForHomeTeam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsHomeWin" class="control-label"></label>
+                <input asp-for="IsHomeWin" class="form-control" />
+                <span asp-validation-for="IsHomeWin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save Game Results" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
