@@ -10,9 +10,9 @@ C:\Users\Nhlanhla Vilakazi\Desktop\MUT_SPORT\MUT_MODELS\obj\Debug\netcoreapp3.1\
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\bin\Debug\netcoreapp3.1\MUT_MODELS.deps.json
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\bin\Debug\netcoreapp3.1\MUT_MODELS.dll
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\bin\Debug\netcoreapp3.1\MUT_MODELS.pdb
+C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.csprojAssemblyReference.cache
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.AssemblyInfoInputs.cache
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.AssemblyInfo.cs
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.csproj.CoreCompileInputs.cache
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.dll
 C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.pdb
-C:\Users\prince.lunga\Source\Repos\MUT_SPORT_API\MUT_MODELS\obj\Debug\netcoreapp3.1\MUT_MODELS.csprojAssemblyReference.cache

@@ -1,0 +1,64 @@
+﻿@model MUT_MODELS.PlayerAchievementModel
+
+@{
+    ViewData["Title"] = "CreatePlayerAchievement";
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+<h1>CreatePlayerAchievement</h1>
+
+<h4>PlayerAchievementModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreatePlayerAchievement">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateAwarded" class="control-label"></label>
+                <input asp-for="DateAwarded" class="form-control" />
+                <span asp-validation-for="DateAwarded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AchievementId" class="control-label"></label>
+                <input asp-for="AchievementId" class="form-control" />
+                <span asp-validation-for="AchievementId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AchievementId" class="control-label"></label>
+
+                <select asp-for="AchievementId" class="form-control">
+                    @foreach (var Achievement in @ViewBag.Achievements)
+                    {
+
+                    <option>@Achievement.Id</option>
+
+                    }
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="PlayerId" class="control-label"></label>
+
+                <select asp-for="PlayerId" class="form-control">
+                    @foreach (var Player in @ViewBag._Players)
+                    {
+
+                    <option>@Player.Id</option>
+
+                    }
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

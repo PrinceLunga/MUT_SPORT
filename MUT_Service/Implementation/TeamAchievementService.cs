@@ -43,9 +43,8 @@ namespace MUT_Service.Implementation
                             DateAchieved = item.DateAwarded.ToShortDateString()
                         }).SingleOrDefault());
                     }
-                    return achievements;
                 }
-                return new List<Achievement>();
+                return achievements;
             }
         }
     }

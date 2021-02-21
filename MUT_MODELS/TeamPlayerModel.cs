@@ -12,6 +12,8 @@ namespace MUT_MODELS
         public bool IsCaptain { get; set; }
         public bool IsViceCaptain { get; set; }
         public string CreatedBy { get; set; }
+        public string TeamName { get; set; }
+        public string StudentEmail { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public DateTime LastDate { get; set; }

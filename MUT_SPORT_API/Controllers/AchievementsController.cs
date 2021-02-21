@@ -27,7 +27,7 @@ namespace MUT_SPORT_API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<AchievementModel>> GetPlayerAchievements()
+        public ActionResult<IEnumerable<AchievementModel>> GetAllAchievements()
         {
             return achievementService.GetAchievements();
         }

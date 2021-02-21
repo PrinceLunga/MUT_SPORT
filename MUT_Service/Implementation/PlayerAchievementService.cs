@@ -1,5 +1,6 @@
 ﻿using MUT_DataAccess.DataContext;
 using MUT_DataAccess.DataModels;
+using MUT_MODELS;
 using MUT_Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace MUT_Service.Implementation
 {
-    public class PlayerAchievementService : IPlayerAchievement
+    public class PlayerAchievementService : IPlayerAchievementService
     {
         private readonly MUTDbContext dbContext;
         private List<Achievement> achievements;
@@ -17,35 +18,72 @@ namespace MUT_Service.Implementation
             this.dbContext = dbContext;
             achievements = new List<Achievement>();
         }
-        public PlayerAchievement AddPlayerAchievement(PlayerAchievement achievement)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Achievement> GetPlayerAchievements(int playerID)
+        public PlayerAchievementModel AddPlayerAchievement(PlayerAchievementModel achievement)
         {
             using (dbContext)
             {
-                var results = dbContext.PlayerAchievements.Where(x => x.PlayerId == playerID).Select(x => new PlayerAchievement
+                var _PlayerAchievment = new PlayerAchievement
                 {
-                    AchievementId = x.AchievementId,
-                    DateAwarded = x.DateAwarded
-                }).ToList();
+                    AchievementId = achievement.AchievementId,
+                    DateAwarded = DateTime.Now,
+                    PlayerId = achievement.PlayerId
+                };
 
-                if (results != null)
+                dbContext.PlayerAchievements.Add(_PlayerAchievment);
+                dbContext.SaveChanges();
+            }
+            return achievement;
+        }
+
+        public List<PlayerAchievementModel> GetPlayerAchievementByID(int Id)
+        {
+            using(dbContext)
+            {
+                return dbContext.PlayerAchievements.Select( b => new PlayerAchievementModel 
+                { 
+                    AchievementId = b.AchievementId,
+                    PlayerId = b.PlayerId,
+                    DateAwarded = b.DateAwarded,
+                }).Where(x => x.Id == Id
+               || x.PlayerId == Id).ToList();
+            }
+        }
+
+        public List<PlayerAchievementModel> GetPlayerAchievements(int playerID)
+        {
+            using (dbContext)
+            {
+                return dbContext.PlayerAchievements.Where(x => x.PlayerId == playerID).Select(c => new PlayerAchievementModel
                 {
-                    foreach (var item in results)
-                    {
-                        achievements.Add(dbContext.Achievements.Where(x => x.Id == Convert.ToInt32(item.AchievementId)).Select(x => new Achievement
-                        {
-                            Id = x.Id,
-                            AchievementDescription = x.AchievementDescription,
-                            DateAchieved = item.DateAwarded.ToShortDateString()
-                        }).SingleOrDefault());
-                    }
-                    return achievements;
-                }
-                return new List<Achievement>();
+                    PlayerId = c.PlayerId,
+                    AchievementId = c.AchievementId,
+                    DateAwarded = c.DateAwarded
+                }).ToList();
+            }
+        }
+
+        public List<PlayerAchievementModel> GetPlayersAchievements()
+        {
+            using(dbContext)
+            {
+                return dbContext.PlayerAchievements.Select( c => new PlayerAchievementModel
+                {
+                    AchievementId = c.AchievementId,
+                    PlayerId = c.PlayerId,
+                    DateAwarded = c.DateAwarded
+                }).ToList();
+            }
+        }
+
+        public void UpdatePlayerAchievement(PlayerAchievementModel playerAchievementModel)
+        {
+           using(dbContext)
+            {
+                var _PlayerAchievement = dbContext.PlayerAchievements.Find(playerAchievementModel.Id);
+
+                _PlayerAchievement.PlayerId = playerAchievementModel.PlayerId;
+                _PlayerAchievement.AchievementId = playerAchievementModel.AchievementId;
+                dbContext.SaveChanges();
             }
         }
     }

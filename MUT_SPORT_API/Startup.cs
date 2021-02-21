@@ -43,12 +43,13 @@ namespace MUT_SPORT_API
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ITrainingSchedule,TrainingService>();
             services.AddScoped<ITeamAchievement, TeamAchievementService>();
-            services.AddScoped<IPlayerAchievement,PlayerAchievementService>();
+            services.AddScoped<IPlayerAchievementService,PlayerAchievementService>();
             services.AddScoped<IStudentSportService, StudentSportService>();
             services.AddScoped<IAchievementService, AchievementService>();
             services.AddScoped<ICoachService, CoachService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<ITeamPlayerService, TeamPlayerService>();
 
         }
 
