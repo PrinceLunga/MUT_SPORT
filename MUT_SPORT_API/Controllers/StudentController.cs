@@ -48,7 +48,7 @@ namespace MUT_SPORT_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<StudentSport>> EnrollSport(StudentSportModel model)
+        public async Task<ActionResult<StudentSport>> EnrollSport([FromForm]StudentSportModel model)
         {
             if (ModelState.IsValid)
                 return studentService.RegisterSport(model);

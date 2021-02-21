@@ -105,7 +105,7 @@ namespace MUT_MVC.Controllers
             {
                 var student = new StudentSportModel
                 {
-                    StudentId = studentId,
+                    StudentId = 1,
                     SportId = sportId,
                     DateEnrolled = DateTime.Now
 
@@ -219,17 +219,26 @@ namespace MUT_MVC.Controllers
         }
 
 
-        public ViewResult CreateAccount() => View();
+        public async Task<ViewResult> CreateAccount()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44330/api/Residence/GetAllResidences"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    ViewBag.Res = JsonConvert.DeserializeObject<List<ResidenceMvcController>>(apiResponse);
+                }
+            }
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateAccount(StudentMvcModel model)
         {
-            //if (ModelState.IsValid)
-            //{
             var user = new IdentityUser
             {
-                UserName = "n@gmail.com",
-                Email = "n@gmail.com"
+                UserName = model.Email,
+                Email = model.Email
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -241,7 +250,7 @@ namespace MUT_MVC.Controllers
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-                    using (var response = await httpClient.PostAsync("https://localhost:44330/Api/Coach/InsertNewCoach", content))
+                    using (var response = await httpClient.PostAsync("https://localhost:44330/Api/Student/PostStudent", content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         receivedStudent = JsonConvert.DeserializeObject<StudentMvcModel>(apiResponse);

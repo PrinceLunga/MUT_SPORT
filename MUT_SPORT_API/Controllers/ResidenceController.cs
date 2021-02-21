@@ -24,11 +24,7 @@ namespace MUT_SPORT_API.Controllers
         [HttpGet]
         public List<ResModel> GetAllResidences()
         {
-            if (ModelState.IsValid)
-            {
-                return residenceService.GetResidences();
-            }
-            return new List<ResModel>();
+            return residenceService.GetResidences();
         }
 
     }
