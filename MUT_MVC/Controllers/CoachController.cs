@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using MUT_MODELS;
 using Newtonsoft.Json;
 using System;
@@ -11,7 +12,16 @@ using System.Threading.Tasks;
 namespace MUT_MVC.Controllers
 {
     public class CoachController : Controller
-    { 
+    {
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        public CoachController(UserManager<IdentityUser> _userManager,
+            SignInManager<IdentityUser> _signInManager)
+        {
+            this._userManager = _userManager;
+            this._signInManager = _signInManager;
+        }
         public async Task<IActionResult> GetCoachById(int id)
         {
             var coaches = new List<CoachModel>();
@@ -28,7 +38,7 @@ namespace MUT_MVC.Controllers
 
         public async Task<IActionResult> GetAllCoaches()
         {
-           var coaches = new List<CoachModel>();
+            var coaches = new List<CoachModel>();
 
             using (var httpClient = new HttpClient())
             {
@@ -59,17 +69,53 @@ namespace MUT_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCoach(CoachModel model)
         {
-            var _Coach = new CoachModel();
-            using (var httpClient = new HttpClient())
+            var user = new IdentityUser
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PostAsync("https://localhost:44330/api/Coach/InsertNewCoach", content))
+                UserName = model.EmailAddress,
+                Email = model.EmailAddress
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                var _Coach = new CoachModel();
+                using (var httpClient = new HttpClient())
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    _Coach = JsonConvert.DeserializeObject<CoachModel>(apiResponse);
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                    using (var response = await httpClient.PostAsync("https://localhost:44330/api/Coach/InsertNewCoach", content))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        _Coach = JsonConvert.DeserializeObject<CoachModel>(apiResponse);
+                    }
                 }
+                return RedirectToAction(nameof(GetAllCoaches));
             }
-            return RedirectToAction(nameof(GetAllCoaches));
+            else
+                return View();
         }
+
+        public  ViewResult LoginCoach() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> LoginCoach(LoginModel model)
+        {
+            var _Coach = new CoachModel();
+            if (ModelState.IsValid)
+            {
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(GetAllCoaches));
+                }
+                return View();
+            }
+            else
+                return View();
+
+        }
+
     }
 }

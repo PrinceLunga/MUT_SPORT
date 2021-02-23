@@ -57,15 +57,16 @@ namespace MUT_MVC.Controllers
                 }
             }
 
-            var _Players = new List<TeamPlayerModel>();
+            var _Students = new List<StudentModel>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/TeamPlayer/GetAllTeamPlayers"))
+                using (var response = await httpClient.GetAsync("https://localhost:44330/Api/Student/GetStudents"))
                 {
-                    string apiResponse2 = await response.Content.ReadAsStringAsync();
-                    _Players = JsonConvert.DeserializeObject<List<TeamPlayerModel>>(apiResponse2);
-                    ViewBag._Players = _Players;
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    ViewBag.Students = JsonConvert.DeserializeObject<List<StudentModel>>(apiResponse);
                 }
+
+
             }
             return View();
         }

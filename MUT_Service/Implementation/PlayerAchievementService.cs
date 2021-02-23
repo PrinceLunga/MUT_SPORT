@@ -18,21 +18,26 @@ namespace MUT_Service.Implementation
             this.dbContext = dbContext;
             achievements = new List<Achievement>();
         }
-        public PlayerAchievementModel AddPlayerAchievement(PlayerAchievementModel achievement)
+        public PlayerAchievementModel AddPlayerAchievement(PlayerAchievementModel playerAchievement)
         {
             using (dbContext)
             {
+                var achievement = dbContext.Achievements.Where(x => x.AchievementDescription.Equals(playerAchievement.AchievementDesc)).SingleOrDefault();
+                var student = dbContext.Students.Where(x => x.Email.Equals(playerAchievement.PlayerName)).SingleOrDefault();
+                var teamPlayer = dbContext.TeamPlayers.Where(b => b.StudentId == Convert.ToInt32("4")
+                || b.TeamId == Convert.ToInt32("1")).SingleOrDefault();
+                int PlayerId = teamPlayer.Id;
                 var _PlayerAchievment = new PlayerAchievement
                 {
-                    AchievementId = achievement.AchievementId,
+                    AchievementId = achievement.Id,
                     DateAwarded = DateTime.Now,
-                    PlayerId = achievement.PlayerId
+                    PlayerId = PlayerId
                 };
 
                 dbContext.PlayerAchievements.Add(_PlayerAchievment);
                 dbContext.SaveChanges();
             }
-            return achievement;
+            return playerAchievement;
         }
 
         public List<PlayerAchievementModel> GetPlayerAchievementByID(int Id)

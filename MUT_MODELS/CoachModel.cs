@@ -14,6 +14,13 @@ namespace MUT_MODELS
         public string SportName { get; set; }
         public string PhoneNumber { get; set; }
         public string TeamName { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
         public int TeamId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }

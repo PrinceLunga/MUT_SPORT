@@ -13,7 +13,7 @@
     <div class="col-md-4">
         <form asp-action="CreateCoach">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        
+
             <div class="form-group">
                 <label asp-for="Fullnames" class="control-label"></label>
                 <input asp-for="Fullnames" class="form-control" />
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label asp-for="SportName" class="control-label"></label>
 
-                <select asp-for="SportName" class="form-control"> 
+                <select asp-for="SportName" class="form-control">
                     @foreach (var Sport in @ViewBag.Sports)
                     {
 
@@ -48,7 +48,17 @@
 
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register Coach" class="btn btn-primary" />
             </div>
         </form>
     </div>
