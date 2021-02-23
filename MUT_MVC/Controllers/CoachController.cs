@@ -22,6 +22,11 @@ namespace MUT_MVC.Controllers
             this._userManager = _userManager;
             this._signInManager = _signInManager;
         }
+
+        public IActionResult CoachDashBoard()
+        {
+            return View();
+        }
         public async Task<IActionResult> GetCoachById(int id)
         {
             var coaches = new List<CoachModel>();
@@ -79,7 +84,9 @@ namespace MUT_MVC.Controllers
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "Coach");
                 var _Coach = new CoachModel();
+
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");

@@ -31,6 +31,11 @@ namespace MUT_MVC.Controllers
             _userManager = userManager;
         }
 
+        public IActionResult StudentDashBoard()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> StudentIndex()
         {
             var student = new List<StudentModel>();
